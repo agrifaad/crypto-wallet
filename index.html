@@ -55,13 +55,47 @@
 
 <div id="wallet" style="display:none; margin-top:30px;">
   <h2>Saldo Anda 💰</h2>
+ <div id="rekening" style="display:none; margin-top:20px;">
+  <h3>Transfer ke rekening ini 💳</h3>
+  <p>Bank: BCA</p>
+  <p>No Rekening: 1234567890</p>
+  <p>Nama: Green Money</p>
+</div>
 <p>Bitcoin: <span id="btc">1000000</span> IDR</p>
 <p>Ethereum: <span id="eth">5000000</span> IDR</p>
- <button onclick="tambahSaldo()">Tambah Saldo 💸</button>
-</div>
+ <button onclick="tampilRekening()">Tambah Saldo 💸</button>
+</div> 
+<div id="rekening" style="display:none;">
+    <h3>Transfer ke rekening ini 💳</h3>
+    <p>Bank: BCA</p>
+    <p>No Rekening: 1234567890</p>
+    <p>Nama: Green Money</p>
+  </div>
 
+</div>
 <script>
 function login() {
+ <script>
+function login() {
+  var user = document.getElementById("username").value;
+  var pass = document.getElementById("password").value;
+
+  if(user === "admin" && pass === "1234") {
+    document.getElementById("login").style.display = "none";
+    document.getElementById("btnWallet").style.display = "inline-block";
+  } else {
+    document.getElementById("error").innerText = "ID atau Password salah!";
+  }
+}
+
+function connectWallet() {
+  document.getElementById("wallet").style.display = "block";
+}
+
+function tampilRekening() {
+  document.getElementById("rekening").style.display = "block";
+}
+</script>
   var user = document.getElementById("username").value;
   var pass = document.getElementById("password").value;
   if(user === "admin" && pass === "1234") {
