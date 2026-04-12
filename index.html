@@ -55,27 +55,21 @@
 
 <div id="wallet" style="display:none; margin-top:30px;">
   <h2>Saldo Anda 💰</h2>
- <div id="rekening" style="display:none; margin-top:20px;">
-  <h3>Transfer ke rekening ini 💳</h3>
-  <p>Bank: BCA</p>
-  <p>No Rekening: 1234567890</p>
-  <p>Nama: Green Money</p>
-</div>
-<p>Bitcoin: <span id="btc">1000000</span> IDR</p>
-<p>Ethereum: <span id="eth">5000000</span> IDR</p>
- <button onclick="tampilRekening()">Tambah Saldo 💸</button>
-</div> 
-<div id="rekening" style="display:none;">
+
+  <p>Bitcoin: <span id="btc">1000000</span> IDR</p>
+  <p>Ethereum: <span id="eth">5000000</span> IDR</p>
+
+  <button onclick="tampilRekening()">Tambah Saldo 💸</button>
+
+  <div id="rekening" style="display:none;">
     <h3>Transfer ke rekening ini 💳</h3>
     <p>Bank: BCA</p>
     <p>No Rekening: 1234567890</p>
     <p>Nama: Green Money</p>
   </div>
-
 </div>
+
 <script>
-function login() {
- <script>
 function login() {
   var user = document.getElementById("username").value;
   var pass = document.getElementById("password").value;
