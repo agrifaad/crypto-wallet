@@ -94,6 +94,9 @@
 </div>
 
 <script>
+ function formatRupiah(angka) {
+  return "Rp " + angka.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+}
 function login() {
   var user = document.getElementById("username").value;
   var pass = document.getElementById("password").value;
@@ -109,6 +112,13 @@ function login() {
 function connectWallet() {
   var wallet = document.getElementById("wallet");
   wallet.style.display = "block";
+
+  var btc = document.getElementById("btc");
+  var eth = document.getElementById("eth");
+
+  btc.innerText = formatRupiah(btc.innerText);
+  eth.innerText = formatRupiah(eth.innerText);
+
   setTimeout(() => wallet.classList.add("show"), 100);
 }
 
