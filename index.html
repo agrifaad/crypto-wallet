@@ -1,26 +1,27 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Green Money</title>
+<title>GreenMoney Wallet</title>
 
 <style>
 body {
-  background: linear-gradient(135deg,#1e293b,#0f172a,#111827);
+  background: linear-gradient(135deg,#2c2c2c,#3b2f00,#d4af37);
+  font-family: 'Segoe UI', sans-serif;
   color: white;
-  font-family: Arial;
   text-align: center;
-  padding-top: 40px;
+  padding-top: 30px;
 }
 
 h1 {
   color: gold;
+  text-shadow: 0 0 10px gold;
 }
 
 .card {
-  background: #1e293b;
+  background: rgba(0,0,0,0.7);
   padding: 20px;
   margin: 20px auto;
-  width: 300px;
+  width: 320px;
   border-radius: 15px;
   box-shadow: 0 0 20px gold;
 }
@@ -32,24 +33,33 @@ button {
   margin: 5px;
   border-radius: 8px;
   cursor: pointer;
+  font-weight: bold;
 }
 
 button:hover {
-  transform: scale(1.1);
+  transform: scale(1.05);
 }
 
-.logo {
-  width: 120px;
+.saldo {
+  font-size: 28px;
+  font-weight: bold;
+  color: #00ffcc;
 }
 
+.merah {
+  color: red !important;
+}
+
+.notice {
+  font-size: 13px;
+  color: #ccc;
+}
 </style>
 </head>
 
 <body>
 
-<img src="PASTE_LOGO_KAMU_DISINI" class="logo">
-
-<h1>GREEN MONEY 💚</h1>
+<h1>GreenMoney Wallet 💚</h1>
 <p>OLXPROJECK 💹</p>
 
 <!-- LOGIN -->
@@ -65,7 +75,7 @@ button:hover {
 
 <div class="card">
 <h3>Saldo Anda 💰</h3>
-<p>Rp <span id="saldo">1500000</span></p>
+<p class="saldo" id="saldo">Rp 100.000</p>
 
 <button onclick="deposit()">💳 Deposit</button>
 <button onclick="tarik()">💸 Tarik</button>
@@ -73,23 +83,12 @@ button:hover {
 </div>
 
 <div class="card">
-<h3>Deposit DANA</h3>
-<p>0896-9986-3373</p>
-<p>AGRIFA ALOKENIA GINTING</p>
-</div>
-
-<div class="card">
-<h3>Tugas</h3>
-
+<h3>Menu Tugas</h3>
 <button onclick="wa()">Tugas 1</button>
 <button onclick="wa()">Tugas 2</button>
 <button onclick="wa()">Tugas 3</button>
 <button onclick="wa()">Tugas 4</button>
-
-<button onclick="wa()" style="background:gold;">
-👑 Tugas 5 VIP
-</button>
-
+<button onclick="wa()" style="background:orange;">👑 Tugas VIP</button>
 </div>
 
 <div class="card">
@@ -106,6 +105,14 @@ button:hover {
 <img src="https://upload.wikimedia.org/wikipedia/commons/5/55/OVO_logo.svg" width="60">
 </div>
 
+<div class="card notice">
+<p>⚠️ NOTICE:</p>
+<p>Ambil tugas yang tersedia di dalam grup</p>
+<p>Isi coin melalui transfer nomor tujuan yang tersedia</p>
+<p>Pilih tugas dan kembali ke mentor</p>
+<p>Segera lakukan penarikan komisi dengan cara menyelesaikan tugas anda!!!</p>
+</div>
+
 </div>
 
 <script>
@@ -118,22 +125,28 @@ function login(){
     document.getElementById("login").style.display="none";
     document.getElementById("app").style.display="block";
   } else {
-    document.getElementById("error").innerText="Salah!";
+    document.getElementById("error").innerText="ID / Password salah!";
   }
 }
 
-function deposit(){
-  alert("Transfer ke DANA ya!");
-}
-
-function tarik(){
-  alert("Fitur tarik diproses admin");
-}
-
+// WA TUGAS
 function wa(){
   window.open("https://wa.me/855718506180");
 }
 
+// DEPOSIT
+function deposit(){
+  alert("Transfer ke DANA 0896-9986-3373\nA/N AGRIFA ALOKENIA GINTING\n\nKirim bukti ke grup!\nKlik kembali jika sudah.");
+
+  document.getElementById("saldo").classList.add("merah");
+}
+
+// TARIK
+function tarik(){
+  alert("Silakan hubungi mentor untuk penarikan saldo.");
+}
+
+// LOGOUT
 function logout(){
   location.reload();
 }
