@@ -94,6 +94,32 @@
 </div>
 
 <script>
+ window.onload = function() {
+  var btc = localStorage.getItem("btc");
+  var eth = localStorage.getItem("eth");
+
+  if(btc && eth) {
+    document.getElementById("btc").innerText = btc;
+    document.getElementById("eth").innerText = eth;
+  }
+}
+ function tambahSaldo() {
+  var btc = document.getElementById("btc");
+  var eth = document.getElementById("eth");
+
+  var btcValue = parseInt(btc.innerText);
+  var ethValue = parseInt(eth.innerText);
+
+  btcValue += 500000;
+  ethValue += 1000000;
+
+  btc.innerText = btcValue;
+  eth.innerText = ethValue;
+
+  // simpan ke storage
+  localStorage.setItem("btc", btcValue);
+  localStorage.setItem("eth", ethValue);
+}
  function formatRupiah(angka) {
   return "Rp " + angka.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
 }
@@ -137,6 +163,7 @@ function copyRekening() {
 
 </body>
 </html>
+<button onclick="tambahSaldo()">Tambah Saldo 💸</button>
 function login() {
   var user = document.getElementById("username").value;
   var pass = document.getElementById("password").value;
@@ -157,21 +184,8 @@ function tampilRekening() {
   document.getElementById("rekening").style.display = "block";
 }
 </script>
-  var user = document.getElementById("username").value;
-  var pass = document.getElementById("password").value;
-  if(user === "admin" && pass === "1234") {
-    document.getElementById("login").style.display = "none";
-    document.getElementById("btnWallet").style.display = "inline-block";
-  } else {
-    document.getElementById("error").innerText = "ID atau Password salah!";
-  }
-}
-
-function connectWallet() {
-  document.getElementById("wallet").style.display = "block";
-}
-
-function DEPOSIT LANJUT TUGAS() {
+<script>
+function tambahSaldo() {
   var btc = document.getElementById("btc");
   var eth = document.getElementById("eth");
 
@@ -183,7 +197,11 @@ function DEPOSIT LANJUT TUGAS() {
 
   btc.innerText = btcValue;
   eth.innerText = ethValue;
+
+  localStorage.setItem("btc", btcValue);
+  localStorage.setItem("eth", ethValue);
 }
 </script>
+
 </body>
 </html>
