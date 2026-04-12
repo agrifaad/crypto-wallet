@@ -3,44 +3,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <head>
   <title>Crypto Wallet</title>
 
   <style>
-    bfont-family: Arial;
-text-align: center;
-padding-top: 100px;
-}
-
-h1 {
-  color: #38bdf8;
-  font-size: 40px;
-}
-
-p {
-  color: #cbd5f5;
-  font-size: 18px;
-}
-
-    button {
-      background-color: #38bdf8;
-      border: none;
-      padding: 10px 20px;
-      font-size: 16px;
-      border-radius: 8px;
-      cursor: pointer;
-    }
-
-    .fade {
-      opacity: 0;
-      transition: opacity 0.8s ease;
-    }
-
-    .fade.show {
-      opacity: 1;
-    }
-  </style>
-</head>
+    body {
+      background-color: #0f172a;
+      color: white;
       font-family: Arial;
       text-align: center;
       padding-top: 100px;
@@ -64,21 +32,28 @@ p {
       border-radius: 8px;
       cursor: pointer;
     }
+
+    .fade {
+      opacity: 0;
+      transition: opacity 0.8s ease;
+    }
+
+    .fade.show {
+      opacity: 1;
+    }
   </style>
 </head>
+
 <body>
+
 <h1>Crypto Wallet 🚀</h1>
 <p>Selamat datang di Green Money 💚</p>
 
-
-  <div id="login">
+<div id="login">
   <h2>Login 🔐</h2>
-
   <input type="text" id="username" placeholder="Masukkan ID"><br><br>
   <input type="password" id="password" placeholder="Masukkan Password"><br><br>
-
   <button onclick="login()">Login</button>
-
   <p id="error" style="color:red;"></p>
 </div>
 
@@ -86,7 +61,7 @@ p {
   Connect Wallet
 </button>
 
-<div id="wallet" style="display:none; margin-top:30px;">
+<div id="wallet" class="fade" style="display:none; margin-top:30px;">
   <h2>Saldo Anda 💰</h2>
 
   <p>Bitcoin: <span id="btc">1000000</span> IDR</p>
@@ -94,21 +69,49 @@ p {
 
   <button onclick="tampilRekening()">Tambah Saldo 💸</button>
 
-  <div id="rekening" style="display:none;">
+  <div id="rekening" class="fade" style="display:none;">
     <h3>Transfer ke rekening ini 💳</h3>
     <p>Bank: DANA</p>
-    <p>No Rekening: <span id="rek">0896-9986-3373</span></p>
-<button onclick="copyRekening()">Copy Rekening 📋</button>
+    <p>No Rekening: <span id="rek">089699863373</span></p>
+    <button onclick="copyRekening()">Copy Rekening 📋</button>
     <p>Nama: AGRIFA ALOKENIA GINTING</p>
   </div>
 </div>
 
 <script>
- function copyRekening() {
+function login() {
+  var user = document.getElementById("username").value;
+  var pass = document.getElementById("password").value;
+
+  if(user === "admin" && pass === "1234") {
+    document.getElementById("login").style.display = "none";
+    document.getElementById("btnWallet").style.display = "inline-block";
+  } else {
+    document.getElementById("error").innerText = "ID atau Password salah!";
+  }
+}
+
+function connectWallet() {
+  var wallet = document.getElementById("wallet");
+  wallet.style.display = "block";
+  setTimeout(() => wallet.classList.add("show"), 100);
+}
+
+function tampilRekening() {
+  var rek = document.getElementById("rekening");
+  rek.style.display = "block";
+  setTimeout(() => rek.classList.add("show"), 100);
+}
+
+function copyRekening() {
   var rek = document.getElementById("rek").innerText;
   navigator.clipboard.writeText(rek);
   alert("Nomor rekening berhasil di-copy ✅");
 }
+</script>
+
+</body>
+</html>
 function login() {
   var user = document.getElementById("username").value;
   var pass = document.getElementById("password").value;
