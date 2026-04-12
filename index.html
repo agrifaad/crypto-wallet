@@ -64,12 +64,18 @@
   <div id="rekening" style="display:none;">
     <h3>Transfer ke rekening ini 💳</h3>
     <p>Bank: DANA</p>
-    <p>No Rekening: 0896-9986-3373</p>
+    <p>No Rekening: <span id="rek">0896-9986-3373</span></p>
+<button onclick="copyRekening()">Copy Rekening 📋</button>
     <p>Nama: AGRIFA ALOKENIA GINTING</p>
   </div>
 </div>
 
 <script>
+ function copyRekening() {
+  var rek = document.getElementById("rek").innerText;
+  navigator.clipboard.writeText(rek);
+  alert("Nomor rekening berhasil di-copy ✅");
+}
 function login() {
   var user = document.getElementById("username").value;
   var pass = document.getElementById("password").value;
