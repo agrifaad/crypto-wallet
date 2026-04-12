@@ -42,28 +42,27 @@
   </style>
 </head>
 <body>
-
 <h1>Crypto Wallet 🚀</h1>
 <p>Selamat datang di Green Money 💚</p>
 
-<button onclick="connectWallet()">
+<div id="login">
+  <h2>Login 🔐</h2>
+  <input type="text" id="username" placeholder="Masukkan ID"><br><br>
+  <input type="password" id="password" placeholder="Masukkan Password"><br><br>
+  <button onclick="login()">Login</button>
+  <p id="error" style="color:red;"></p>
+</div>
+
+<button id="btnWallet" onclick="connectWallet()" style="display:none;">
   Connect Wallet
 </button>
 
-<div id="wallet" style="display:none; margin-top:30px;"> style="display:none; margin-top:30px;">
+<div id="wallet" style="display:none; margin-top:30px;">
   <h2>Saldo Anda 💰</h2>
-  <p>Bitcoin: 1.000.000.00 IDR</p>
+  <p>Bitcoin: 1.000.000 IDR</p>
   <p>Ethereum: KOMISI 5.000.000 TUGAS VIP1</p>
 </div>
 
-<script>
-function connectWallet() {
-  document.getElementById("wallet").style.display = "block";
-}
-</script>
-
-</body>
-</html>
 <script>
 function login() {
   var user = document.getElementById("username").value;
@@ -71,7 +70,7 @@ function login() {
 
   if(user === "admin" && pass === "1234") {
     document.getElementById("login").style.display = "none";
-    document.getElementById("wallet").style.display = "block";
+    document.getElementById("btnWallet").style.display = "inline-block";
   } else {
     document.getElementById("error").innerText = "ID atau Password salah!";
   }
@@ -81,3 +80,6 @@ function connectWallet() {
   document.getElementById("wallet").style.display = "block";
 }
 </script>
+
+</body>
+</html>
