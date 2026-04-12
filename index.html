@@ -6,6 +6,19 @@
   <title>Crypto Wallet</title>
 
   <style>
+   .card {
+  background: #1e293b;
+  padding: 20px;
+  border-radius: 15px;
+  margin: 20px auto;
+  width: 300px;
+  box-shadow: 0 0 20px rgba(56,189,248,0.3);
+  transition: transform 0.3s;
+}
+
+.card:hover {
+  transform: scale(1.05);
+}
     body {
       background-color: #0f172a;
       color: white;
@@ -62,6 +75,15 @@
 </button>
 
 <div id="wallet" class="fade" style="display:none; margin-top:30px;">
+
+  <div class="card">
+    <h2>Saldo Anda 💰</h2>
+
+    <p>Bitcoin: <span id="btc">1000000</span> IDR</p>
+    <p>Ethereum: <span id="eth">5000000</span> IDR</p>
+
+    <button onclick="tampilRekening()">Tambah Saldo 💸</button>
+  </div>
   <h2>Saldo Anda 💰</h2>
 
   <p>Bitcoin: <span id="btc">1000000</span> IDR</p>
@@ -69,7 +91,7 @@
 
   <button onclick="tampilRekening()">Tambah Saldo 💸</button>
 
-  <div id="rekening" class="fade" style="display:none;">
+  <div id="rekening" class="fade card" style="display:none;">
     <h3>Transfer ke rekening ini 💳</h3>
     <p>Bank: DANA</p>
     <p>No Rekening: <span id="rek">089699863373</span></p>
