@@ -7,7 +7,14 @@
   <style>
     body {
       background-color: #0f172a;
-      color: white;
+      color: white;.fade {
+  opacity: 0;
+  transition: opacity 0.8s ease;
+}
+
+.fade.show {
+  opacity: 1;
+}
       font-family: Arial;
       text-align: center;
       padding-top: 100px;
