@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Crypto Wallet</title>
+  <title>Green Money Wallet</title>
 
   <style>
     body {
@@ -14,12 +14,15 @@
 
     h1 {
       color: #38bdf8;
-      font-size: 40px;
     }
 
-    p {
-      color: #cbd5f5;
-      font-size: 18px;
+    .card {
+      background: #1e293b;
+      padding: 20px;
+      border-radius: 15px;
+      margin: 20px auto;
+      width: 300px;
+      box-shadow: 0 0 20px rgba(56,189,248,0.3);
     }
 
     input {
@@ -33,138 +36,112 @@
       background-color: #38bdf8;
       border: none;
       padding: 10px 20px;
-      font-size: 16px;
       border-radius: 8px;
       cursor: pointer;
       margin-top: 10px;
-    }
-
-    .card {
-      background: #1e293b;
-      padding: 20px;
-      border-radius: 15px;
-      margin: 20px auto;
-      width: 300px;
-      box-shadow: 0 0 20px rgba(56,189,248,0.3);
     }
   </style>
 </head>
 
 <body>
 
-<h1>Crypto Wallet 🚀</h1>
-<p>Selamat datang di Green Money 💚</p>
+<h1>Green Money 💚</h1>
 
 <!-- LOGIN -->
 <div id="login">
   <h2>Login 🔐</h2>
-  <input type="text" id="username" placeholder="Masukkan ID"><br><br>
-  <input type="password" id="password" placeholder="Masukkan Password"><br><br>
+  <input id="username" placeholder="ID"><br><br>
+  <input id="password" type="password" placeholder="Password"><br><br>
   <button onclick="login()">Login</button>
   <p id="error" style="color:red;"></p>
 </div>
-
-<!-- BUTTON -->
-<button id="btnWallet" onclick="connectWallet()" style="display:none;">
-  Connect Wallet
-</button>
 
 <!-- WALLET -->
 <div id="wallet" style="display:none;">
 
   <div class="card">
     <h2>Saldo Anda 💰</h2>
-    <p>Bitcoin: <span id="btc">1000000</span></p>
-    <p>Ethereum: <span id="eth">5000000</span></p>
+    <p>Bitcoin: <span id="btc">0</span></p>
+    <p>Ethereum: <span id="eth">0</span></p>
 
     <button onclick="tambahSaldo()">Tambah Saldo 💸</button>
     <button onclick="tampilRekening()">Isi Saldo 💳</button>
   </div>
 
   <div id="rekening" class="card" style="display:none;">
-    <h3>Transfer ke rekening ini 💳</h3>
+    <h3>Transfer ke rekening ini</h3>
     <p>Bank: DANA</p>
     <p>No Rekening: <span id="rek">089699863373</span></p>
-    <button onclick="copyRekening()">Copy Rekening 📋</button>
-    <p>Nama: AGRIFA ALOKENIA GINTING</p>
+    <button onclick="copyRek()">Copy</button>
+    <p>Nama: GREEN MONEY</p>
   </div>
 
 </div>
 
 <script>
 
-// 🔐 LOGIN
-function login() {
-  var user = document.getElementById("username").value;
-  var pass = document.getElementById("password").value;
-
-  if(user === "admin" && pass === "1234") {
-    document.getElementById("login").style.display = "none";
-    document.getElementById("btnWallet").style.display = "inline-block";
-    localStorage.setItem("login", "true");
-  } else {
-    document.getElementById("error").innerText = "ID atau Password salah!";
-  }
-}
-
-// 🔁 LOAD
-window.onload = function() {
-
-  // auto login
-  if(localStorage.getItem("login") === "true") {
-    document.getElementById("login").style.display = "none";
-    document.getElementById("btnWallet").style.display = "inline-block";
-  }
-
-  // ambil saldo
-  var btc = localStorage.getItem("btc");
-  var eth = localStorage.getItem("eth");
-
-  if(!btc) btc = 1000000;
-  if(!eth) eth = 5000000;
-
-  document.getElementById("btc").innerText = formatRupiah(btc);
-  document.getElementById("eth").innerText = formatRupiah(eth);
-}
-
-// 💰 FORMAT
-function formatRupiah(angka) {
+// FORMAT RUPIAH
+function format(angka) {
   return "Rp " + angka.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
 }
 
-// 🔗 CONNECT
-function connectWallet() {
-  document.getElementById("wallet").style.display = "block";
+// LOGIN
+function login() {
+  let user = document.getElementById("username").value;
+  let pass = document.getElementById("password").value;
+
+  if(user === "admin" && pass === "1234") {
+    document.getElementById("login").style.display = "none";
+    document.getElementById("wallet").style.display = "block";
+
+    localStorage.setItem("login", "true");
+  } else {
+    document.getElementById("error").innerText = "Login salah!";
+  }
 }
 
-// ➕ TAMBAH SALDO
+// LOAD DATA
+window.onload = function() {
+  let btc = parseInt(localStorage.getItem("btc")) || 1000000;
+  let eth = parseInt(localStorage.getItem("eth")) || 5000000;
+
+  document.getElementById("btc").innerText = format(btc);
+  document.getElementById("eth").innerText = format(eth);
+
+  if(localStorage.getItem("login") === "true") {
+    document.getElementById("login").style.display = "none";
+    document.getElementById("wallet").style.display = "block";
+  }
+}
+
+// TAMBAH SALDO
 function tambahSaldo() {
-  var btc = document.getElementById("btc");
-  var eth = document.getElementById("eth");
+  let btc = document.getElementById("btc");
+  let eth = document.getElementById("eth");
 
-  var btcValue = parseInt(btc.innerText.replace(/[^0-9]/g, ""));
-  var ethValue = parseInt(eth.innerText.replace(/[^0-9]/g, ""));
+  let btcVal = parseInt(btc.innerText.replace(/[^0-9]/g,"")) || 0;
+  let ethVal = parseInt(eth.innerText.replace(/[^0-9]/g,"")) || 0;
 
-  btcValue += 500000;
-  ethValue += 1000000;
+  btcVal += 500000;
+  ethVal += 1000000;
 
-  btc.innerText = formatRupiah(btcValue);
-  eth.innerText = formatRupiah(ethValue);
+  btc.innerText = format(btcVal);
+  eth.innerText = format(ethVal);
 
-  localStorage.setItem("btc", btcValue);
-  localStorage.setItem("eth", ethValue);
+  localStorage.setItem("btc", btcVal);
+  localStorage.setItem("eth", ethVal);
 }
 
-// 💳 REKENING
+// TAMPIL REKENING
 function tampilRekening() {
   document.getElementById("rekening").style.display = "block";
 }
 
-// 📋 COPY
-function copyRekening() {
-  var rek = document.getElementById("rek").innerText;
+// COPY
+function copyRek() {
+  let rek = document.getElementById("rek").innerText;
   navigator.clipboard.writeText(rek);
-  alert("Nomor rekening berhasil disalin!");
+  alert("Rekening disalin!");
 }
 
 </script>
