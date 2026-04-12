@@ -9,7 +9,7 @@
       color: white;
       font-family: Arial;
       text-align: center;
-      padding-top: 100px;
+      padding-top: 80px;
     }
 
     h1 {
@@ -20,6 +20,13 @@
     p {
       color: #cbd5f5;
       font-size: 18px;
+    }
+
+    input {
+      padding: 8px;
+      border-radius: 5px;
+      border: none;
+      width: 200px;
     }
 
     button {
@@ -57,7 +64,7 @@
   <p id="error" style="color:red;"></p>
 </div>
 
-<!-- BUTTON WALLET -->
+<!-- BUTTON -->
 <button id="btnWallet" onclick="connectWallet()" style="display:none;">
   Connect Wallet
 </button>
@@ -67,14 +74,13 @@
 
   <div class="card">
     <h2>Saldo Anda 💰</h2>
-    <p>Bitcoin: <span id="btc">1000000</span> IDR</p>
-    <p>Ethereum: <span id="eth">5000000</span> IDR</p>
+    <p>Bitcoin: <span id="btc">1000000</span></p>
+    <p>Ethereum: <span id="eth">5000000</span></p>
 
     <button onclick="tambahSaldo()">Tambah Saldo 💸</button>
     <button onclick="tampilRekening()">Isi Saldo 💳</button>
   </div>
 
-  <!-- REKENING -->
   <div id="rekening" class="card" style="display:none;">
     <h3>Transfer ke rekening ini 💳</h3>
     <p>Bank: DANA</p>
@@ -86,9 +92,8 @@
 </div>
 
 <script>
-function formatRupiah(angka) {
-  return "Rp " + angka.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-}
+
+// 🔐 LOGIN
 function login() {
   var user = document.getElementById("username").value;
   var pass = document.getElementById("password").value;
@@ -96,21 +101,46 @@ function login() {
   if(user === "admin" && pass === "1234") {
     document.getElementById("login").style.display = "none";
     document.getElementById("btnWallet").style.display = "inline-block";
+
+    localStorage.setItem("login", "true"); // simpan login
   } else {
     document.getElementById("error").innerText = "ID atau Password salah!";
   }
 }
 
+// 🔁 AUTO LOGIN
+window.onload = function() {
+  if(localStorage.getItem("login") === "true") {
+    document.getElementById("login").style.display = "none";
+    document.getElementById("btnWallet").style.display = "inline-block";
+  }
+
+  var btc = localStorage.getItem("btc");
+  var eth = localStorage.getItem("eth");
+
+  if(btc && eth) {
+    document.getElementById("btc").innerText = formatRupiah(btc);
+    document.getElementById("eth").innerText = formatRupiah(eth);
+  }
+}
+
+// 💰 FORMAT RUPIAH
+function formatRupiah(angka) {
+  return "Rp " + angka.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+}
+
+// 🔗 CONNECT
 function connectWallet() {
   document.getElementById("wallet").style.display = "block";
 
   var btc = document.getElementById("btc");
   var eth = document.getElementById("eth");
 
-  btc.innerText = formatRupiah(btc.innerText);
-  eth.innerText = formatRupiah(eth.innerText);
+  btc.innerText = formatRupiah(btc.innerText.replace(/[^0-9]/g, ""));
+  eth.innerText = formatRupiah(eth.innerText.replace(/[^0-9]/g, ""));
 }
 
+// ➕ TAMBAH SALDO
 function tambahSaldo() {
   var btc = document.getElementById("btc");
   var eth = document.getElementById("eth");
@@ -122,30 +152,22 @@ function tambahSaldo() {
   ethValue += 1000000;
 
   btc.innerText = formatRupiah(btcValue);
-eth.innerText = formatRupiah(ethValue);
+  eth.innerText = formatRupiah(ethValue);
 
   localStorage.setItem("btc", btcValue);
   localStorage.setItem("eth", ethValue);
 }
 
+// 💳 TAMPIL REKENING
 function tampilRekening() {
   document.getElementById("rekening").style.display = "block";
 }
 
+// 📋 COPY
 function copyRekening() {
   var rek = document.getElementById("rek").innerText;
   navigator.clipboard.writeText(rek);
   alert("Nomor rekening berhasil disalin!");
-}
-
-window.onload = function() {
-  var btc = localStorage.getItem("btc");
-  var eth = localStorage.getItem("eth");
-
-  if(btc && eth) {
-document.getElementById("btc").innerText = formatRupiah(btc);
-document.getElementById("eth").innerText = formatRupiah(eth);
-  }
 }
 
 </script>
