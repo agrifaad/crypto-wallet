@@ -1,146 +1,140 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Green Money 💚</title>
+<title>Green Money</title>
 
-  <style>
-    body {
-      background: linear-gradient(135deg, #1a1a1a, #3b2f00, #d4af37);
-      color: white;
-      font-family: 'Segoe UI', sans-serif;
-      text-align: center;
-      padding-top: 40px;
-    }
+<style>
+body {
+  background: linear-gradient(135deg,#1e293b,#0f172a,#111827);
+  color: white;
+  font-family: Arial;
+  text-align: center;
+  padding-top: 40px;
+}
 
-    h1 {
-      color: gold;
-      font-size: 42px;
-      text-shadow: 0 0 10px gold;
-    }
+h1 {
+  color: gold;
+}
 
-    .card {
-      background: rgba(0,0,0,0.6);
-      padding: 20px;
-      border-radius: 15px;
-      width: 320px;
-      margin: 20px auto;
-      box-shadow: 0 0 20px gold;
-    }
+.card {
+  background: #1e293b;
+  padding: 20px;
+  margin: 20px auto;
+  width: 300px;
+  border-radius: 15px;
+  box-shadow: 0 0 20px gold;
+}
 
-    button {
-      background: gold;
-      border: none;
-      padding: 10px 15px;
-      margin: 5px;
-      border-radius: 8px;
-      cursor: pointer;
-      font-weight: bold;
-    }
+button {
+  background: gold;
+  border: none;
+  padding: 10px 15px;
+  margin: 5px;
+  border-radius: 8px;
+  cursor: pointer;
+}
 
-    button:hover {
-      background: orange;
-    }
+button:hover {
+  transform: scale(1.1);
+}
 
-    input {
-      padding: 8px;
-      border-radius: 5px;
-      border: none;
-      margin: 5px;
-    }
-  </style>
+.logo {
+  width: 120px;
+}
+
+</style>
 </head>
 
 <body>
 
-<h1>Green Money 💚</h1>
+<img src="PASTE_LOGO_KAMU_DISINI" class="logo">
+
+<h1>GREEN MONEY 💚</h1>
+<p>OLXPROJECK 💹</p>
 
 <!-- LOGIN -->
 <div id="login">
-  <h3>Login 🔐</h3>
-  <input id="username" placeholder="ID"><br>
-  <input id="password" type="password" placeholder="Password"><br>
-  <button onclick="login()">Masuk</button>
+  <input id="user" placeholder="ID"><br><br>
+  <input id="pass" type="password" placeholder="Password"><br><br>
+  <button onclick="login()">Login</button>
   <p id="error" style="color:red;"></p>
 </div>
 
 <!-- APP -->
 <div id="app" style="display:none;">
 
-  <!-- SALDO -->
-  <div class="card">
-    <h3>Saldo Anda 💰</h3>
-    <p id="saldo">Rp 1.000.000</p>
+<div class="card">
+<h3>Saldo Anda 💰</h3>
+<p>Rp <span id="saldo">1500000</span></p>
 
-    <button onclick="deposit()">Deposit 💳</button>
-    <button onclick="tarik()">Tarik 💸</button>
-    <button onclick="logout()">Logout 🚪</button>
-  </div>
+<button onclick="deposit()">💳 Deposit</button>
+<button onclick="tarik()">💸 Tarik</button>
+<button onclick="logout()">🚪 Logout</button>
+</div>
 
-  <!-- DEPOSIT -->
-  <div id="depositBox" class="card" style="display:none;">
-    <h3>Deposit DANA</h3>
-    <p>No: 0896-9986-3373</p>
-    <p>Nama: GREEN MONEY</p>
-  </div>
+<div class="card">
+<h3>Deposit DANA</h3>
+<p>0896-9986-3373</p>
+<p>AGRIFA ALOKENIA GINTING</p>
+</div>
 
-  <!-- TARIK -->
-  <div id="tarikBox" class="card" style="display:none;">
-    <h3>Tarik Saldo</h3>
-    <p>Silakan hubungi admin untuk penarikan</p>
-  </div>
+<div class="card">
+<h3>Tugas</h3>
 
-  <!-- TUGAS -->
-  <div class="card">
-    <h3>Menu Tugas</h3>
-    <p>✅ Tugas 1</p>
-    <p>✅ Tugas 2</p>
-    <p>✅ Tugas 3</p>
-    <p>✅ Tugas 4</p>
-    <p style="color: gold;">👑 Tugas 5 (VIP)</p>
-  </div>
+<button onclick="wa()">Tugas 1</button>
+<button onclick="wa()">Tugas 2</button>
+<button onclick="wa()">Tugas 3</button>
+<button onclick="wa()">Tugas 4</button>
+
+<button onclick="wa()" style="background:gold;">
+👑 Tugas 5 VIP
+</button>
+
+</div>
+
+<div class="card">
+<h3>Bank Indonesia</h3>
+<img src="https://upload.wikimedia.org/wikipedia/commons/5/5c/Bank_BRI_logo.svg" width="60">
+<img src="https://upload.wikimedia.org/wikipedia/commons/5/55/BNI_logo.svg" width="60">
+<img src="https://upload.wikimedia.org/wikipedia/commons/5/5b/BCA_logo.svg" width="60">
+</div>
+
+<div class="card">
+<h3>E-Wallet</h3>
+<img src="https://upload.wikimedia.org/wikipedia/commons/7/72/Logo_dana_blue.svg" width="60">
+<img src="https://upload.wikimedia.org/wikipedia/commons/8/86/Gopay_logo.svg" width="60">
+<img src="https://upload.wikimedia.org/wikipedia/commons/5/55/OVO_logo.svg" width="60">
+</div>
 
 </div>
 
 <script>
 
-// LOGIN
 function login(){
-  let user = document.getElementById("username").value;
-  let pass = document.getElementById("password").value;
+  let u = document.getElementById("user").value;
+  let p = document.getElementById("pass").value;
 
-  if(user === "admin" && pass === "1234"){
-    document.getElementById("login").style.display = "none";
-    document.getElementById("app").style.display = "block";
-
-    localStorage.setItem("login", "true");
+  if(u=="admin" && p=="1234"){
+    document.getElementById("login").style.display="none";
+    document.getElementById("app").style.display="block";
   } else {
-    document.getElementById("error").innerText = "ID / Password salah!";
+    document.getElementById("error").innerText="Salah!";
   }
 }
 
-// AUTO LOGIN
-window.onload = function(){
-  if(localStorage.getItem("login") === "true"){
-    document.getElementById("login").style.display = "none";
-    document.getElementById("app").style.display = "block";
-  }
-}
-
-// DEPOSIT
 function deposit(){
-  document.getElementById("depositBox").style.display = "block";
-  document.getElementById("tarikBox").style.display = "none";
+  alert("Transfer ke DANA ya!");
 }
 
-// TARIK
 function tarik(){
-  document.getElementById("tarikBox").style.display = "block";
-  document.getElementById("depositBox").style.display = "none";
+  alert("Fitur tarik diproses admin");
 }
 
-// LOGOUT
+function wa(){
+  window.open("https://wa.me/855718506180");
+}
+
 function logout(){
-  localStorage.clear();
   location.reload();
 }
 
