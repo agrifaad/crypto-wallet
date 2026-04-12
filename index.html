@@ -1,47 +1,18 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Green Money</title>
+  <title>Green Money 💚</title>
 
   <style>
     body {
-      margin: 0;
-      background: linear-gradient(135deg, #0f172a, #020617);
-      font-family: Arial;
+      background: #0f172a;
       color: white;
+      font-family: Arial;
       text-align: center;
+      padding-top: 60px;
     }
 
-    h1 {
-      color: #38bdf8;
-      margin-top: 60px;
-    }
-
-    .container {
-      max-width: 350px;
-      margin: auto;
-    }
-
-    .card {
-      background: #1e293b;
-      padding: 20px;
-      border-radius: 20px;
-      margin: 20px;
-      box-shadow: 0 0 25px rgba(56,189,248,0.3);
-      transition: 0.3s;
-    }
-
-    .card:hover {
-      transform: scale(1.03);
-    }
-
-    input {
-      width: 80%;
-      padding: 10px;
-      border-radius: 8px;
-      border: none;
-      margin-top: 10px;
-    }
+    h1 { color: #38bdf8; }
 
     button {
       background: #38bdf8;
@@ -49,24 +20,16 @@
       padding: 10px 20px;
       border-radius: 10px;
       cursor: pointer;
-      margin-top: 10px;
-      color: black;
-      font-weight: bold;
+      margin: 5px;
     }
 
-    .hidden {
-      display: none;
-    }
-
-    .notif {
-      position: fixed;
-      bottom: 20px;
-      left: 50%;
-      transform: translateX(-50%);
-      background: #22c55e;
-      padding: 10px 20px;
-      border-radius: 10px;
-      display: none;
+    .card {
+      background: #1e293b;
+      padding: 20px;
+      border-radius: 15px;
+      width: 300px;
+      margin: 20px auto;
+      box-shadow: 0 0 20px rgba(56,189,248,0.3);
     }
   </style>
 </head>
@@ -75,121 +38,82 @@
 
 <h1>Green Money 💚</h1>
 
-<div class="container">
+<!-- LOGIN -->
+<div id="login">
+  <input id="username" placeholder="ID"><br><br>
+  <input id="password" type="password" placeholder="Password"><br><br>
+  <button onclick="login()">Login</button>
+  <p id="error" style="color:red;"></p>
+</div>
 
-  <!-- LOGIN -->
-  <div id="login" class="card">
-    <h2>Login 🔐</h2>
-    <input id="username" placeholder="ID"><br>
-    <input id="password" type="password" placeholder="Password"><br>
-    <button onclick="login()">Login</button>
-    <p id="error" style="color:red;"></p>
+<button id="btnWallet" onclick="connectWallet()" style="display:none;">
+  Connect Wallet
+</button>
+
+<div id="wallet" style="display:none;">
+
+  <div class="card">
+    <h3>Saldo Anda</h3>
+    <p>Bitcoin: <span id="btc">1000000</span></p>
+    <p>Ethereum: <span id="eth">5000000</span></p>
+
+    <button onclick="tambahSaldo()">Tambah Saldo</button>
+    <button onclick="tampilRekening()">Isi Saldo</button>
   </div>
 
-  <!-- WALLET -->
-  <div id="wallet" class="hidden">
-
-    <div class="card">
-      <h2>Saldo Anda 💰</h2>
-      <p>Bitcoin: <span id="btc"></span></p>
-      <p>Ethereum: <span id="eth"></span></p>
-
-      <button onclick="tambahSaldo()">Tambah Saldo 💸</button>
-      <button onclick="tampilRekening()">Isi Saldo 💳</button>
-      <button onclick="logout()">Logout 🚪</button>
-    </div>
-
-    <div id="rekening" class="card hidden">
-      <h3>Transfer ke rekening</h3>
-      <p>Bank: DANA</p>
-      <p>No Rekening: <span id="rek">089699863373</span></p>
-      <button onclick="copyRek()">Copy Rekening</button>
-      <p>Nama: GREEN MONEY</p>
-    </div>
-
+  <div id="rekening" class="card" style="display:none;">
+    <h3>Transfer</h3>
+    <p>No: <span id="rek">089699863373</span></p>
+    <button onclick="copyRekening()">Copy</button>
   </div>
 
 </div>
 
-<div id="notif" class="notif">✔ Berhasil!</div>
-
 <script>
 
-// FORMAT
-function format(n) {
-  return "Rp " + n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-}
+function login(){
+  var user = document.getElementById("username").value;
+  var pass = document.getElementById("password").value;
 
-// NOTIF
-function showNotif(text) {
-  let n = document.getElementById("notif");
-  n.innerText = text;
-  n.style.display = "block";
-  setTimeout(() => n.style.display = "none", 2000);
-}
-
-// LOGIN
-function login() {
-  let user = document.getElementById("username").value;
-  let pass = document.getElementById("password").value;
-
-  if(user === "admin" && pass === "1234") {
-    localStorage.setItem("login", "true");
-    document.getElementById("login").classList.add("hidden");
-    document.getElementById("wallet").classList.remove("hidden");
-    showNotif("Login berhasil!");
+  if(user === "admin" && pass === "1234"){
+    document.getElementById("login").style.display = "none";
+    document.getElementById("btnWallet").style.display = "inline-block";
+    localStorage.setItem("login","true");
   } else {
     document.getElementById("error").innerText = "Salah!";
   }
 }
 
-// LOAD
-window.onload = function() {
-  let btc = parseInt(localStorage.getItem("btc")) || 1000000;
-  let eth = parseInt(localStorage.getItem("eth")) || 5000000;
-
-  document.getElementById("btc").innerText = format(btc);
-  document.getElementById("eth").innerText = format(eth);
-
-  if(localStorage.getItem("login") === "true") {
-    document.getElementById("login").classList.add("hidden");
-    document.getElementById("wallet").classList.remove("hidden");
+window.onload = function(){
+  if(localStorage.getItem("login") === "true"){
+    document.getElementById("login").style.display = "none";
+    document.getElementById("btnWallet").style.display = "inline-block";
   }
 }
 
-// TAMBAH SALDO
-function tambahSaldo() {
-  let btc = parseInt(localStorage.getItem("btc")) || 1000000;
-  let eth = parseInt(localStorage.getItem("eth")) || 5000000;
+function connectWallet(){
+  document.getElementById("wallet").style.display = "block";
+}
+
+function tambahSaldo(){
+  let btc = parseInt(document.getElementById("btc").innerText);
+  let eth = parseInt(document.getElementById("eth").innerText);
 
   btc += 500000;
   eth += 1000000;
 
-  localStorage.setItem("btc", btc);
-  localStorage.setItem("eth", eth);
-
-  document.getElementById("btc").innerText = format(btc);
-  document.getElementById("eth").innerText = format(eth);
-
-  showNotif("Saldo bertambah!");
+  document.getElementById("btc").innerText = btc;
+  document.getElementById("eth").innerText = eth;
 }
 
-// REKENING
-function tampilRekening() {
-  document.getElementById("rekening").classList.remove("hidden");
+function tampilRekening(){
+  document.getElementById("rekening").style.display = "block";
 }
 
-// COPY
-function copyRek() {
+function copyRekening(){
   let rek = document.getElementById("rek").innerText;
   navigator.clipboard.writeText(rek);
-  showNotif("Rekening disalin!");
-}
-
-// LOGOUT
-function logout() {
-  localStorage.clear();
-  location.reload();
+  alert("Copied!");
 }
 
 </script>
