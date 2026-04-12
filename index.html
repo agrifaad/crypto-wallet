@@ -55,15 +55,40 @@
 
 <div id="wallet" style="display:none; margin-top:30px;">
   <h2>Saldo Anda 💰</h2>
-  <p>Bitcoin: 1.000.000 IDR</p>
-  <p>Ethereum: 5.000.000 IDR</p>
+  <p>Bitcoin: <span id="btc">1000000</span> IDR</p>
+  <p>Ethereum: <span id="eth">5000000</span> IDR</p>
 </div>
 
 <script>
 function login() {
   var user = document.getElementById("username").value;
   var pass = document.getElementById("password").value;
+  if(user === "admin" && pass === "1234") {
+    document.getElementById("login").style.display = "none";
+    document.getElementById("btnWallet").style.display = "inline-block";
+  } else {
+    document.getElementById("error").innerText = "ID atau Password salah!";
+  }
+}
 
+function connectWallet() {
+  document.getElementById("wallet").style.display = "block";
+}
+
+function tambahSaldo() {
+  var btc = document.getElementById("btc");
+  var eth = document.getElementById("eth");
+
+  var btcValue = parseInt(btc.innerText);
+  var ethValue = parseInt(eth.innerText);
+
+  btcValue += 500000;
+  ethValue += 1000000;
+
+  btc.innerText = btcValue;
+  eth.innerText = ethValue;
+}
+</script>
   if(user === "admin" && pass === "1234") {
     document.getElementById("login").style.display = "none";
     document.getElementById("btnWallet").style.display = "inline-block";
