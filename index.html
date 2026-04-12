@@ -1,4 +1,14 @@
-  <!DOCTYPE html>
+<div id="login">
+  <h2>Login 🔐</h2>
+
+  <input type="text" id="username" placeholder="Masukkan ID"><br><br>
+  <input type="password" id="password" placeholder="Masukkan Password"><br><br>
+
+  <button onclick="login()">Login</button>
+
+  <p id="error" style="color:red;"></p>
+</div>
+<!DOCTYPE html>
 <html>
 <head>
   <title>Crypto Wallet</title>
@@ -54,3 +64,20 @@ function connectWallet() {
 
 </body>
 </html>
+<script>
+function login() {
+  var user = document.getElementById("username").value;
+  var pass = document.getElementById("password").value;
+
+  if(user === "admin" && pass === "1234") {
+    document.getElementById("login").style.display = "none";
+    document.getElementById("wallet").style.display = "block";
+  } else {
+    document.getElementById("error").innerText = "ID atau Password salah!";
+  }
+}
+
+function connectWallet() {
+  document.getElementById("wallet").style.display = "block";
+}
+</script>
