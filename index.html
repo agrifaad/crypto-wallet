@@ -52,7 +52,7 @@
 
 <body>
 
-<h1>Crypto Wallet TEST 🔥</h1>
+<h1>Crypto Wallet 🚀</h1>
 <p>Selamat datang di Green Money 💚</p>
 
 <!-- LOGIN -->
@@ -101,30 +101,33 @@ function login() {
   if(user === "admin" && pass === "1234") {
     document.getElementById("login").style.display = "none";
     document.getElementById("btnWallet").style.display = "inline-block";
-
-    localStorage.setItem("login", "true"); // simpan login
+    localStorage.setItem("login", "true");
   } else {
     document.getElementById("error").innerText = "ID atau Password salah!";
   }
 }
 
-// 🔁 AUTO LOGIN
+// 🔁 LOAD
 window.onload = function() {
+
+  // auto login
   if(localStorage.getItem("login") === "true") {
     document.getElementById("login").style.display = "none";
     document.getElementById("btnWallet").style.display = "inline-block";
   }
 
+  // ambil saldo
   var btc = localStorage.getItem("btc");
   var eth = localStorage.getItem("eth");
 
-  if(btc && eth) {
-    document.getElementById("btc").innerText = formatRupiah(btc);
-    document.getElementById("eth").innerText = formatRupiah(eth);
-  }
+  if(!btc) btc = 1000000;
+  if(!eth) eth = 5000000;
+
+  document.getElementById("btc").innerText = formatRupiah(btc);
+  document.getElementById("eth").innerText = formatRupiah(eth);
 }
 
-// 💰 FORMAT RUPIAH
+// 💰 FORMAT
 function formatRupiah(angka) {
   return "Rp " + angka.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
 }
@@ -132,12 +135,6 @@ function formatRupiah(angka) {
 // 🔗 CONNECT
 function connectWallet() {
   document.getElementById("wallet").style.display = "block";
-
-  var btc = document.getElementById("btc");
-  var eth = document.getElementById("eth");
-
-  btc.innerText = formatRupiah(btc.innerText.replace(/[^0-9]/g, ""));
-  eth.innerText = formatRupiah(eth.innerText.replace(/[^0-9]/g, ""));
 }
 
 // ➕ TAMBAH SALDO
@@ -158,7 +155,7 @@ function tambahSaldo() {
   localStorage.setItem("eth", ethValue);
 }
 
-// 💳 TAMPIL REKENING
+// 💳 REKENING
 function tampilRekening() {
   document.getElementById("rekening").style.display = "block";
 }
