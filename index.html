@@ -43,13 +43,44 @@ input {
 }
 
 .balance {
-    color: red;
-    font-size: 24px;
+    color: #00ff88;
+    font-size: 26px;
     font-weight: bold;
+    text-shadow: 0 0 10px #00ff88;
+    letter-spacing: 1px;
 }
 
 .hidden {
     display: none;
+}
+
+/* POPUP */
+.popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0,0,0,0.8);
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+
+.popup-content {
+    background: black;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 0 20px gold;
+    width: 300px;
+}
+
+.copy-box {
+    background: #111;
+    padding: 10px;
+    border-radius: 8px;
+    margin: 10px 0;
+    font-size: 14px;
 }
 </style>
 </head>
@@ -70,7 +101,7 @@ input {
 <h1 style="color:gold;">GreenMoney Wallet 💚</h1>
 
 <div class="card">
-    <h3>Saldo Anda 💰</h3>
+    <h3>GreenCoin 💰</h3>
     <div class="balance" id="saldo">Rp 100.000</div>
     <br>
     <button onclick="deposit()">Deposit</button>
@@ -97,6 +128,28 @@ input {
     </p>
 </div>
 
+</div>
+
+<!-- POPUP DEPOSIT -->
+<div class="popup" id="popup">
+    <div class="popup-content">
+        <h3>Deposit DANA</h3>
+
+        <img src="https://upload.wikimedia.org/wikipedia/commons/7/72/Logo_dana_blue.svg" width="80"><br><br>
+
+        <div class="copy-box" id="nomor">
+            089699863373
+        </div>
+
+        <button onclick="copyNomor()">Copy Nomor</button>
+
+        <p style="font-size:12px;">
+            Nama: AGRIFA ALOKENIA GINTING <br>
+            Metode: DANA
+        </p>
+
+        <button onclick="tutup()">Tutup</button>
+    </div>
 </div>
 
 <script>
@@ -127,7 +180,19 @@ function updateSaldo(){
 
 // DEPOSIT
 function deposit(){
-    alert("Transfer ke:\nDANA 089699863373\nAGRIFA ALOKENIA GINTING");
+    document.getElementById("popup").style.display = "flex";
+}
+
+// TUTUP POPUP
+function tutup(){
+    document.getElementById("popup").style.display = "none";
+}
+
+// COPY NOMOR
+function copyNomor(){
+    let text = document.getElementById("nomor").innerText;
+    navigator.clipboard.writeText(text);
+    alert("Nomor berhasil di copy!");
 }
 
 // TARIK
