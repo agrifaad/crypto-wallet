@@ -10,108 +10,76 @@
 <style>
 body {
     margin:0;
-    font-family: 'Segoe UI', sans-serif;
-    background: radial-gradient(circle at top, #002b36, #000);
+    font-family: Arial;
+    background: radial-gradient(circle, #001a2d, #000);
     color:white;
     text-align:center;
 }
 
-/* CONTAINER */
 .container {
     max-width:400px;
     margin:auto;
     padding:10px;
 }
 
-/* CARD (EFEK KACA + 3D) */
 .card {
-    background: rgba(0, 31, 51, 0.6);
-    backdrop-filter: blur(10px);
-    border-radius:20px;
+    background:#001f33;
+    border-radius:15px;
     padding:20px;
     margin:15px 0;
-    box-shadow: 
-        0 0 20px rgba(0,255,200,0.3),
-        inset 0 0 10px rgba(255,255,255,0.1);
-    border:1px solid rgba(255,255,255,0.1);
+    box-shadow:0 0 20px #00d9ff;
 }
 
-/* BUTTON MODERN */
 button {
     width:100%;
     padding:12px;
     margin-top:8px;
     border:none;
-    border-radius:12px;
-    background: linear-gradient(145deg, #00ffc8, #0099ff);
-    color:black;
-    font-weight:bold;
+    border-radius:10px;
+    background:linear-gradient(90deg,#00d9ff,#00ffcc);
     cursor:pointer;
-    box-shadow: 0 5px 15px rgba(0,255,200,0.4);
-    transition:0.2s;
+    font-weight:bold;
 }
 
-button:hover {
-    transform: scale(1.03);
-    box-shadow: 0 0 20px #00ffc8;
-}
-
-/* INPUT */
-input, select {
+input {
     padding:10px;
     margin:5px 0;
-    border-radius:10px;
+    border-radius:8px;
     border:none;
     width:100%;
-    background:#111;
+    background:#222;
     color:white;
 }
 
-/* SALDO (SUPER REAL) */
 .balance {
-    font-size:34px;
+    font-size:30px;
     font-weight:bold;
+    color:#00ff00;
+    text-shadow:0 0 10px #00ff00;
+}
+
+/* SHOP */
+.shop-grid {
+    display:grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap:10px;
+}
+
+.product {
+    background:#111;
+    padding:10px;
+    border-radius:12px;
+    box-shadow:0 0 10px #00ffc8;
+}
+
+.product img {
+    width:100%;
+    border-radius:10px;
+}
+
+.price {
     color:#00ff66;
-    text-shadow:
-        0 0 5px #00ff66,
-        0 0 10px #00ff66,
-        0 0 20px #00ff66;
-    font-family: 'Courier New', monospace;
-    letter-spacing:2px;
-}
-
-/* TEXT EMAS */
-.gold {
-    color: gold;
-    text-shadow: 0 0 8px gold;
-}
-
-/* HEADER GREENCOIN */
-.title-glow {
-    font-size:24px;
     font-weight:bold;
-    text-shadow:
-        0 0 10px #00d9ff,
-        0 0 20px #00d9ff;
-}
-
-/* LOGO */
-.logo {
-    width:65px;
-    border-radius:50%;
-    box-shadow:
-        0 0 10px gold,
-        0 0 20px gold;
-}
-
-/* ANIMASI HALUS */
-.card, button {
-    animation: fadeIn 0.5s ease;
-}
-
-@keyframes fadeIn {
-    from {opacity:0; transform:translateY(10px);}
-    to {opacity:1; transform:translateY(0);}
 }
 </style>
 </head>
@@ -121,29 +89,23 @@ input, select {
 <!-- LOGIN -->
 <div id="loginPage" class="container">
 
-    <div class="card" style="box-shadow:0 0 15px gold;">
-        <h3 style="color:gold;">⚠️ NOTICE</h3>
+    <div class="card">
+        <h3>⚠️ NOTICE</h3>
         <p style="font-size:12px;">
-        <b>AKUN LINK RESMI</b><br>
-        GreenMoney - Uang Cepat Komisi Tugas<br><br>
-
-        <b>LINK RESMI</b><br><br>
-
-        ⚠️ <b>PERINGATAN!!</b><br>
-        Akun akan terkunci jika terjadi kesalahan berulang saat login
+        AKUN LINK RESMI<br>
+        GreenMoney - Komisi Tugas<br><br>
+        ⚠️ Akun akan terkunci jika salah login berulang
         </p>
     </div>
 
     <div class="card">
         <img src="logo.png" width="80">
-        <h2 style="color:#00d9ff;">GreenMoney Wallet</h2>
+        <h2>GreenMoney Wallet</h2>
 
-        <input type="text" id="user" placeholder="👤 ID Pengguna">
-        <input type="password" id="pass" placeholder="🔒 Password">
+        <input type="text" id="user" placeholder="ID">
+        <input type="password" id="pass" placeholder="Password">
 
-        <button onclick="login()">
-            <i class="fas fa-sign-in-alt"></i> Login
-        </button>
+        <button onclick="login()">Login</button>
     </div>
 
 </div>
@@ -153,114 +115,29 @@ input, select {
 
     <!-- MENU -->
     <div style="display:flex; gap:10px;">
-        <button onclick="showMenu('profil')" id="btnProfil">👤 Profil</button>
-        <button onclick="showMenu('tugas')" id="btnTugas">📋 Tugas</button>
+        <button onclick="showMenu('profil')">👤 Profil</button>
+        <button onclick="showMenu('tugas')">📋 Tugas</button>
+        <button onclick="showMenu('shop')">🛍️ Shop</button>
     </div>
 
     <!-- PROFIL -->
-    <div id="menuShop" style="display:none;">
-    <div class="card">
-        <h3>🛍️ Marketplace</h3>
+    <div id="menuProfil">
 
-        <div class="shop-grid">
-
-            <!-- PRODUK 1 -->
-            <div class="product">
-                <img src="https://via.placeholder.com/150">
-                <p>Sepatu Sport</p>
-                <div class="price">Rp 150.000</div>
-                <button>Beli</button>
-            </div>
-
-            <!-- PRODUK 2 -->
-            <div class="product">
-                <img src="https://via.placeholder.com/150">
-                <p>Jam Tangan</p>
-                <div class="price">Rp 250.000</div>
-                <button>Beli</button>
-            </div>
-
-            <!-- PRODUK 3 -->
-            <div class="product">
-                <img src="https://via.placeholder.com/150">
-                <p>Headset Gaming</p>
-                <div class="price">Rp 300.000</div>
-                <button>Beli</button>
-            </div>
-
-            <!-- PRODUK 4 -->
-            <div class="product">
-                <img src="https://via.placeholder.com/150">
-                <p>Tas Fashion</p>
-                <div class="price">Rp 180.000</div>
-                <button>Beli</button>
-            </div>
-
-        </div>
-    </div>
-</div>
-
-        <!-- KODE AKUN -->
-        <div style="text-align:right; font-size:12px; opacity:0.7;">
-            
-        </div>
-
-        <!-- HEADER GREENCOIN -->
         <div class="card">
-            <div style="display:flex; justify-content:center; align-items:center; gap:12px;">
-                <h2 style="margin:0;">GreenCoin</h2>
-                <img src="vip.png" width="65" style="border-radius:50%; box-shadow:0 0 12px gold;">
-            </div>
+            <button onclick="logout()">Logout</button>
         </div>
 
-        <!-- DATA USER -->
         <div class="card">
-            <button onclick="toggleData()">
-                <i id="iconData" class="fas fa-eye"></i> Data Akun
-            </button>
+            <h3>GreenCoin <img src="vip.png" width="40"></h3>
 
-            <div id="dataUser" style="text-align:left; margin-top:10px;">
-                <p><b>Nama:</b> AGRIFA ALOKENIA GINTING</p>
-                <p><b>No Rek:</b> 0896-9986-3373</p>
-                <p style="color:gold;"><b>ID:</b> 124532</p>
-            </div>
-        </div>
+            <p><b>Nama:</b> AGRIFA ALOKENIA GINTING</p>
+            <p><b>No Rek:</b> 0896-9986-3373</p>
+            <p style="color:gold;"><b>ID:</b> 124532</p>
 
-        <!-- SALDO -->
-        <div class="card">
-            <button onclick="toggleSaldo()">
-                <i id="iconMata" class="fas fa-eye"></i> Saldo
-            </button>
+            <div class="balance">Rp 100.000.000</div>
 
-            <div style="margin-top:10px;">
-                <p>Saldo</p>
-                <div id="saldoText" class="balance">
-                    Rp 100.000.000
-                </div>
-            </div>
-        </div>
-
-        <!-- BUTTON -->
-        <div class="card">
-            <button onclick="deposit()">
-                <i class="fas fa-wallet"></i> Deposit
-            </button>
-
-            <button onclick="tarik()">
-                <i class="fas fa-money-bill-wave"></i> Tarik
-            </button>
-        </div>
-
-        <!-- NOTICE -->
-        <div class="card">
-            <h3>NOTICE ⚠️</h3>
-            <p style="font-size:12px;">
-            Penyelesaian tugas hanya dari mentor anda<br><br>
-            Ambil tugas di grup<br>
-            Isi coin melalui transfer<br>
-            Pilih tugas & kembali ke mentor<br>
-            Segera lakukan penarikan setelah selesai
-            </p>
+            <button onclick="deposit()">Deposit</button>
+            <button onclick="tarik()">Tarik</button>
         </div>
 
     </div>
@@ -269,61 +146,63 @@ input, select {
     <div id="menuTugas" style="display:none;">
         <div class="card">
             <h3>Menu Tugas</h3>
+            <button onclick="tugas()">Tugas 1</button>
+            <button onclick="tugas()">Tugas 2</button>
+            <button onclick="tugas()">Tugas 3</button>
+        </div>
+    </div>
 
-            <button onclick="tugas()"><i class="fas fa-tasks"></i> Tugas 1</button>
-            <button onclick="tugas()"><i class="fas fa-tasks"></i> Tugas 2</button>
-            <button onclick="tugas()"><i class="fas fa-tasks"></i> Tugas 3</button>
-            <button onclick="tugas()"><i class="fas fa-crown"></i> Tugas VIP</button>
+    <!-- SHOP -->
+    <div id="menuShop" style="display:none;">
+        <div class="card">
+            <h3>🛍️ Marketplace</h3>
+
+            <div class="shop-grid">
+
+                <div class="product">
+                    <img src="https://via.placeholder.com/150">
+                    <p>Sepatu Sport</p>
+                    <div class="price">Rp 150.000</div>
+                    <button onclick="beli()">Beli</button>
+                </div>
+
+                <div class="product">
+                    <img src="https://via.placeholder.com/150">
+                    <p>Jam Tangan</p>
+                    <div class="price">Rp 250.000</div>
+                    <button onclick="beli()">Beli</button>
+                </div>
+
+                <div class="product">
+                    <img src="https://via.placeholder.com/150">
+                    <p>Headset</p>
+                    <div class="price">Rp 300.000</div>
+                    <button onclick="beli()">Beli</button>
+                </div>
+
+                <div class="product">
+                    <img src="https://via.placeholder.com/150">
+                    <p>Tas Fashion</p>
+                    <div class="price">Rp 180.000</div>
+                    <button onclick="beli()">Beli</button>
+                </div>
+
+            </div>
         </div>
     </div>
 
 </div>
 
-<!-- POPUP DEPOSIT -->
-<div id="popupDeposit" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.8); justify-content:center; align-items:center; z-index:999;">
-
-    <div style="background:#111; padding:20px; border-radius:15px; width:90%; max-width:400px; box-shadow:0 0 20px gold; text-align:left;">
-
-        <h3 style="color:gold; text-align:center;">Form Deposit</h3>
-
-        <label>Pilih E-Wallet</label>
-        <select>
-            <option>DANA - 089699863373</option>
-        </select>
-
-        <label>Atas Nama</label>
-        <input type="text" value="AGRIFA ALOKENIA GINTING" readonly>
-
-        <label>Jumlah Deposit</label>
-        <input type="number" placeholder="Masukkan jumlah">
-
-        <label>Keterangan</label>
-        <input type="text" placeholder="Catatan">
-
-        <label>Bukti Transfer</label>
-        <input type="file">
-
-        <button onclick="kirimDeposit()">Kirim</button>
-        <button onclick="tutupDeposit()" style="background:red;">Tutup</button>
-
-    </div>
-</div>
-
 <script>
-
-let saldoVisible = true;
-let dataVisible = true;
-
 function login(){
     let u = document.getElementById("user").value;
     let p = document.getElementById("pass").value;
 
-    if(u === "admin" && p === "1234"){
+    if(u==="admin" && p==="1234"){
         document.getElementById("loginPage").style.display="none";
         document.getElementById("app").style.display="block";
-        showMenu('profil');
     } else {
-        alert("Login salah ❌");
+        alert("Login salah");
     }
 }
 
@@ -333,67 +212,28 @@ function logout(){
 }
 
 function showMenu(menu){
-    document.getElementById("menuProfil").style.display = "none";
-    document.getElementById("menuTugas").style.display = "none";
+    document.getElementById("menuProfil").style.display="none";
+    document.getElementById("menuTugas").style.display="none";
+    document.getElementById("menuShop").style.display="none";
 
-    document.getElementById("menu" + capitalize(menu)).style.display = "block";
-}
-
-function capitalize(text){
-    return text.charAt(0).toUpperCase() + text.slice(1);
-}
-
-function toggleSaldo(){
-    let saldo = document.getElementById("saldoText");
-    let icon = document.getElementById("iconMata");
-
-    if(saldoVisible){
-        saldo.innerText = "Rp ******";
-        icon.className = "fas fa-eye-slash";
-        saldoVisible = false;
-    } else {
-        saldo.innerText = "Rp 100.000.000";
-        icon.className = "fas fa-eye";
-        saldoVisible = true;
-    }
-}
-
-function toggleData(){
-    let data = document.getElementById("dataUser");
-    let icon = document.getElementById("iconData");
-
-    if(dataVisible){
-        data.style.display = "none";
-        icon.className = "fas fa-eye-slash";
-        dataVisible = false;
-    } else {
-        data.style.display = "block";
-        icon.className = "fas fa-eye";
-        dataVisible = true;
-    }
+    document.getElementById("menu"+menu.charAt(0).toUpperCase()+menu.slice(1)).style.display="block";
 }
 
 function deposit(){
-    document.getElementById("popupDeposit").style.display="flex";
-}
-
-function tutupDeposit(){
-    document.getElementById("popupDeposit").style.display="none";
-}
-
-function kirimDeposit(){
-    alert("Deposit berhasil dikirim ✅");
-    tutupDeposit();
+    alert("Silakan transfer ke rekening");
 }
 
 function tarik(){
-    alert("Hubungi mentor untuk penarikan");
+    alert("Hubungi admin");
 }
 
 function tugas(){
-    window.location.href="https://t.me/robertelchico";
+    alert("Tugas dijalankan");
 }
 
+function beli(){
+    alert("Pembelian berhasil!");
+}
 </script>
 
 </body>
