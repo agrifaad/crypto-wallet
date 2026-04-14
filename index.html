@@ -205,6 +205,7 @@ input, select {
 <script>
 
 let saldoVisible = true;
+let dataVisible = true;
 
 function toggleSaldo(){
     let saldo = document.getElementById("saldoText");
@@ -215,9 +216,24 @@ function toggleSaldo(){
         icon.className = "fas fa-eye-slash";
         saldoVisible = false;
     } else {
-        saldo.innerText = "Rp 100.000";
+        saldo.innerText = "Rp 100.000.000";
         icon.className = "fas fa-eye";
         saldoVisible = true;
+    }
+}
+
+function toggleData(){
+    let data = document.getElementById("dataUser");
+    let icon = document.getElementById("iconData");
+
+    if(dataVisible){
+        data.style.display = "none";
+        icon.className = "fas fa-eye-slash";
+        dataVisible = false;
+    } else {
+        data.style.display = "block";
+        icon.className = "fas fa-eye";
+        dataVisible = true;
     }
 }
 
