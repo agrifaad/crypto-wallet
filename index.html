@@ -183,17 +183,46 @@ input, select {
 </div>
 
 <!-- PROFIL -->
+<!-- PROFIL -->
 <div id="menuProfil">
-
-<div class="card">
-    <button onclick="logout()">Logout</button>
+    <!-- isi profil -->
 </div>
 
-<!-- HEADER GREENCOIN -->
-<div class="card">
-    <div style="display:flex; justify-content:center; align-items:center; gap:15px;">
-        <h1 style="font-size:28px; color:#00d9ff; text-shadow:0 0 15px #00d9ff;">GreenCoin</h1>
-        <img src="vip.png" style="width:70px; border-radius:50%; box-shadow:0 0 15px gold;">
+<!-- TUGAS -->
+<div id="menuTugas" style="display:none;">
+    <div class="card">
+        <h3>Menu Tugas</h3>
+
+        <button onclick="tugas()">Tugas 1</button>
+        <button onclick="tugas()">Tugas 2</button>
+        <button onclick="tugas()">Tugas 3</button>
+        <button onclick="tugas()">Tugas 4 VIP</button>
+        <button onclick="tugas()">Tugas 5 VIP</button>
+    </div>
+</div>
+
+<!-- SHOP -->
+<div id="menuShop" style="display:none;">
+    <div class="card">
+        <h3>🛍️ Marketplace</h3>
+
+        <div class="shop-grid">
+
+            <div class="product">
+                <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff">
+                <p>Sepatu Sport</p>
+                <div class="price">Rp 150.000</div>
+                <button onclick="beli('https://shopee.co.id')">Beli</button>
+            </div>
+
+            <div class="product">
+                <img src="https://images.unsplash.com/photo-1511379938547-c1f69419868d">
+                <p>Headset Gaming</p>
+                <div class="price">Rp 300.000</div>
+                <button onclick="beli('https://shopee.co.id')">Beli</button>
+            </div>
+
+        </div>
     </div>
 </div>
 
@@ -312,14 +341,21 @@ function logout(){
     document.getElementById("loginPage").style.display="block";
 }
 
-function showMenu(menu){
+ffunction showMenu(menu){
     document.getElementById("menuProfil").style.display="none";
     document.getElementById("menuTugas").style.display="none";
     document.getElementById("menuShop").style.display="none";
 
-    document.getElementById("menu"+menu.charAt(0).toUpperCase()+menu.slice(1)).style.display="block";
+    if(menu === "profil"){
+        document.getElementById("menuProfil").style.display="block";
+    }
+    if(menu === "tugas"){
+        document.getElementById("menuTugas").style.display="block";
+    }
+    if(menu === "shop"){
+        document.getElementById("menuShop").style.display="block";
+    }
 }
-
 function toggleData(){
     let data = document.getElementById("dataAkun");
     let icon = document.getElementById("iconData");
