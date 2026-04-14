@@ -101,43 +101,49 @@ input, select {
     </div>
 
     <!-- PROFIL -->
-    <div id="menuProfil">
+<!-- HEADER GREENCOIN -->
+<div style="display:flex; align-items:center; justify-content:center; gap:12px;">
+    
+    <h3 style="margin:0; font-size:22px;">
+        GreenCoin
+    </h3>
 
-        <div class="card">
-            <button onclick="logout()">
-                <i class="fas fa-sign-out-alt"></i> Logout
-            </button>
-        </div>
+    <img src="vip.png" width="60" style="border-radius:50%; box-shadow:0 0 10px gold;">
+</div>
 
-        <div class="card">
-            <h3 style="display:flex;justify-content:center;gap:30px;">
-                GreenCoin 
-                <img src="vip.png" width="70">
-            </h3>
+<!-- DATA USER -->
+<div style="text-align:left; margin-top:15px; line-height:1.6; font-size:14px;">
+    <p><b>Nama:</b> AGRIFA ALOKENIA GINTING</p>
+    <p><b>No Rek:</b> 0896-9986-3373</p>
+</div>
 
-            <!-- TOGGLE SALDO -->
-            <button onclick="toggleSaldo()">
-                <i id="iconMata" class="fas fa-eye"></i> Saldo
-            </button>
+<!-- TOMBOL SALDO -->
+<button onclick="toggleSaldo()">
+    <i id="iconMata" class="fas fa-eye"></i> Saldo
+</button>
 
-            <!-- DATA AKUN -->
-            <div style="text-align:left; margin-top:10px;">
-                <p><b>Nama:</b> AGRIFA ALOKENIA GINTING</p>
-                <p><b>No Rek:</b> 0896-9986-3373</p>
+<!-- SALDO -->
+<div style="margin-top:10px;">
+    <p style="margin:5px;">Saldo</p>
+    <div id="saldoText" style="
+        font-size:30px;
+        font-weight:bold;
+        color:#00ffcc;
+        text-shadow:0 0 10px #00ffcc;
+        letter-spacing:1px;
+    ">
+        Rp 100.000.000
+    </div>
+</div>
 
-                <p><b>Saldo:</b><br>
-                    <span id="saldoText" class="balance">Rp 100.000.000</span>
-                </p>
-            </div>
+<!-- BUTTON -->
+<button onclick="deposit()">
+    <i class="fas fa-wallet"></i> Deposit
+</button>
 
-            <button onclick="deposit()">
-                <i class="fas fa-wallet"></i> Deposit
-            </button>
-
-            <button onclick="tarik()">
-                <i class="fas fa-money-bill-wave"></i> Tarik
-            </button>
-        </div>
+<button onclick="tarik()">
+    <i class="fas fa-money-bill-wave"></i> Tarik
+</button>
 
         <div class="card">
             <h3>NOTICE ⚠️</h3>
