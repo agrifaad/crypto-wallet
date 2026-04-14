@@ -8,12 +8,6 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
 <style>
-    .product img {
-    width:100%;
-    height:120px;
-    object-fit:cover;
-    border-radius:10px;
-}
 body {
     margin:0;
     font-family: Arial;
@@ -22,12 +16,14 @@ body {
     text-align:center;
 }
 
+/* CONTAINER */
 .container {
     max-width:400px;
     margin:auto;
     padding:10px;
 }
 
+/* CARD */
 .card {
     background:#001f33;
     border-radius:15px;
@@ -36,6 +32,7 @@ body {
     box-shadow:0 0 20px #00d9ff;
 }
 
+/* BUTTON */
 button {
     width:100%;
     padding:12px;
@@ -47,7 +44,8 @@ button {
     font-weight:bold;
 }
 
-input {
+/* INPUT */
+input, select {
     padding:10px;
     margin:5px 0;
     border-radius:8px;
@@ -57,11 +55,13 @@ input {
     color:white;
 }
 
+/* SALDO */
 .balance {
-    font-size:30px;
+    font-size:32px;
     font-weight:bold;
     color:#00ff00;
-    text-shadow:0 0 10px #00ff00;
+    text-shadow:0 0 10px #00ff00, 0 0 25px #00ff00;
+    font-family:'Courier New', monospace;
 }
 
 /* SHOP */
@@ -80,6 +80,8 @@ input {
 
 .product img {
     width:100%;
+    height:120px;
+    object-fit:cover;
     border-radius:10px;
 }
 
@@ -87,135 +89,169 @@ input {
     color:#00ff66;
     font-weight:bold;
 }
+
+/* RUNNING TEXT */
+.marquee {
+    background:black;
+    color:yellow;
+    padding:8px;
+    border:2px solid gold;
+    font-weight:bold;
+}
 </style>
 </head>
-<div style="
-background:black;
-color:yellow;
-padding:8px;
-font-weight:bold;
-border:2px solid gold;
-">
 
-<marquee>
-🚀 Segera lihat tugas terbaru di grup dan dapatkan komisinya!!!
-</marquee>
-
-</div>
 <body>
+
+<!-- RUNNING TEXT -->
+<div class="marquee">
+<marquee>🚀 Segera lihat tugas terbaru di grup dan dapatkan komisinya!!!</marquee>
+</div>
 
 <!-- LOGIN -->
 <div id="loginPage" class="container">
 
-    <div class="card">
-        <h3>⚠️ NOTICE</h3>
-        <p style="font-size:12px;">
-        AKUN LINK RESMI<br>
-        GreenMoney - Komisi Tugas<br><br>
-        ⚠️ Akun akan terkunci jika salah login berulang
-        </p>
-    </div>
+<div class="card">
+    <h3>⚠️ NOTICE</h3>
+    <p style="font-size:12px;">
+    AKUN LINK RESMI<br>
+    GreenMoney - Komisi Tugas<br><br>
+    ⚠️ Akun akan terkunci jika salah login berulang
+    </p>
+</div>
 
-    <div class="card">
-        <img src="logo.png" width="80">
-        <h2>GreenMoney Wallet</h2>
+<div class="card">
+    <img src="logo.png" width="80">
+    <h2>GreenMoney Wallet</h2>
 
-        <input type="text" id="user" placeholder="ID">
-        <input type="password" id="pass" placeholder="Password">
+    <input type="text" id="user" placeholder="ID">
+    <input type="password" id="pass" placeholder="Password">
 
-        <button onclick="login()">Login</button>
-    </div>
+    <button onclick="login()">Login</button>
+</div>
 
 </div>
 
 <!-- APP -->
 <div id="app" class="container" style="display:none;">
 
-    <!-- MENU -->
-    <div style="display:flex; gap:10px;">
-        <button onclick="showMenu('profil')">👤 Profil</button>
-        <button onclick="showMenu('tugas')">📋 Tugas</button>
-        <button onclick="showMenu('shop')">🛍️ Shop</button>
-    </div>
+<!-- MENU -->
+<div style="display:flex; gap:10px;">
+    <button onclick="showMenu('profil')">👤 Profil</button>
+    <button onclick="showMenu('tugas')">📋 Tugas</button>
+    <button onclick="showMenu('shop')">🛍️ Shop</button>
+</div>
 
-    <!-- PROFIL -->
-    <div id="menuProfil">
+<!-- PROFIL -->
+<div id="menuProfil">
 
-        <div class="card">
-            <button onclick="logout()">Logout</button>
-        </div>
+<div class="card">
+    <button onclick="logout()">Logout</button>
+</div>
 
-        <div class="card" style="text-align:center;">
-
+<!-- HEADER GREENCOIN -->
+<div class="card">
     <div style="display:flex; justify-content:center; align-items:center; gap:15px;">
+        <h1 style="font-size:28px; color:#00d9ff; text-shadow:0 0 15px #00d9ff;">GreenCoin</h1>
+        <img src="vip.png" style="width:70px; border-radius:50%; box-shadow:0 0 15px gold;">
+    </div>
+</div>
 
-        <h1 style="
-            margin:0;
-            font-size:28px;
-            font-weight:bold;
-            color:#00d9ff;
-            text-shadow:0 0 10px #00d9ff, 0 0 25px #00d9ff;
-        ">
-            GreenCoin
-        </h1>
+<!-- DATA AKUN -->
+<div class="card">
 
-        <img src="vip.png" style="
-            width:70px;
-            border-radius:50%;
-            box-shadow:0 0 15px gold, 0 0 30px gold;
-        ">
+<button onclick="toggleData()">
+    <i id="iconData" class="fas fa-eye"></i> Data Akun
+</button>
 
+<div id="dataAkun" style="text-align:left;">
+
+    <p><b>Nama:</b> AGRIFA ALOKENIA GINTING</p>
+    <p><b>No Rek:</b> 0896-9986-3373</p>
+    <p style="color:gold;"><b>ID:</b> 124532</p>
+
+    <div id="saldoText" class="balance">
+        Rp 100.000.000
     </div>
 
 </div>
-    <!-- SHOP -->
+
+</div>
+
+<div class="card">
+    <button onclick="deposit()">Deposit</button>
+    <button onclick="tarik()">Tarik</button>
+</div>
+
+</div>
+
+<!-- TUGAS -->
+<div id="menuTugas" style="display:none;">
+<div class="card">
+    <h3>Menu Tugas</h3>
+    <button onclick="tugas()">Tugas 1</button>
+    <button onclick="tugas()">Tugas 2</button>
+</div>
+</div>
+
+<!-- SHOP -->
 <div id="menuShop" style="display:none;">
-    <div class="card">
-        <h3>🛍️ Marketplace</h3>
+<div class="card">
+    <h3>🛍️ Marketplace</h3>
 
-        <div class="shop-grid">
+    <div class="shop-grid">
 
-            <!-- PRODUK DISINI -->
-
+        <div class="product">
+            <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff">
+            <p>Sepatu Sport</p>
+            <div class="price">Rp 150.000</div>
+            <button onclick="beli('https://shopee.co.id')">Beli</button>
         </div>
+
+        <div class="product">
+            <img src="https://images.unsplash.com/photo-1511379938547-c1f69419868d">
+            <p>Headset Gaming</p>
+            <div class="price">Rp 300.000</div>
+            <button onclick="beli('https://shopee.co.id')">Beli</button>
+        </div>
+
     </div>
 </div>
+</div>
 
-                <div class="product">
-                    <img src="https://via.placeholder.com/150">
-                    <p>Sepatu Sport</p>
-                    <div class="price">Rp 150.000</div>
-                    <button onclick="beli()">Beli</button>
-                </div>
+</div>
 
-                <div class="product">
-                    <img src="https://via.placeholder.com/150">
-                    <p>Jam Tangan</p>
-                    <div class="price">Rp 250.000</div>
-                    <button onclick="beli()">Beli</button>
-                </div>
+<!-- POPUP DEPOSIT -->
+<div id="popupDeposit" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.8); justify-content:center; align-items:center; z-index:999;">
 
-                <div class="product">
-                    <img src="https://via.placeholder.com/150">
-                    <p>Headset</p>
-                    <div class="price">Rp 300.000</div>
-                    <button onclick="beli()">Beli</button>
-                </div>
+<div style="background:#111; padding:20px; border-radius:15px; width:90%; max-width:400px; box-shadow:0 0 20px gold;">
 
-                <div class="product">
-                    <img src="https://via.placeholder.com/150">
-                    <p>Tas Fashion</p>
-                    <div class="price">Rp 180.000</div>
-                    <button onclick="beli()">Beli</button>
-                </div>
+<h3 style="color:gold;">Formulir Deposit</h3>
 
-            </div>
-        </div>
-    </div>
+<label>Pilih E-Wallet</label>
+<select>
+<option>DANA - 089699863373</option>
+</select>
 
+<label>Jumlah Deposit</label>
+<input type="number">
+
+<label>Keterangan</label>
+<input type="text">
+
+<label>Bukti</label>
+<input type="file">
+
+<button onclick="kirimDeposit()" style="background:gold;">Kirim</button>
+<button onclick="tutupDeposit()" style="background:red;">Tutup</button>
+
+</div>
 </div>
 
 <script>
+
+let dataVisible = true;
+
 function login(){
     let u = document.getElementById("user").value;
     let p = document.getElementById("pass").value;
@@ -241,8 +277,31 @@ function showMenu(menu){
     document.getElementById("menu"+menu.charAt(0).toUpperCase()+menu.slice(1)).style.display="block";
 }
 
+function toggleData(){
+    let data = document.getElementById("dataAkun");
+    let icon = document.getElementById("iconData");
+
+    if(dataVisible){
+        data.style.display="none";
+        icon.className="fas fa-eye-slash";
+        dataVisible=false;
+    } else {
+        data.style.display="block";
+        icon.className="fas fa-eye";
+        dataVisible=true;
+    }
+}
+
 function deposit(){
     document.getElementById("popupDeposit").style.display="flex";
+}
+
+function tutupDeposit(){
+    document.getElementById("popupDeposit").style.display="none";
+}
+
+function kirimDeposit(){
+    alert("Deposit berhasil dikirim");
 }
 
 function tarik(){
@@ -256,42 +315,8 @@ function tugas(){
 function beli(link){
     window.location.href = link;
 }
+
 </script>
 
 </body>
-<!-- POPUP DEPOSIT -->
-<div id="popupDeposit" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.8); justify-content:center; align-items:center; z-index:999;">
-
-<div style="background:#111; padding:20px; border-radius:15px; width:95%; max-width:420px; box-shadow:0 0 20px gold;">
-
-<h3 style="color:gold;">Formulir Deposit</h3>
-
-<p style="font-size:12px; opacity:0.7;">
-Selalu pastikan rekening sesuai data
-</p>
-
-<label>Pilih E-Wallet</label>
-<select>
-<option>DANA - 089699863373</option>
-</select>
-
-<label>Jumlah Deposit</label>
-<input type="number" placeholder="Masukkan jumlah">
-
-<label>Keterangan</label>
-<input type="text" placeholder="Catatan">
-
-<label>Bukti Pembayaran</label>
-<input type="file">
-
-<button onclick="kirimDeposit()" style="background:gold; color:black;">
-Kirim
-</button>
-
-<button onclick="tutupDeposit()" style="background:red;">
-Tutup
-</button>
-
-</div>
-</div>    
 </html>
