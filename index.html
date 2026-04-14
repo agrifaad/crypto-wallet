@@ -41,10 +41,6 @@ button {
     font-weight:bold;
 }
 
-button:hover {
-    transform:scale(1.05);
-}
-
 input, select {
     padding:10px;
     margin:5px 0;
@@ -64,30 +60,15 @@ input, select {
 </head>
 
 <body>
-<div id="noticeLogin" style="
-position:fixed;
-top:0; left:0;
-width:100%; height:100%;
-background:rgba(0,0,0,0.9);
-display:flex;
-justify-content:center;
-align-items:center;
-z-index:9999;
-">
 
-    <div style="
-    background:#001f33;
-    padding:20px;
-    border-radius:15px;
-    width:90%;
-    max-width:350px;
-    box-shadow:0 0 20px gold;
-    text-align:center;
-    ">
+<!-- LOGIN -->
+<div id="loginPage" class="container">
 
+    <!-- NOTICE -->
+    <div class="card" style="box-shadow:0 0 15px gold;">
         <h3 style="color:gold;">⚠️ NOTICE</h3>
 
-        <p style="font-size:13px; line-height:1.5;">
+        <p style="font-size:12px; line-height:1.5;">
         <b>AKUN LINK RESMI</b><br>
         GreenMoney - Uang Cepat Komisi Tugas<br><br>
 
@@ -96,27 +77,21 @@ z-index:9999;
         ⚠️ <b>PERINGATAN!!</b><br>
         Akun akan terkunci jika terjadi kesalahan berulang saat login
         </p>
-
-        <button onclick="tutupNotice()" style="margin-top:10px;">
-            Saya Mengerti
-        </button>
-
     </div>
 
-</div>
-<!-- LOGIN -->
-<div class="card" style="box-shadow:0 0 15px gold;">
-    <h3 style="color:gold;">⚠️ NOTICE</h3>
+    <!-- FORM LOGIN -->
+    <div class="card">
+        <img src="logo.png" width="80">
+        <h2 style="color:#00d9ff;">GreenMoney Wallet</h2>
 
-    <p style="font-size:12px; line-height:1.5;">
-    <b>AKUN LINK RESMI</b><br>
-    GreenMoney - Uang Cepat Komisi Tugas<br><br>
+        <input type="text" id="user" placeholder="👤 ID Pengguna">
+        <input type="password" id="pass" placeholder="🔒 Password">
 
-    <b>LINK RESMI</b><br><br>
+        <button onclick="login()">
+            <i class="fas fa-sign-in-alt"></i> Login
+        </button>
+    </div>
 
-    ⚠️ <b>PERINGATAN!!</b><br>
-    PASTIKAN SUDAH MEMASUKAN ID DAN SANDI DENGAN BENAR
-    </p>
 </div>
 
 <!-- APP -->
@@ -138,7 +113,7 @@ z-index:9999;
         </div>
 
         <div class="card">
-            <h3 style="display:flex;justify-content:center;align-items:center;gap:8px;">
+            <h3 style="display:flex;justify-content:center;gap:8px;">
                 GreenCoin 
                 <img src="vip.png" width="35">
             </h3>
@@ -167,7 +142,7 @@ z-index:9999;
 
     </div>
 
-    <!-- MENU TUGAS -->
+    <!-- TUGAS -->
     <div id="menuTugas" style="display:none;">
         <div class="card">
             <h3>Menu Tugas</h3>
