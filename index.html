@@ -84,6 +84,14 @@ input, select {
 <!-- APP -->
 <div id="app" class="container" style="display:none;">
 
+    <!-- MENU TAB -->
+    <div style="display:flex; gap:10px; margin:10px;">
+        <button onclick="showMenu('profil')" id="btnProfil">👤 Profil</button>
+        <button onclick="showMenu('tugas')" id="btnTugas">📋 Tugas</button>
+    </div>
+
+    <!-- isi card kamu di bawah sini -->
+
     <div class="card">
         <button onclick="logout()">
             <i class="fas fa-sign-out-alt"></i> Logout
