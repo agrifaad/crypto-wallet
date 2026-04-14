@@ -27,7 +27,7 @@ body {
     border-radius:15px;
     padding:20px;
     margin:15px 0;
-    box-shadow:0 0 30px #00d9ff;
+    box-shadow:0 0 20px #00d9ff;
 }
 
 button {
@@ -52,9 +52,11 @@ input, select {
 }
 
 .balance {
-    font-size:26px;
-    color:#00ffcc;
+    font-size:30px;
     font-weight:bold;
+    color:#00ffcc;
+    text-shadow:0 0 10px #00ffcc, 0 0 25px #00ffcc;
+    font-family:'Courier New', monospace;
 }
 </style>
 </head>
@@ -101,50 +103,66 @@ input, select {
     </div>
 
     <!-- PROFIL -->
-<!-- HEADER GREENCOIN -->
-<div style="display:flex; align-items:center; justify-content:center; gap:12px;">
-    
-    <h3 style="margin:0; font-size:22px;">
-        GreenCoin
-    </h3>
+    <div id="menuProfil">
 
-    <img src="vip.png" width="60" style="border-radius:50%; box-shadow:0 0 10px gold;">
-</div>
+        <!-- LOGOUT -->
+        <div class="card">
+            <button onclick="logout()">
+                <i class="fas fa-sign-out-alt"></i> Logout
+            </button>
+        </div>
 
-<!-- DATA USER -->
-<div style="text-align:left; margin-top:15px; line-height:1.6; font-size:14px;">
-    <p><b>Nama:</b> AGRIFA ALOKENIA GINTING</p>
-    <p><b>No Rek:</b> 0896-9986-3373</p>
-</div>
+        <!-- KODE AKUN -->
+        <div style="text-align:right; font-size:12px; opacity:0.7;">
+            ID: 124532
+        </div>
 
-<!-- TOMBOL SALDO -->
-<button onclick="toggleSaldo()">
-    <i id="iconMata" class="fas fa-eye"></i> Saldo
-</button>
+        <!-- HEADER GREENCOIN -->
+        <div class="card">
+            <div style="display:flex; justify-content:center; align-items:center; gap:12px;">
+                <h2 style="margin:0;">GreenCoin</h2>
+                <img src="vip.png" width="65" style="border-radius:50%; box-shadow:0 0 12px gold;">
+            </div>
+        </div>
 
-<!-- SALDO -->
-<div style="margin-top:10px;">
-    <p style="margin:5px;">Saldo</p>
-    <div id="saldoText" style="
-        font-size:30px;
-        font-weight:bold;
-        color:#00ffcc;
-        text-shadow:0 0 10px #00ffcc;
-        letter-spacing:1px;
-    ">
-        Rp 100.000.000
-    </div>
-</div>
+        <!-- DATA USER -->
+        <div class="card">
+            <button onclick="toggleData()">
+                <i id="iconData" class="fas fa-eye"></i> Data Akun
+            </button>
 
-<!-- BUTTON -->
-<button onclick="deposit()">
-    <i class="fas fa-wallet"></i> Deposit
-</button>
+            <div id="dataUser" style="text-align:left; margin-top:10px;">
+                <p><b>Nama:</b> AGRIFA ALOKENIA GINTING</p>
+                <p><b>No Rek:</b> 0896-9986-3373</p>
+            </div>
+        </div>
 
-<button onclick="tarik()">
-    <i class="fas fa-money-bill-wave"></i> Tarik
-</button>
+        <!-- SALDO -->
+        <div class="card">
+            <button onclick="toggleSaldo()">
+                <i id="iconMata" class="fas fa-eye"></i> Saldo
+            </button>
 
+            <div style="margin-top:10px;">
+                <p>Saldo</p>
+                <div id="saldoText" class="balance">
+                    Rp 100.000.000
+                </div>
+            </div>
+        </div>
+
+        <!-- BUTTON -->
+        <div class="card">
+            <button onclick="deposit()">
+                <i class="fas fa-wallet"></i> Deposit
+            </button>
+
+            <button onclick="tarik()">
+                <i class="fas fa-money-bill-wave"></i> Tarik
+            </button>
+        </div>
+
+        <!-- NOTICE -->
         <div class="card">
             <h3>NOTICE ⚠️</h3>
             <p style="font-size:12px;">
@@ -207,6 +225,35 @@ input, select {
 let saldoVisible = true;
 let dataVisible = true;
 
+function login(){
+    let u = document.getElementById("user").value;
+    let p = document.getElementById("pass").value;
+
+    if(u === "admin" && p === "1234"){
+        document.getElementById("loginPage").style.display="none";
+        document.getElementById("app").style.display="block";
+        showMenu('profil');
+    } else {
+        alert("Login salah ❌");
+    }
+}
+
+function logout(){
+    document.getElementById("app").style.display="none";
+    document.getElementById("loginPage").style.display="block";
+}
+
+function showMenu(menu){
+    document.getElementById("menuProfil").style.display = "none";
+    document.getElementById("menuTugas").style.display = "none";
+
+    document.getElementById("menu" + capitalize(menu)).style.display = "block";
+}
+
+function capitalize(text){
+    return text.charAt(0).toUpperCase() + text.slice(1);
+}
+
 function toggleSaldo(){
     let saldo = document.getElementById("saldoText");
     let icon = document.getElementById("iconMata");
@@ -235,40 +282,6 @@ function toggleData(){
         icon.className = "fas fa-eye";
         dataVisible = true;
     }
-}
-
-function login(){
-    let u = document.getElementById("user").value;
-    let p = document.getElementById("pass").value;
-
-    if(u === "admin" && p === "1234"){
-        document.getElementById("loginPage").style.display="none";
-        document.getElementById("app").style.display="block";
-        showMenu('profil');
-    } else {
-        alert("Login salah ❌");
-    }
-}
-
-function logout(){
-    document.getElementById("app").style.display="none";
-    document.getElementById("loginPage").style.display="block";
-}
-
-function showMenu(menu){
-    document.getElementById("menuProfil").style.display = "none";
-    document.getElementById("menuTugas").style.display = "none";
-
-    document.getElementById("menu" + capitalize(menu)).style.display = "block";
-
-    document.getElementById("btnProfil").style.background="#222";
-    document.getElementById("btnTugas").style.background="#222";
-
-    document.getElementById("btn" + capitalize(menu)).style.background="#00d9ff";
-}
-
-function capitalize(text){
-    return text.charAt(0).toUpperCase() + text.slice(1);
 }
 
 function deposit(){
