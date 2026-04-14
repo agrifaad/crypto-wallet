@@ -1,280 +1,168 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>GreenMoney Wallet</title>
 
+<!-- ICON -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
 <style>
-   
-    input {
-    padding: 12px;
-    margin: 8px 0;
-    border-radius: 10px;
-    border: none;
-    width: 85%;
-    background: #001f33;
-    color: #00d9ff;
-    outline: none;
-}
-
-input::placeholder {
-    color: #00d9ff;
-    opacity: 0.6;
-}
 body {
-    margin: 0;
+    margin:0;
     font-family: Arial, sans-serif;
-    color: white;
-    text-align: center;
-    background: radial-gradient(circle at center, #001a4d 0%, #000d33 60%, #00081f 100%);
+    background: radial-gradient(circle at center, #001a2d 0%, #000d1a 60%, #00081f 100%);
+    color:white;
+    text-align:center;
 }
-
-/* BACKGROUND */
-body::before, body::after {
-    content: "";
-    position: fixed;
-    top: 0;
-    width: 35%;
-    height: 100%;
-    opacity: 0.5;
-    background-image:
-        linear-gradient(#00d9ff 2px, transparent 2px),
-        linear-gradient(90deg, #00d9ff 2px, transparent 2px);
-    background-size: 80px 80px;
-}
-
-body::before { left: 0; }
-body::after { right: 0; }
 
 .container {
-    max-width: 400px;
-    margin: auto;
-    padding: 10px;
+    max-width:400px;
+    margin:auto;
+    padding:10px;
 }
 
 .card {
-    background: rgba(0,0,0,0.75);
-    border-radius: 15px;
-    padding: 20px;
-    margin: 15px 0;
-    box-shadow: 0 0 20px rgba(0,217,255,0.4);
+    background:#001f33;
+    border-radius:15px;
+    padding:20px;
+    margin:15px 0;
+    box-shadow:0 0 20px #00d9ff;
 }
 
 button {
-    background: #00d9ff;
-    border: none;
-    padding: 10px;
-    margin: 5px;
-    border-radius: 8px;
-    cursor: pointer;
-    font-weight: bold;
+    width:100%;
+    padding:12px;
+    margin-top:8px;
+    border:none;
+    border-radius:10px;
+    background:linear-gradient(90deg,#00d9ff,#00ffcc);
+    cursor:pointer;
+    font-weight:bold;
+}
+
+button:hover {
+    transform:scale(1.05);
+    box-shadow:0 0 15px #00d9ff;
 }
 
 input {
-    padding: 10px;
-    margin: 5px;
-    border-radius: 8px;
-    border: none;
-    width: 80%;
+    padding:12px;
+    margin:8px 0;
+    border-radius:10px;
+    border:none;
+    width:85%;
+    background:#001f33;
+    color:#00d9ff;
 }
 
 .balance {
-    color: #00ffcc;
-    font-size: 28px;
-    font-weight: bold;
-    text-shadow: 0 0 10px #00ffcc;
-}
-
-.hidden {
-    display: none;
-}
-
-/* POPUP */
-.popup {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0,0,0,0.8);
-    display: none;
-    justify-content: center;
-    align-items: center;
-    z-index: 9999;
-}
-
-.popup-content {
-    background: linear-gradient(145deg, #002b22, #004d3a);
-    border: 1px solid #00ffcc;
-    box-shadow: 0 0 25px rgba(0,255,204,0.5);
-    padding: 20px;
-    border-radius: 15px;
-    width: 300px;
-}
-
-.copy-box {
-    background: #001f19;
-    color: #00ffcc;
-    padding: 10px;
-    border-radius: 8px;
-    margin: 10px 0;
-    font-weight: bold;
+    font-size:26px;
+    color:#00ffcc;
+    font-weight:bold;
 }
 </style>
 </head>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
 <body>
 
 <!-- LOGIN -->
 <div id="loginPage" class="container">
 
-    <div class="card" style="box-shadow: 0 0 30px #00d9ff;">
-
-        <img src="logo.png" width="80" style="margin-bottom:10px; filter: drop-shadow(0 0 10px gold);">
-
+    <div class="card">
+        <img src="logo.png" width="80" style="filter: drop-shadow(0 0 10px gold);">
         <h2 style="color:#00d9ff;">GreenMoney Wallet</h2>
-        <p style="font-size:12px; opacity:0.8;">Secure Crypto Wallet Login</p>
 
         <input type="text" id="user" placeholder="👤 ID Pengguna"><br>
         <input type="password" id="pass" placeholder="🔒 Password"><br>
 
-        <button onclick="login()" style="width:85%;">
-            🔓 Login Sekarang
+        <button onclick="login()">
+            <i class="fas fa-sign-in-alt"></i> Login
         </button>
-
-        <p style="font-size:11px; margin-top:10px; opacity:0.7;">
-            Sistem aman & terenkripsi 🔐
-        </p>
-
     </div>
 
 </div>
 
 <!-- APP -->
-<div class="card">
-    <button onclick="logout()">
-        🚪 Logout
-    </button>
-</div>
+<div id="app" class="container" style="display:none;">
 
-<h1 style="color:#00d9ff; display:flex; align-items:center; justify-content:center; gap:10px;">
-    <img src="logo.png" width="50" style="filter: drop-shadow(0 0 6px gold);">
-    GreenMoney Wallet
-</h1>
-
-<div class="card">
-    <h3 style="display:flex; align-items:center; justify-content:center; gap:8px;">
-    GreenCoin 
-    <img src="vip.png" width="60">
-</h3>
-    <div class="balance" id="saldo">Rp 100.000</div>
-    <br>
- <button onclick="deposit()">
-    <i class="fas fa-wallet"></i> Deposit
-</button>
-
-<button onclick="tarik()">
-    <i class="fas fa-money-bill-wave"></i> Tarik
-</button>
-
-<div class="card">
-    <h3>Menu Tugas</h3>
-    <button onclick="tugas()">Tugas 1</button>
-    <button onclick="tugas()">Tugas 2</button>
-    <button onclick="tugas()">Tugas 3</button>
-    <button onclick="tugas()">Tugas VIP</button>
-</div>
-
-<div class="card">
-    <h3>NOTICE ⚠️</h3>
-    <p style="font-size:12px;">
-    Penyelesaian tugas hanya dari mentor anda <br><br>
-    selesaikan tugas anda dan kembali ke mentor untuk konfirmasi penarikan!! <br><br>
-    Ambil tugas yang tersedia di dalam grup <br><br>
-    Isi coin melalui transfer nomor tujuan yang tersedia <br><br>
-    Pilih tugas dan kembali ke mentor <br><br>
-    Segera lakukan penarikan komisi dengan cara menyelesaikan tugas anda!!!
-    </p>
-</div>
-
-</div>
-
-<!-- POPUP -->
-<div class="popup" id="popup">
-    <div class="popup-content">
-        <h3>Deposit DANA</h3>
-
-        <img src="https://upload.wikimedia.org/wikipedia/commons/7/72/Logo_dana_blue.svg" width="80"><br><br>
-
-        <div class="copy-box" id="nomor">
-            089699863373
-        </div>
-
-        <button onclick="copyNomor()">Copy Nomor</button>
-
-        <p style="font-size:12px;">
-            Nama: AGRIFA ALOKENIA GINTING <br>
-            Metode: DANA
-        </p>
-
-        <button onclick="tutup()">Tutup</button>
+    <div class="card">
+        <button onclick="logout()">
+            <i class="fas fa-sign-out-alt"></i> Logout
+        </button>
     </div>
+
+    <div class="card">
+        <h3 style="display:flex;justify-content:center;align-items:center;gap:8px;">
+            GreenCoin 
+            <img src="vip.png" width="35">
+        </h3>
+
+        <div class="balance" id="saldo">Rp 100.000</div>
+
+        <button onclick="deposit()">
+            <i class="fas fa-wallet"></i> Deposit
+        </button>
+
+        <button onclick="tarik()">
+            <i class="fas fa-money-bill-wave"></i> Tarik
+        </button>
+    </div>
+
+    <div class="card">
+        <h3>Menu Tugas</h3>
+
+        <button onclick="tugas()"><i class="fas fa-tasks"></i> Tugas 1</button>
+        <button onclick="tugas()"><i class="fas fa-tasks"></i> Tugas 2</button>
+        <button onclick="tugas()"><i class="fas fa-tasks"></i> Tugas 3</button>
+        <button onclick="tugas()"><i class="fas fa-crown"></i> Tugas VIP</button>
+    </div>
+
+    <div class="card">
+        <h3>NOTICE ⚠️</h3>
+        <p style="font-size:12px;">
+        Penyelesaian tugas hanya dari mentor anda<br><br>
+        Ambil tugas di grup<br>
+        Isi coin melalui transfer<br>
+        Pilih tugas & kembali ke mentor<br>
+        Segera lakukan penarikan setelah selesai
+        </p>
+    </div>
+
 </div>
 
 <script>
 let saldo = 100000;
 
-// LOGIN
 function login(){
-    let user = document.getElementById("user").value;
-    let pass = document.getElementById("pass").value;
+    let u = document.getElementById("user").value;
+    let p = document.getElementById("pass").value;
 
-    if(user === "admin" && pass === "1234"){
-        document.getElementById("loginPage").style.display = "none";
-        document.getElementById("app").style.display = "block";
+    if(u === "admin" && p === "1234"){
+        document.getElementById("loginPage").style.display="none";
+        document.getElementById("app").style.display="block";
     } else {
-        alert("ID atau Password salah ❌");
+        alert("Login salah ❌");
     }
 }
 
-// FORMAT
-function formatRupiah(angka){
-    return "Rp " + angka.toLocaleString("id-ID");
+function logout(){
+    document.getElementById("app").style.display="none";
+    document.getElementById("loginPage").style.display="block";
 }
 
-// UPDATE SALDO
-function updateSaldo(){
-    document.getElementById("saldo").innerText = formatRupiah(saldo);
-}
-
-// DEPOSIT
 function deposit(){
-    document.getElementById("popup").style.display = "flex";
+    alert("Transfer ke DANA 089699863373 a.n AGRIFA");
 }
 
-// TUTUP
-function tutup(){
-    document.getElementById("popup").style.display = "none";
-}
-
-// COPY
-function copyNomor(){
-    let text = document.getElementById("nomor").innerText;
-    navigator.clipboard.writeText(text);
-    alert("Nomor berhasil di copy!");
-}
-
-// TARIK
 function tarik(){
-    alert("Hubungi mentor anda untuk melakukan penarikan.");
+    alert("Hubungi mentor untuk penarikan");
 }
 
-// TUGAS
 function tugas(){
-    window.location.href = "https://t.me/robertelchico";
+    window.location.href="https://t.me/robertelchico";
 }
-
-updateSaldo();
 </script>
 
 </body>
