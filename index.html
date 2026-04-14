@@ -1,5 +1,164 @@
 <!DOCTYPE html>
 <html>
+  <!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>GreenMoney Wallet</title>
+<style>
+body {
+    background: linear-gradient(90deg, #2b2100, #ffd700);
+    font-family: Arial;
+    color: white;
+    text-align: center;
+}
+
+.container {
+    max-width: 400px;
+    margin: auto;
+}
+
+.card {
+    background: black;
+    border-radius: 15px;
+    padding: 20px;
+    margin: 15px 0;
+    box-shadow: 0 0 15px gold;
+}
+
+button {
+    background: gold;
+    border: none;
+    padding: 10px;
+    margin: 5px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+button:hover {
+    opacity: 0.8;
+}
+
+.balance {
+    color: red;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.log {
+    font-size: 12px;
+    text-align: left;
+    max-height: 150px;
+    overflow-y: auto;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1 style="color:gold;">GreenMoney Wallet 💚</h1>
+
+<div class="card">
+    <h3>Saldo Anda 💰</h3>
+    <div class="balance" id="saldo">Rp 100.000</div>
+    <br>
+    <button onclick="deposit()">Deposit</button>
+    <button onclick="tarik()">Tarik</button>
+</div>
+
+<div class="card">
+    <h3>Menu Tugas</h3>
+    <button onclick="kerjakan(10000)">Tugas 1</button>
+    <button onclick="kerjakan(15000)">Tugas 2</button>
+    <button onclick="kerjakan(20000)">Tugas 3</button>
+    <button onclick="kerjakan(25000)">Tugas VIP</button>
+</div>
+
+<div class="card">
+    <h3>Riwayat Transaksi</h3>
+    <div class="log" id="log"></div>
+</div>
+
+<div class="card">
+    <h3>Notifikasi</h3>
+    <div id="notif">Selamat datang 👋</div>
+</div>
+
+</div>
+
+<script>
+let saldo = 100000;
+
+function formatRupiah(angka){
+    return "Rp " + angka.toLocaleString("id-ID");
+}
+
+function updateSaldo(){
+    document.getElementById("saldo").innerText = formatRupiah(saldo);
+}
+
+function tambahLog(text){
+    let log = document.getElementById("log");
+    let waktu = new Date().toLocaleTimeString();
+    log.innerHTML = `<div>[${waktu}] ${text}</div>` + log.innerHTML;
+}
+
+function notif(text){
+    document.getElementById("notif").innerText = text;
+}
+
+function deposit(){
+    let jumlah = 50000;
+    saldo += jumlah;
+    updateSaldo();
+    tambahLog("Deposit +" + formatRupiah(jumlah));
+    notif("Deposit berhasil ✅");
+}
+
+function tarik(){
+    if(saldo < 50000){
+        notif("Saldo tidak cukup ❌");
+        return;
+    }
+
+    let jumlah = 50000;
+    saldo -= jumlah;
+    updateSaldo();
+    tambahLog("Tarik -" + formatRupiah(jumlah));
+    notif("Penarikan diproses ⏳");
+}
+
+function kerjakan(bayar){
+    notif("Mengerjakan tugas...");
+    
+    setTimeout(() => {
+        saldo += bayar;
+        updateSaldo();
+        tambahLog("Komisi +" + formatRupiah(bayar));
+        notif("Tugas selesai ✅");
+    }, 2000);
+}
+
+// Fake notifikasi biar terlihat real
+setInterval(() => {
+    let random = Math.floor(Math.random() * 5);
+    let pesan = [
+        "User lain berhasil withdraw 💸",
+        "Bonus harian tersedia 🎁",
+        "Tugas baru tersedia 🔥",
+        "Saldo bertambah otomatis 💰",
+        "VIP upgrade tersedia ⭐"
+    ];
+    notif(pesan[random]);
+}, 5000);
+
+updateSaldo();
+</script>
+
+</body>
+</html>
 <head>
 <title>GreenMoney Wallet</title>
 
