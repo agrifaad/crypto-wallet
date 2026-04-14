@@ -202,6 +202,13 @@ function login(){
 }
 
 function logout(){
+    <button onclick="toggleInfo()">👁️ Lihat Info Akun</button>
+
+<div id="infoAkun" style="display:none; margin-top:10px; text-align:left; font-size:13px;">
+    <p><b>Nama:</b> AGRIFA ALOKENIA GINTING</p>
+    <p><b>No Rek:</b> 089699863373</p>
+    <p><b>Saldo:</b> Rp 100.000</p>
+</div>
     document.getElementById("app").style.display="none";
     document.getElementById("loginPage").style.display="block";
 }
