@@ -336,6 +336,55 @@ input, select {
 <!-- SETTING -->
 </div>
 <div id="menuSetting" style="display:none;">
+
+    <!-- MENU PILIHAN -->
+    <div class="card">
+        <h3>⚙️ Pengaturan</h3>
+
+        <button onclick="openSetting('akun')">👤 Data Akun</button>
+        <button onclick="openSetting('rekening')">🏦 Rekening</button>
+        <button onclick="openSetting('password')">🔒 Ganti Password</button>
+        <button onclick="toggleDarkMode()">🌙 Mode Gelap</button>
+    </div>
+
+    <!-- DATA AKUN -->
+    <div id="settingAkun" class="card" style="display:none;">
+        <h3>👤 Data Akun</h3>
+
+        <label>Nama</label>
+        <input type="text" id="namaBaru" placeholder="Nama baru">
+
+        <button onclick="simpanNama()">Simpan</button>
+    </div>
+
+    <!-- REKENING -->
+    <div id="settingRekening" class="card" style="display:none;">
+        <h3>🏦 Data Rekening</h3>
+
+        <label>No Rekening</label>
+        <input type="text" id="rekBaru" placeholder="Nomor rekening">
+
+        <label>Jenis Bank</label>
+        <select id="jenisBank">
+            <option>BCA</option>
+            <option>BRI</option>
+            <option>BNI</option>
+            <option>DANA</option>
+        </select>
+
+        <button onclick="simpanRek()">Simpan</button>
+    </div>
+
+    <!-- PASSWORD -->
+    <div id="settingPassword" class="card" style="display:none;">
+        <h3>🔒 Ganti Password</h3>
+
+        <input type="password" id="passBaru" placeholder="Password baru">
+
+        <button onclick="simpanPassword()">Simpan</button>
+    </div>
+
+</div>
 <div class="card">
     <h3>⚙️ Pengaturan Akun</h3>
 
