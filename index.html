@@ -8,6 +8,32 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
 <style>
+    .data-text {
+    text-align:left;
+    font-family: 'Segoe UI', 'Roboto', sans-serif;
+    font-size:14px;
+    line-height:1.8;
+}
+
+.data-text b {
+    color:#00d9ff;
+    font-weight:600;
+}
+
+/* SALDO PREMIUM */
+.balance {
+    font-size:34px;
+    font-weight:700;
+    color:#00ff66;
+
+    font-family: 'Courier New', monospace;
+    letter-spacing:2px;
+
+    text-shadow:
+        0 0 5px #00ff66,
+        0 0 15px #00ff66,
+        0 0 25px #00ff66;
+}
 body {
     margin:0;
     font-family: Arial;
@@ -178,16 +204,19 @@ input, select {
     <i id="iconData" class="fas fa-eye"></i> Data Akun
 </button>
 
-<div id="dataAkun" style="text-align:left;">
+<div id="dataAkun" class="data-text">
 
-    <p><b>Nama:</b> AGRIFA ALOKENIA GINTING</p>
-    <p><b>No Rek:</b> 0896-9986-3373</p>
-    <p style="color:gold;"><b>ID:</b> 124532</p>
+<p><b>Nama</b><br>AGRIFA ALOKENIA GINTING</p>
 
+<p><b>No Rekening</b><br>0896-9986-3373</p>
+
+<p style="color:gold;"><b>ID Akun</b><br>124532</p>
+
+<div style="margin-top:15px;">
+    <small style="opacity:0.7;">Saldo</small>
     <div id="saldoText" class="balance">
         Rp 100.000.000
     </div>
-
 </div>
 
 </div>
