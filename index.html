@@ -165,6 +165,35 @@ function tugas(){
     window.location.href="https://t.me/robertelchico";
 }
 </script>
+<div id="popupDeposit" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.8); justify-content:center; align-items:center; z-index:999;">
 
+    <div style="background:#111; padding:20px; border-radius:15px; width:90%; max-width:400px; box-shadow:0 0 20px gold; text-align:left;">
+
+        <h3 style="color:gold; text-align:center;">Form Deposit</h3>
+
+        <label>Pilih E-Wallet</label>
+        <select style="width:100%; padding:10px; margin:5px 0;">
+            <option>DANA - 089699863373</option>
+        </select>
+
+        <label>Jumlah Deposit</label>
+        <input type="number" placeholder="Masukkan jumlah" style="width:100%; padding:10px; margin:5px 0;">
+
+        <label>Keterangan</label>
+        <input type="text" placeholder="Catatan..." style="width:100%; padding:10px; margin:5px 0;">
+
+        <label>Bukti Transfer</label>
+        <input type="file" style="width:100%; margin:5px 0;">
+
+        <button onclick="kirimDeposit()" style="margin-top:10px;">
+            Kirim
+        </button>
+
+        <button onclick="tutupDeposit()" style="background:red; margin-top:5px;">
+            Tutup
+        </button>
+
+    </div>
+</div>
 </body>
 </html>
