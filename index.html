@@ -10,53 +10,108 @@
 <style>
 body {
     margin:0;
-    font-family: Arial;
-    background: radial-gradient(circle, #001a2d, #000);
+    font-family: 'Segoe UI', sans-serif;
+    background: radial-gradient(circle at top, #002b36, #000);
     color:white;
     text-align:center;
 }
 
+/* CONTAINER */
 .container {
     max-width:400px;
     margin:auto;
     padding:10px;
 }
 
+/* CARD (EFEK KACA + 3D) */
 .card {
-    background:#001f33;
-    border-radius:15px;
+    background: rgba(0, 31, 51, 0.6);
+    backdrop-filter: blur(10px);
+    border-radius:20px;
     padding:20px;
     margin:15px 0;
-    box-shadow:0 0 20px #00d9ff;
+    box-shadow: 
+        0 0 20px rgba(0,255,200,0.3),
+        inset 0 0 10px rgba(255,255,255,0.1);
+    border:1px solid rgba(255,255,255,0.1);
 }
 
+/* BUTTON MODERN */
 button {
     width:100%;
     padding:12px;
     margin-top:8px;
     border:none;
-    border-radius:10px;
-    background:linear-gradient(90deg,#00d9ff,#00ffcc);
-    cursor:pointer;
+    border-radius:12px;
+    background: linear-gradient(145deg, #00ffc8, #0099ff);
+    color:black;
     font-weight:bold;
+    cursor:pointer;
+    box-shadow: 0 5px 15px rgba(0,255,200,0.4);
+    transition:0.2s;
 }
 
+button:hover {
+    transform: scale(1.03);
+    box-shadow: 0 0 20px #00ffc8;
+}
+
+/* INPUT */
 input, select {
     padding:10px;
     margin:5px 0;
-    border-radius:8px;
+    border-radius:10px;
     border:none;
     width:100%;
-    background:#222;
+    background:#111;
     color:white;
 }
 
+/* SALDO (SUPER REAL) */
 .balance {
-    font-size:30px;
+    font-size:34px;
     font-weight:bold;
-    color:#00ff00;
-    text-shadow:0 0 10px #00ff00, 0 0 25px #00ff00;
-    font-family:'Courier New', monospace;
+    color:#00ff66;
+    text-shadow:
+        0 0 5px #00ff66,
+        0 0 10px #00ff66,
+        0 0 20px #00ff66;
+    font-family: 'Courier New', monospace;
+    letter-spacing:2px;
+}
+
+/* TEXT EMAS */
+.gold {
+    color: gold;
+    text-shadow: 0 0 8px gold;
+}
+
+/* HEADER GREENCOIN */
+.title-glow {
+    font-size:24px;
+    font-weight:bold;
+    text-shadow:
+        0 0 10px #00d9ff,
+        0 0 20px #00d9ff;
+}
+
+/* LOGO */
+.logo {
+    width:65px;
+    border-radius:50%;
+    box-shadow:
+        0 0 10px gold,
+        0 0 20px gold;
+}
+
+/* ANIMASI HALUS */
+.card, button {
+    animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+    from {opacity:0; transform:translateY(10px);}
+    to {opacity:1; transform:translateY(0);}
 }
 </style>
 </head>
