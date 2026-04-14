@@ -6,34 +6,9 @@
 <title>GreenMoney Wallet</title>
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap" rel="stylesheet">
 
 <style>
-    .data-text {
-    text-align:left;
-    font-family: 'Segoe UI', 'Roboto', sans-serif;
-    font-size:14px;
-    line-height:1.8;
-}
-
-.data-text b {
-    color:#00d9ff;
-    font-weight:600;
-}
-
-/* SALDO PREMIUM */
-.balance {
-    font-size:34px;
-    font-weight:700;
-    color:#00ff66;
-
-    font-family: 'Courier New', monospace;
-    letter-spacing:2px;
-
-    text-shadow:
-        0 0 5px #00ff66,
-        0 0 15px #00ff66,
-        0 0 25px #00ff66;
-}
 body {
     margin:0;
     font-family: Arial;
@@ -42,37 +17,21 @@ body {
     text-align:center;
 }
 
-/* CONTAINER */
 .container {
     max-width:400px;
     margin:auto;
     padding:10px;
 }
 
-/* CARD */
 .card {
-    .card {
-    animation: fadeIn 0.6s ease;
-}
-
-@keyframes fadeIn {
-    from {
-        opacity:0;
-        transform:translateY(20px);
-    }
-    to {
-        opacity:1;
-        transform:translateY(0);
-    }
-}
     background:#001f33;
     border-radius:15px;
     padding:20px;
     margin:15px 0;
     box-shadow:0 0 20px #00d9ff;
+    animation: fadeIn 0.5s ease;
 }
 
-/* BUTTON */
 button {
     width:100%;
     padding:12px;
@@ -84,7 +43,6 @@ button {
     font-weight:bold;
 }
 
-/* INPUT */
 input, select {
     padding:10px;
     margin:5px 0;
@@ -99,9 +57,9 @@ input, select {
 .balance {
     font-size:32px;
     font-weight:bold;
-    color:#00ff00;
-    text-shadow:0 0 10px #00ff00, 0 0 25px #00ff00;
-    font-family:'Courier New', monospace;
+    color:#00ff66;
+    font-family:'Orbitron', sans-serif;
+    text-shadow:0 0 10px #00ff66, 0 0 25px #00ff66;
 }
 
 /* SHOP */
@@ -138,6 +96,12 @@ input, select {
     border:2px solid gold;
     font-weight:bold;
 }
+
+/* ANIMASI */
+@keyframes fadeIn {
+    from {opacity:0; transform:translateY(20px);}
+    to {opacity:1; transform:translateY(0);}
+}
 </style>
 </head>
 
@@ -152,16 +116,7 @@ input, select {
 <div id="loginPage" class="container">
 
 <div class="card">
-    <h3>⚠️ NOTICE</h3>
-    <p style="font-size:12px;">
-    AKUN LINK RESMI<br>
-    GreenMoney - Komisi Tugas<br><br>
-    ⚠️ Akun akan terkunci jika salah login berulang
-    </p>
-</div>
-
-<div class="card">
-    <img src="logo.png" width="80">
+    <img src="logo.png" width="90">
     <h2>GreenMoney Wallet</h2>
 
     <input type="text" id="user" placeholder="ID">
@@ -183,69 +138,33 @@ input, select {
 </div>
 
 <!-- PROFIL -->
-<!-- PROFIL -->
 <div id="menuProfil">
-    <!-- isi profil -->
+
+<div class="card">
+    <button onclick="logout()">Logout</button>
 </div>
 
-<!-- TUGAS -->
-<div id="menuTugas" style="display:none;">
-    <div class="card">
-        <h3>Menu Tugas</h3>
-
-        <button onclick="tugas()">Tugas 1</button>
-        <button onclick="tugas()">Tugas 2</button>
-        <button onclick="tugas()">Tugas 3</button>
-        <button onclick="tugas()">Tugas 4 VIP</button>
-        <button onclick="tugas()">Tugas 5 VIP</button>
-    </div>
+<!-- LOGO + JUDUL -->
+<div class="card">
+    <img src="logo.png" width="80">
+    <h1>GreenCoin</h1>
 </div>
 
-<!-- SHOP -->
-<div id="menuShop" style="display:none;">
-    <div class="card">
-        <h3>🛍️ Marketplace</h3>
-
-        <div class="shop-grid">
-
-            <div class="product">
-                <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff">
-                <p>Sepatu Sport</p>
-                <div class="price">Rp 150.000</div>
-                <button onclick="beli('https://shopee.co.id')">Beli</button>
-            </div>
-
-            <div class="product">
-                <img src="https://images.unsplash.com/photo-1511379938547-c1f69419868d">
-                <p>Headset Gaming</p>
-                <div class="price">Rp 300.000</div>
-                <button onclick="beli('https://shopee.co.id')">Beli</button>
-            </div>
-
-        </div>
-    </div>
-</div>
-
-<!-- DATA AKUN -->
+<!-- DATA -->
 <div class="card">
 
 <button onclick="toggleData()">
     <i id="iconData" class="fas fa-eye"></i> Data Akun
 </button>
 
-<div id="dataAkun" class="data-text">
+<div id="dataAkun" style="text-align:left;">
 
 <p><b>Nama</b><br>AGRIFA ALOKENIA GINTING</p>
+<p><b>No Rek</b><br>0896-9986-3373</p>
+<p style="color:gold;"><b>ID</b><br>124532</p>
 
-<p><b>No Rekening</b><br>0896-9986-3373</p>
+<div class="balance">Rp 100.000.000</div>
 
-<p style="color:gold;"><b>ID Akun</b><br>124532</p>
-
-<div style="margin-top:15px;">
-    <small style="opacity:0.7;">Saldo</small>
-    <div id="saldoText" class="balance">
-        Rp 100.000.000
-    </div>
 </div>
 
 </div>
@@ -261,15 +180,19 @@ input, select {
 <div id="menuTugas" style="display:none;">
 <div class="card">
     <h3>Menu Tugas</h3>
+
     <button onclick="tugas()">Tugas 1</button>
     <button onclick="tugas()">Tugas 2</button>
+    <button onclick="tugas()">Tugas 3</button>
+    <button onclick="tugas()">Tugas 4 VIP</button>
+    <button onclick="tugas()">Tugas 5 VIP</button>
 </div>
 </div>
 
 <!-- SHOP -->
 <div id="menuShop" style="display:none;">
 <div class="card">
-    <h3>🛍️ Marketplace</h3>
+    <h3>Marketplace</h3>
 
     <div class="shop-grid">
 
@@ -282,7 +205,7 @@ input, select {
 
         <div class="product">
             <img src="https://images.unsplash.com/photo-1511379938547-c1f69419868d">
-            <p>Headset Gaming</p>
+            <p>Headset</p>
             <div class="price">Rp 300.000</div>
             <button onclick="beli('https://shopee.co.id')">Beli</button>
         </div>
@@ -294,27 +217,21 @@ input, select {
 </div>
 
 <!-- POPUP DEPOSIT -->
-<div id="popupDeposit" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.8); justify-content:center; align-items:center; z-index:999;">
+<div id="popupDeposit" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.8); justify-content:center; align-items:center;">
 
 <div style="background:#111; padding:20px; border-radius:15px; width:90%; max-width:400px; box-shadow:0 0 20px gold;">
 
-<h3 style="color:gold;">Formulir Deposit</h3>
+<h3 style="color:gold;">Form Deposit</h3>
 
-<label>Pilih E-Wallet</label>
 <select>
 <option>DANA - 089699863373</option>
 </select>
 
-<label>Jumlah Deposit</label>
-<input type="number">
-
-<label>Keterangan</label>
-<input type="text">
-
-<label>Bukti</label>
+<input type="number" placeholder="Jumlah">
+<input type="text" placeholder="Keterangan">
 <input type="file">
 
-<button onclick="kirimDeposit()" style="background:gold;">Kirim</button>
+<button onclick="kirimDeposit()">Kirim</button>
 <button onclick="tutupDeposit()" style="background:red;">Tutup</button>
 
 </div>
@@ -322,78 +239,47 @@ input, select {
 
 <script>
 
-let dataVisible = true;
+let visible=true;
 
 function login(){
-    let u = document.getElementById("user").value;
-    let p = document.getElementById("pass").value;
-
-    if(u==="admin" && p==="1234"){
-        document.getElementById("loginPage").style.display="none";
-        document.getElementById("app").style.display="block";
-    } else {
-        alert("Login salah");
-    }
+    if(user.value=="admin" && pass.value=="1234"){
+        loginPage.style.display="none";
+        app.style.display="block";
+        showMenu('profil');
+    } else alert("Login salah");
 }
 
 function logout(){
-    document.getElementById("app").style.display="none";
-    document.getElementById("loginPage").style.display="block";
+    app.style.display="none";
+    loginPage.style.display="block";
 }
 
-ffunction showMenu(menu){
-    document.getElementById("menuProfil").style.display="none";
-    document.getElementById("menuTugas").style.display="none";
-    document.getElementById("menuShop").style.display="none";
+function showMenu(menu){
+    menuProfil.style.display="none";
+    menuTugas.style.display="none";
+    menuShop.style.display="none";
 
-    if(menu === "profil"){
-        document.getElementById("menuProfil").style.display="block";
-    }
-    if(menu === "tugas"){
-        document.getElementById("menuTugas").style.display="block";
-    }
-    if(menu === "shop"){
-        document.getElementById("menuShop").style.display="block";
-    }
+    if(menu=="profil") menuProfil.style.display="block";
+    if(menu=="tugas") menuTugas.style.display="block";
+    if(menu=="shop") menuShop.style.display="block";
 }
+
 function toggleData(){
-    let data = document.getElementById("dataAkun");
-    let icon = document.getElementById("iconData");
-
-    if(dataVisible){
-        data.style.display="none";
-        icon.className="fas fa-eye-slash";
-        dataVisible=false;
-    } else {
-        data.style.display="block";
-        icon.className="fas fa-eye";
-        dataVisible=true;
-    }
+    dataAkun.style.display = visible ? "none":"block";
+    iconData.className = visible ? "fas fa-eye-slash":"fas fa-eye";
+    visible=!visible;
 }
 
-function deposit(){
-    document.getElementById("popupDeposit").style.display="flex";
-}
+function deposit(){ popupDeposit.style.display="flex"; }
+function tutupDeposit(){ popupDeposit.style.display="none"; }
 
-function tutupDeposit(){
-    document.getElementById("popupDeposit").style.display="none";
-}
+function kirimDeposit(){ alert("Deposit dikirim"); }
 
-function kirimDeposit(){
-    alert("Deposit berhasil dikirim");
-}
+function tarik(){ alert("Hubungi admin"); }
 
-function tarik(){
-    alert("Hubungi admin");
-}
+function tugas(){ alert("Tugas jalan"); }
 
-function tugas(){
-    alert("Tugas dijalankan");
-}
-
-function beli(link){
-    window.location.href = link;
-}
+function beli(link){ window.location.href=link; }
 
 </script>
 
