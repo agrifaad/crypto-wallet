@@ -5,14 +5,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>GreenMoney Wallet</title>
 
-<!-- ICON -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
 <style>
 body {
     margin:0;
-    font-family: Arial, sans-serif;
-    background: radial-gradient(circle at center, #001a2d 0%, #000d1a 60%, #00081f 100%);
+    font-family: Arial;
+    background: radial-gradient(circle, #001a2d, #000);
     color:white;
     text-align:center;
 }
@@ -47,14 +46,14 @@ button:hover {
     box-shadow:0 0 15px #00d9ff;
 }
 
-input {
-    padding:12px;
-    margin:8px 0;
-    border-radius:10px;
+input, select {
+    padding:10px;
+    margin:5px 0;
+    border-radius:8px;
     border:none;
-    width:85%;
-    background:#001f33;
-    color:#00d9ff;
+    width:100%;
+    background:#222;
+    color:white;
 }
 
 .balance {
@@ -69,19 +68,17 @@ input {
 
 <!-- LOGIN -->
 <div id="loginPage" class="container">
-
     <div class="card">
-        <img src="logo.png" width="80" style="filter: drop-shadow(0 0 10px gold);">
+        <img src="logo.png" width="80">
         <h2 style="color:#00d9ff;">GreenMoney Wallet</h2>
 
-        <input type="text" id="user" placeholder="👤 ID Pengguna"><br>
-        <input type="password" id="pass" placeholder="🔒 Password"><br>
+        <input type="text" id="user" placeholder="👤 ID Pengguna">
+        <input type="password" id="pass" placeholder="🔒 Password">
 
         <button onclick="login()">
             <i class="fas fa-sign-in-alt"></i> Login
         </button>
     </div>
-
 </div>
 
 <!-- APP -->
@@ -99,7 +96,7 @@ input {
             <img src="vip.png" width="35">
         </h3>
 
-        <div class="balance" id="saldo">Rp 100.000</div>
+        <div class="balance">Rp 100.000</div>
 
         <button onclick="deposit()">
             <i class="fas fa-wallet"></i> Deposit
@@ -132,9 +129,34 @@ input {
 
 </div>
 
-<script>
-let saldo = 100000;
+<!-- POPUP DEPOSIT -->
+<div id="popupDeposit" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.8); justify-content:center; align-items:center; z-index:999;">
 
+    <div style="background:#111; padding:20px; border-radius:15px; width:90%; max-width:400px; box-shadow:0 0 20px gold; text-align:left;">
+
+        <h3 style="color:gold; text-align:center;">Form Deposit</h3>
+
+        <label>Pilih E-Wallet</label>
+        <select>
+            <option>DANA - 089699863373</option>
+        </select>
+
+        <label>Jumlah Deposit</label>
+        <input type="number" placeholder="Masukkan jumlah">
+
+        <label>Keterangan</label>
+        <input type="text" placeholder="Catatan">
+
+        <label>Bukti Transfer</label>
+        <input type="file">
+
+        <button onclick="kirimDeposit()">Kirim</button>
+        <button onclick="tutupDeposit()" style="background:red;">Tutup</button>
+
+    </div>
+</div>
+
+<script>
 function login(){
     let u = document.getElementById("user").value;
     let p = document.getElementById("pass").value;
@@ -153,8 +175,16 @@ function logout(){
 }
 
 function deposit(){
-    document.getElementById("popupDeposit").style.display = "flex";
+    document.getElementById("popupDeposit").style.display="flex";
 }
+
+function tutupDeposit(){
+    document.getElementById("popupDeposit").style.display="none";
+}
+
+function kirimDeposit(){
+    alert("Deposit berhasil dikirim ✅");
+    tutupDeposit();
 }
 
 function tarik(){
@@ -165,35 +195,6 @@ function tugas(){
     window.location.href="https://t.me/robertelchico";
 }
 </script>
-<div id="popupDeposit" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.8); justify-content:center; align-items:center; z-index:999;">
 
-    <div style="background:#111; padding:20px; border-radius:15px; width:90%; max-width:400px; box-shadow:0 0 20px gold; text-align:left;">
-
-        <h3 style="color:gold; text-align:center;">Form Deposit</h3>
-
-        <label>Pilih E-Wallet</label>
-        <select style="width:100%; padding:10px; margin:5px 0;">
-            <option>DANA - 089699863373</option>
-        </select>
-
-        <label>Jumlah Deposit</label>
-        <input type="number" placeholder="Masukkan jumlah" style="width:100%; padding:10px; margin:5px 0;">
-
-        <label>Keterangan</label>
-        <input type="text" placeholder="Catatan..." style="width:100%; padding:10px; margin:5px 0;">
-
-        <label>Bukti Transfer</label>
-        <input type="file" style="width:100%; margin:5px 0;">
-
-        <button onclick="kirimDeposit()" style="margin-top:10px;">
-            Kirim
-        </button>
-
-        <button onclick="tutupDeposit()" style="background:red; margin-top:5px;">
-            Tutup
-        </button>
-
-    </div>
-</div>
 </body>
 </html>
