@@ -43,7 +43,6 @@ button {
 
 button:hover {
     transform:scale(1.05);
-    box-shadow:0 0 15px #00d9ff;
 }
 
 input, select {
@@ -90,59 +89,55 @@ input, select {
         <button onclick="showMenu('tugas')" id="btnTugas">📋 Tugas</button>
     </div>
 
-    <!-- isi card kamu di bawah sini -->
+    <!-- PROFIL -->
+    <div id="menuProfil">
 
-    <div class="card">
-        <button onclick="logout()">
-            <i class="fas fa-sign-out-alt"></i> Logout
-        </button>
+        <div class="card">
+            <button onclick="logout()">
+                <i class="fas fa-sign-out-alt"></i> Logout
+            </button>
+        </div>
+
+        <div class="card">
+            <h3 style="display:flex;justify-content:center;align-items:center;gap:8px;">
+                GreenCoin 
+                <img src="vip.png" width="35">
+            </h3>
+
+            <div class="balance">Rp 100.000</div>
+
+            <button onclick="deposit()">
+                <i class="fas fa-wallet"></i> Deposit
+            </button>
+
+            <button onclick="tarik()">
+                <i class="fas fa-money-bill-wave"></i> Tarik
+            </button>
+        </div>
+
+        <div class="card">
+            <h3>NOTICE ⚠️</h3>
+            <p style="font-size:12px;">
+            Penyelesaian tugas hanya dari mentor anda<br><br>
+            Ambil tugas di grup<br>
+            Isi coin melalui transfer<br>
+            Pilih tugas & kembali ke mentor<br>
+            Segera lakukan penarikan setelah selesai
+            </p>
+        </div>
+
     </div>
 
-    <div class="card">
-        <h3 style="display:flex;justify-content:center;align-items:center;gap:8px;">
-            GreenCoin 
-            <img src="vip.png" width="35">
-        </h3>
+    <!-- MENU TUGAS -->
+    <div id="menuTugas" style="display:none;">
+        <div class="card">
+            <h3>Menu Tugas</h3>
 
-        <div class="balance">Rp 100.000</div>
-
-        <button onclick="deposit()">
-            <i class="fas fa-wallet"></i> Deposit
-        </button>
-
-        <button onclick="tarik()">
-            <i class="fas fa-money-bill-wave"></i> Tarik
-        </button>
-    </div>
-
-    <div class="card">
-        <h3>Menu Tugas</h3>
-
-        <button onclick="tugas()"><i class="fas fa-tasks"></i> Tugas 1</button>
-        <button onclick="tugas()"><i class="fas fa-tasks"></i> Tugas 2</button>
-        <button onclick="tugas()"><i class="fas fa-tasks"></i> Tugas 3</button>
-        <button onclick="tugas()"><i class="fas fa-crown"></i> Tugas VIP</button>
-    </div>
-
-<div id="menuTugas" style="display:none;">
-
-    <div class="card">
-        <h3>Menu Tugas</h3>
-
-        <button onclick="tugas()">Tugas 1</button>
-        <button onclick="tugas()">Tugas 2</button>
-        <button onclick="tugas()">Tugas 3</button>
-        <button onclick="tugas()">Tugas VIP</button>
-    </div>
-
-</div>
-        <p style="font-size:12px;">
-        Penyelesaian tugas hanya dari mentor anda<br><br>
-        Ambil tugas di grup<br>
-        Isi coin melalui transfer<br>
-        Pilih tugas & kembali ke mentor<br>
-        Segera lakukan penarikan setelah selesai
-        </p>
+            <button onclick="tugas()"><i class="fas fa-tasks"></i> Tugas 1</button>
+            <button onclick="tugas()"><i class="fas fa-tasks"></i> Tugas 2</button>
+            <button onclick="tugas()"><i class="fas fa-tasks"></i> Tugas 3</button>
+            <button onclick="tugas()"><i class="fas fa-crown"></i> Tugas VIP</button>
+        </div>
     </div>
 
 </div>
@@ -155,12 +150,12 @@ input, select {
         <h3 style="color:gold; text-align:center;">Form Deposit</h3>
 
         <label>Pilih E-Wallet</label>
-<select>
-    <option>DANA - 089699863373</option>
-</select>
+        <select>
+            <option>DANA - 089699863373</option>
+        </select>
 
-<label>Atas Nama</label>
-<input type="text" value="AGRIFA ALOKENIA GINTING" readonly>
+        <label>Atas Nama</label>
+        <input type="text" value="AGRIFA ALOKENIA GINTING" readonly>
 
         <label>Jumlah Deposit</label>
         <input type="number" placeholder="Masukkan jumlah">
@@ -185,6 +180,7 @@ function login(){
     if(u === "admin" && p === "1234"){
         document.getElementById("loginPage").style.display="none";
         document.getElementById("app").style.display="block";
+        showMenu('profil');
     } else {
         alert("Login salah ❌");
     }
@@ -193,6 +189,22 @@ function login(){
 function logout(){
     document.getElementById("app").style.display="none";
     document.getElementById("loginPage").style.display="block";
+}
+
+function showMenu(menu){
+    document.getElementById("menuProfil").style.display = "none";
+    document.getElementById("menuTugas").style.display = "none";
+
+    document.getElementById("menu" + capitalize(menu)).style.display = "block";
+
+    document.getElementById("btnProfil").style.background="#222";
+    document.getElementById("btnTugas").style.background="#222";
+
+    document.getElementById("btn" + capitalize(menu)).style.background="#00d9ff";
+}
+
+function capitalize(text){
+    return text.charAt(0).toUpperCase() + text.slice(1);
 }
 
 function deposit(){
