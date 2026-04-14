@@ -10,79 +10,78 @@
 <style>
 body {
     margin:0;
-    font-family: 'Segoe UI', sans-serif;
-    background: radial-gradient(circle,#001a2d,#000);
+    font-family: Arial;
+    background: radial-gradient(circle, #001a2d, #000);
     color:white;
     text-align:center;
 }
 
+/* CONTAINER */
 .container {
     max-width:400px;
     margin:auto;
     padding:10px;
 }
 
+/* CARD */
 .card {
     background:#001f33;
-    border-radius:20px;
+    border-radius:15px;
     padding:20px;
     margin:15px 0;
-    box-shadow:0 0 25px #00d9ff;
+    box-shadow:0 0 20px #00d9ff;
 }
 
+/* BUTTON */
 button {
     width:100%;
     padding:12px;
     margin-top:8px;
     border:none;
-    border-radius:12px;
+    border-radius:10px;
     background:linear-gradient(90deg,#00d9ff,#00ffcc);
     cursor:pointer;
     font-weight:bold;
 }
 
-.balance-box {
-    position:relative;
-    padding:20px;
+/* INPUT */
+input, select {
+    padding:10px;
+    margin:5px 0;
+    border-radius:8px;
+    border:none;
+    width:100%;
+    background:#222;
+    color:white;
 }
 
-.balance-bg {
-    position:absolute;
-    top:50%;
-    left:50%;
-    transform:translate(-50%,-50%);
-    font-size:40px;
-    color:gold;
-    opacity:0.08;
-    font-weight:bold;
-    white-space:nowrap;
-}
-
+/* SALDO */
 .balance {
-    font-size:30px;
-    color:#00ff66;
+    font-size:32px;
     font-weight:bold;
-    text-shadow:0 0 10px #00ff66;
-    font-family:'Courier New';
+    color:#00ff00;
+    text-shadow:0 0 10px #00ff00, 0 0 25px #00ff00;
+    font-family:'Courier New', monospace;
 }
 
-.data-text {
-    text-align:left;
-    font-weight:600;
-    font-size:14px;
-    line-height:1.6;
+/* SHOP */
+.shop-grid {
+    display:grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap:10px;
 }
 
 .product {
-    background:#001f33;
-    border-radius:15px;
+    background:#111;
     padding:10px;
-    margin:10px;
-    box-shadow:0 0 15px #00d9ff;
+    border-radius:12px;
+    box-shadow:0 0 10px #00ffc8;
 }
 
 .product img {
     width:100%;
+    height:120px;
+    object-fit:cover;
     border-radius:10px;
 }
 
@@ -90,29 +89,45 @@ button {
     color:#00ff66;
     font-weight:bold;
 }
+
+/* RUNNING TEXT */
+.marquee {
+    background:black;
+    color:yellow;
+    padding:8px;
+    border:2px solid gold;
+    font-weight:bold;
+}
 </style>
 </head>
 
 <body>
 
+<!-- RUNNING TEXT -->
+<div class="marquee">
+<marquee>🚀 Segera lihat tugas terbaru di grup dan dapatkan komisinya!!!</marquee>
+</div>
+
 <!-- LOGIN -->
 <div id="loginPage" class="container">
 
-<div class="card" style="box-shadow:0 0 15px gold;">
-<h3 style="color:gold;">⚠️ NOTICE</h3>
-<p style="font-size:12px;">
-AKUN LINK RESMI<br>
-GreenMoney - Uang Cepat Komisi Tugas<br><br>
-⚠️ PERINGATAN!!<br>
-Akun terkunci jika salah login
-</p>
+<div class="card">
+    <h3>⚠️ NOTICE</h3>
+    <p style="font-size:12px;">
+    AKUN LINK RESMI<br>
+    GreenMoney - Komisi Tugas<br><br>
+    ⚠️ Akun akan terkunci jika salah login berulang
+    </p>
 </div>
 
 <div class="card">
-<h2>GreenMoney Wallet</h2>
-<input id="user" placeholder="User">
-<input id="pass" type="password" placeholder="Password">
-<button onclick="login()">Login</button>
+    <img src="logo.png" width="80">
+    <h2>GreenMoney Wallet</h2>
+
+    <input type="text" id="user" placeholder="ID">
+    <input type="password" id="pass" placeholder="Password">
+
+    <button onclick="login()">Login</button>
 </div>
 
 </div>
@@ -122,54 +137,50 @@ Akun terkunci jika salah login
 
 <!-- MENU -->
 <div style="display:flex; gap:10px;">
-<button onclick="showMenu('profil')">👤 Profil</button>
-<button onclick="showMenu('tugas')">📋 Tugas</button>
-<button onclick="showMenu('shop')">🛒 Shop</button>
+    <button onclick="showMenu('profil')">👤 Profil</button>
+    <button onclick="showMenu('tugas')">📋 Tugas</button>
+    <button onclick="showMenu('shop')">🛍️ Shop</button>
 </div>
 
 <!-- PROFIL -->
 <div id="menuProfil">
 
 <div class="card">
-
-<div style="display:flex; justify-content:center; align-items:center; gap:12px;">
-<h2 style="font-size:26px;">GreenCoin</h2>
-<img src="vip.png" width="70" style="border-radius:50%; box-shadow:0 0 15px gold;">
+    <button onclick="logout()">Logout</button>
 </div>
 
+<!-- HEADER GREENCOIN -->
+<div class="card">
+    <div style="display:flex; justify-content:center; align-items:center; gap:15px;">
+        <h1 style="font-size:28px; color:#00d9ff; text-shadow:0 0 15px #00d9ff;">GreenCoin</h1>
+        <img src="vip.png" style="width:70px; border-radius:50%; box-shadow:0 0 15px gold;">
+    </div>
 </div>
 
+<!-- DATA AKUN -->
 <div class="card">
 
 <button onclick="toggleData()">
-<i id="iconData" class="fas fa-eye"></i> Data Akun
+    <i id="iconData" class="fas fa-eye"></i> Data Akun
 </button>
 
-<div id="dataUser" class="data-text">
-Nama: AGRIFA ALOKENIA GINTING<br>
-No Rek: 0896-9986-3373<br>
-<span style="color:gold;">ID: 124532</span>
-</div>
+<div id="dataAkun" style="text-align:left;">
 
-</div>
+    <p><b>Nama:</b> AGRIFA ALOKENIA GINTING</p>
+    <p><b>No Rek:</b> 0896-9986-3373</p>
+    <p style="color:gold;"><b>ID:</b> 124532</p>
 
-<div class="card balance-box">
+    <div id="saldoText" class="balance">
+        Rp 100.000.000
+    </div>
 
-<button onclick="toggleSaldo()">
-<i id="iconSaldo" class="fas fa-eye"></i> Saldo
-</button>
-
-<div class="balance-bg">Rp 100.000.000</div>
-
-<div id="saldoText" class="balance">
-Rp 100.000.000
 </div>
 
 </div>
 
 <div class="card">
-<button onclick="deposit()">Deposit</button>
-<button onclick="tarik()">Tarik</button>
+    <button onclick="deposit()">Deposit</button>
+    <button onclick="tarik()">Tarik</button>
 </div>
 
 </div>
@@ -177,97 +188,132 @@ Rp 100.000.000
 <!-- TUGAS -->
 <div id="menuTugas" style="display:none;">
 <div class="card">
-<h3>Menu Tugas</h3>
-
-<button>Tugas 1</button>
-<button>Tugas 2</button>
-<button>Tugas 3</button>
-<button>👑 Tugas 4 VIP</button>
-<button>👑 Tugas 5 VIP</button>
-
+    <h3>Menu Tugas</h3>
+    <button onclick="tugas()">Tugas 1</button>
+    <button onclick="tugas()">Tugas 2</button>
 </div>
 </div>
 
 <!-- SHOP -->
 <div id="menuShop" style="display:none;">
 <div class="card">
+    <h3>🛍️ Marketplace</h3>
 
-<h3>Marketplace</h3>
+    <div class="shop-grid">
 
-<div class="product">
-<img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff">
-<p>Sepatu Sport</p>
-<div class="price">Rp 150.000</div>
-<button onclick="beli()">Beli</button>
+        <div class="product">
+            <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff">
+            <p>Sepatu Sport</p>
+            <div class="price">Rp 150.000</div>
+            <button onclick="beli('https://shopee.co.id')">Beli</button>
+        </div>
+
+        <div class="product">
+            <img src="https://images.unsplash.com/photo-1511379938547-c1f69419868d">
+            <p>Headset Gaming</p>
+            <div class="price">Rp 300.000</div>
+            <button onclick="beli('https://shopee.co.id')">Beli</button>
+        </div>
+
+    </div>
+</div>
 </div>
 
-<div class="product">
-<img src="https://images.unsplash.com/photo-1511379938547-c1f69419868d">
-<p>Headset Gaming</p>
-<div class="price">Rp 300.000</div>
-<button onclick="beli()">Beli</button>
 </div>
 
-</div>
-</div>
+<!-- POPUP DEPOSIT -->
+<div id="popupDeposit" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.8); justify-content:center; align-items:center; z-index:999;">
 
+<div style="background:#111; padding:20px; border-radius:15px; width:90%; max-width:400px; box-shadow:0 0 20px gold;">
+
+<h3 style="color:gold;">Formulir Deposit</h3>
+
+<label>Pilih E-Wallet</label>
+<select>
+<option>DANA - 089699863373</option>
+</select>
+
+<label>Jumlah Deposit</label>
+<input type="number">
+
+<label>Keterangan</label>
+<input type="text">
+
+<label>Bukti</label>
+<input type="file">
+
+<button onclick="kirimDeposit()" style="background:gold;">Kirim</button>
+<button onclick="tutupDeposit()" style="background:red;">Tutup</button>
+
+</div>
 </div>
 
 <script>
 
+let dataVisible = true;
+
 function login(){
-if(user.value=="admin" && pass.value=="1234"){
-loginPage.style.display="none";
-app.style.display="block";
+    let u = document.getElementById("user").value;
+    let p = document.getElementById("pass").value;
+
+    if(u==="admin" && p==="1234"){
+        document.getElementById("loginPage").style.display="none";
+        document.getElementById("app").style.display="block";
+    } else {
+        alert("Login salah");
+    }
 }
+
+function logout(){
+    document.getElementById("app").style.display="none";
+    document.getElementById("loginPage").style.display="block";
 }
 
 function showMenu(menu){
-menuProfil.style.display="none";
-menuTugas.style.display="none";
-menuShop.style.display="none";
+    document.getElementById("menuProfil").style.display="none";
+    document.getElementById("menuTugas").style.display="none";
+    document.getElementById("menuShop").style.display="none";
 
-if(menu=="profil") menuProfil.style.display="block";
-if(menu=="tugas") menuTugas.style.display="block";
-if(menu=="shop") menuShop.style.display="block";
+    document.getElementById("menu"+menu.charAt(0).toUpperCase()+menu.slice(1)).style.display="block";
 }
 
 function toggleData(){
-let d = document.getElementById("dataUser");
-let i = document.getElementById("iconData");
+    let data = document.getElementById("dataAkun");
+    let icon = document.getElementById("iconData");
 
-if(d.style.display=="none"){
-d.style.display="block";
-i.className="fas fa-eye";
-}else{
-d.style.display="none";
-i.className="fas fa-eye-slash";
-}
-}
-
-function toggleSaldo(){
-let s = document.getElementById("saldoText");
-let i = document.getElementById("iconSaldo");
-
-if(s.style.display=="none"){
-s.style.display="block";
-i.className="fas fa-eye";
-}else{
-s.style.display="none";
-i.className="fas fa-eye-slash";
-}
+    if(dataVisible){
+        data.style.display="none";
+        icon.className="fas fa-eye-slash";
+        dataVisible=false;
+    } else {
+        data.style.display="block";
+        icon.className="fas fa-eye";
+        dataVisible=true;
+    }
 }
 
 function deposit(){
-alert("Form deposit muncul (bisa kita upgrade lagi)");
+    document.getElementById("popupDeposit").style.display="flex";
+}
+
+function tutupDeposit(){
+    document.getElementById("popupDeposit").style.display="none";
+}
+
+function kirimDeposit(){
+    alert("Deposit berhasil dikirim");
 }
 
 function tarik(){
-alert("Hubungi admin");
+    alert("Hubungi admin");
 }
 
-function beli(){
-window.open("https://shopee.co.id");
+function tugas(){
+    alert("Tugas dijalankan");
+}
+
+function beli(link){
+    window.location.href = link;
 }
 
 </script>
