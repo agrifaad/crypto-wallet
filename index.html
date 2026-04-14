@@ -5,6 +5,21 @@
 <title>GreenMoney Wallet</title>
 
 <style>
+    input {
+    padding: 12px;
+    margin: 8px 0;
+    border-radius: 10px;
+    border: none;
+    width: 85%;
+    background: #001f33;
+    color: #00d9ff;
+    outline: none;
+}
+
+input::placeholder {
+    color: #00d9ff;
+    opacity: 0.6;
+}
 body {
     margin: 0;
     font-family: Arial, sans-serif;
@@ -210,11 +225,11 @@ function login(){
     let user = document.getElementById("user").value;
     let pass = document.getElementById("pass").value;
 
-    if(user && pass){
-        document.getElementById("loginPage").classList.add("hidden");
-        document.getElementById("app").classList.remove("hidden");
+    if(user === "admin" && pass === "1234"){
+        document.getElementById("loginPage").style.display = "none";
+        document.getElementById("app").style.display = "block";
     } else {
-        alert("Isi ID dan Password!");
+        alert("ID atau Password salah ❌");
     }
 }
 
