@@ -5,6 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>GreenMoney Wallet</title>
 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
 <style>
 body {
     margin:0;
@@ -39,6 +41,16 @@ button {
     font-weight:bold;
 }
 
+input, select {
+    padding:10px;
+    margin:5px 0;
+    border-radius:8px;
+    border:none;
+    width:100%;
+    background:#222;
+    color:white;
+}
+
 .balance {
     font-size:26px;
     color:#00ffcc;
@@ -49,109 +61,205 @@ button {
 
 <body>
 
-<div class="container">
+<!-- LOGIN -->
+<div id="loginPage" class="container">
 
-<!-- MENU -->
-<div style="display:flex; gap:10px;">
-    <button onclick="showMenu('profil')" id="btnProfil">👤 Profil</button>
-    <button onclick="showMenu('tugas')" id="btnTugas">📋 Tugas</button>
-</div>
-
-<!-- ================= PROFIL ================= -->
-<div id="menuProfil">
-
-    <div class="card">
-        <button onclick="logout()">🔓 Logout</button>
-    </div>
-
-    <div class="card">
-
-        <h3>GreenCoin</h3>
-
-        <!-- TOGGLE ICON -->
-        <div style="margin-bottom:10px;">
-            <button onclick="toggleSaldo()">👁️ Lihat / Sembunyikan</button>
-        </div>
-
-        <!-- DATA AKUN -->
-        <div id="dataAkun" style="text-align:left; font-size:14px;">
-
-            <p><b>Nama:</b> AGRIFA ALOKENIA GINTING</p>
-            <p><b>No Rek:</b> 089699863373</p>
-
-            <p><b>Saldo:</b> 
-                <span id="saldoText" class="balance">Rp 100.000</span>
-            </p>
-
-        </div>
-
-        <button onclick="deposit()">💳 Deposit</button>
-        <button onclick="tarik()">💸 Tarik</button>
-
-    </div>
-
-    <div class="card">
-        <h3>NOTICE ⚠️</h3>
+    <div class="card" style="box-shadow:0 0 15px gold;">
+        <h3 style="color:gold;">⚠️ NOTICE</h3>
         <p style="font-size:12px;">
-        Penyelesaian tugas hanya dari mentor anda<br><br>
-        Ambil tugas di grup<br>
-        Isi coin melalui transfer<br>
-        Pilih tugas & kembali ke mentor<br>
-        Segera lakukan penarikan setelah selesai
+        <b>AKUN LINK RESMI</b><br>
+        GreenMoney - Uang Cepat Komisi Tugas<br><br>
+
+        <b>LINK RESMI</b><br><br>
+
+        ⚠️ <b>PERINGATAN!!</b><br>
+        Akun akan terkunci jika terjadi kesalahan berulang saat login
         </p>
     </div>
 
-</div>
-
-<!-- ================= TUGAS ================= -->
-<div id="menuTugas" style="display:none;">
-
     <div class="card">
-        <h3>Menu Tugas</h3>
+        <img src="logo.png" width="80">
+        <h2 style="color:#00d9ff;">GreenMoney Wallet</h2>
 
-        <button onclick="tugas()">📋 Tugas 1</button>
-        <button onclick="tugas()">📋 Tugas 2</button>
-        <button onclick="tugas()">📋 Tugas 3</button>
-        <button onclick="tugas()">👑 Tugas VIP</button>
+        <input type="text" id="user" placeholder="👤 ID Pengguna">
+        <input type="password" id="pass" placeholder="🔒 Password">
 
+        <button onclick="login()">
+            <i class="fas fa-sign-in-alt"></i> Login
+        </button>
     </div>
 
 </div>
 
+<!-- APP -->
+<div id="app" class="container" style="display:none;">
+
+    <!-- MENU -->
+    <div style="display:flex; gap:10px;">
+        <button onclick="showMenu('profil')" id="btnProfil">👤 Profil</button>
+        <button onclick="showMenu('tugas')" id="btnTugas">📋 Tugas</button>
+    </div>
+
+    <!-- PROFIL -->
+    <div id="menuProfil">
+
+        <div class="card">
+            <button onclick="logout()">
+                <i class="fas fa-sign-out-alt"></i> Logout
+            </button>
+        </div>
+
+        <div class="card">
+            <h3 style="display:flex;justify-content:center;gap:8px;">
+                GreenCoin 
+                <img src="vip.png" width="35">
+            </h3>
+
+            <!-- TOGGLE SALDO -->
+            <button onclick="toggleSaldo()">
+                <i id="iconMata" class="fas fa-eye"></i> Saldo
+            </button>
+
+            <!-- DATA AKUN -->
+            <div style="text-align:left; margin-top:10px;">
+                <p><b>Nama:</b> AGRIFA ALOKENIA GINTING</p>
+                <p><b>No Rek:</b> 089699863373</p>
+
+                <p><b>Saldo:</b><br>
+                    <span id="saldoText" class="balance">Rp 100.000</span>
+                </p>
+            </div>
+
+            <button onclick="deposit()">
+                <i class="fas fa-wallet"></i> Deposit
+            </button>
+
+            <button onclick="tarik()">
+                <i class="fas fa-money-bill-wave"></i> Tarik
+            </button>
+        </div>
+
+        <div class="card">
+            <h3>NOTICE ⚠️</h3>
+            <p style="font-size:12px;">
+            Penyelesaian tugas hanya dari mentor anda<br><br>
+            Ambil tugas di grup<br>
+            Isi coin melalui transfer<br>
+            Pilih tugas & kembali ke mentor<br>
+            Segera lakukan penarikan setelah selesai
+            </p>
+        </div>
+
+    </div>
+
+    <!-- TUGAS -->
+    <div id="menuTugas" style="display:none;">
+        <div class="card">
+            <h3>Menu Tugas</h3>
+
+            <button onclick="tugas()"><i class="fas fa-tasks"></i> Tugas 1</button>
+            <button onclick="tugas()"><i class="fas fa-tasks"></i> Tugas 2</button>
+            <button onclick="tugas()"><i class="fas fa-tasks"></i> Tugas 3</button>
+            <button onclick="tugas()"><i class="fas fa-crown"></i> Tugas VIP</button>
+        </div>
+    </div>
+
+</div>
+
+<!-- POPUP DEPOSIT -->
+<div id="popupDeposit" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.8); justify-content:center; align-items:center; z-index:999;">
+
+    <div style="background:#111; padding:20px; border-radius:15px; width:90%; max-width:400px; box-shadow:0 0 20px gold; text-align:left;">
+
+        <h3 style="color:gold; text-align:center;">Form Deposit</h3>
+
+        <label>Pilih E-Wallet</label>
+        <select>
+            <option>DANA - 089699863373</option>
+        </select>
+
+        <label>Atas Nama</label>
+        <input type="text" value="AGRIFA ALOKENIA GINTING" readonly>
+
+        <label>Jumlah Deposit</label>
+        <input type="number" placeholder="Masukkan jumlah">
+
+        <label>Keterangan</label>
+        <input type="text" placeholder="Catatan">
+
+        <label>Bukti Transfer</label>
+        <input type="file">
+
+        <button onclick="kirimDeposit()">Kirim</button>
+        <button onclick="tutupDeposit()" style="background:red;">Tutup</button>
+
+    </div>
 </div>
 
 <script>
 
-// MENU SWITCH
-function showMenu(menu){
-    document.getElementById("menuProfil").style.display="none";
-    document.getElementById("menuTugas").style.display="none";
+let saldoVisible = true;
 
-    document.getElementById("menu" + capitalize(menu)).style.display="block";
+function toggleSaldo(){
+    let saldo = document.getElementById("saldoText");
+    let icon = document.getElementById("iconMata");
+
+    if(saldoVisible){
+        saldo.innerText = "Rp ******";
+        icon.className = "fas fa-eye-slash";
+        saldoVisible = false;
+    } else {
+        saldo.innerText = "Rp 100.000";
+        icon.className = "fas fa-eye";
+        saldoVisible = true;
+    }
+}
+
+function login(){
+    let u = document.getElementById("user").value;
+    let p = document.getElementById("pass").value;
+
+    if(u === "admin" && p === "1234"){
+        document.getElementById("loginPage").style.display="none";
+        document.getElementById("app").style.display="block";
+        showMenu('profil');
+    } else {
+        alert("Login salah ❌");
+    }
+}
+
+function logout(){
+    document.getElementById("app").style.display="none";
+    document.getElementById("loginPage").style.display="block";
+}
+
+function showMenu(menu){
+    document.getElementById("menuProfil").style.display = "none";
+    document.getElementById("menuTugas").style.display = "none";
+
+    document.getElementById("menu" + capitalize(menu)).style.display = "block";
+
+    document.getElementById("btnProfil").style.background="#222";
+    document.getElementById("btnTugas").style.background="#222";
+
+    document.getElementById("btn" + capitalize(menu)).style.background="#00d9ff";
 }
 
 function capitalize(text){
     return text.charAt(0).toUpperCase() + text.slice(1);
 }
 
-// TOGGLE SALDO (MODE BANK)
-let visible = true;
-
-function toggleSaldo(){
-    let saldo = document.getElementById("saldoText");
-
-    if(visible){
-        saldo.innerText = "Rp ******";
-        visible = false;
-    } else {
-        saldo.innerText = "Rp 100.000";
-        visible = true;
-    }
+function deposit(){
+    document.getElementById("popupDeposit").style.display="flex";
 }
 
-// ACTION
-function deposit(){
-    alert("Transfer ke DANA 089699863373 a.n AGRIFA");
+function tutupDeposit(){
+    document.getElementById("popupDeposit").style.display="none";
+}
+
+function kirimDeposit(){
+    alert("Deposit berhasil dikirim ✅");
+    tutupDeposit();
 }
 
 function tarik(){
@@ -160,10 +268,6 @@ function tarik(){
 
 function tugas(){
     window.location.href="https://t.me/robertelchico";
-}
-
-function logout(){
-    alert("Logout berhasil");
 }
 
 </script>
