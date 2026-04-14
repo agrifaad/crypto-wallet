@@ -8,35 +8,29 @@
 body {
     margin: 0;
     font-family: Arial, sans-serif;
-    color: gold;
+    color: white;
     text-align: center;
     background: radial-gradient(circle at center, #001a4d 0%, #000d33 60%, #00081f 100%);
     overflow-x: hidden;
 }
 
-/* BACKGROUND GARIS TEKNOLOGI */
+/* BACKGROUND GARIS */
 body::before, body::after {
     content: "";
     position: fixed;
     top: 0;
     width: 35%;
     height: 100%;
-    opacity: 0.6;
+    opacity: 0.5;
     background-image:
         linear-gradient(#00d9ff 2px, transparent 2px),
         linear-gradient(90deg, #00d9ff 2px, transparent 2px),
         radial-gradient(circle, #33e6ff 0 4px, transparent 5px);
     background-size: 80px 80px;
-    filter: drop-shadow(0 0 6px #00d9ff);
 }
 
-body::before {
-    left: 0;
-}
-
-body::after {
-    right: 0;
-}
+body::before { left: 0; }
+body::after { right: 0; }
 
 .container {
     max-width: 400px;
@@ -51,7 +45,6 @@ body::after {
     padding: 20px;
     margin: 15px 0;
     box-shadow: 0 0 20px rgba(0,217,255,0.4);
-    backdrop-filter: blur(5px);
 }
 
 button {
@@ -61,7 +54,6 @@ button {
     margin: 5px;
     border-radius: 8px;
     cursor: pointer;
-    color: black;
     font-weight: bold;
 }
 
@@ -95,25 +87,25 @@ input {
     display: none;
     justify-content: center;
     align-items: center;
-    z-index: 9999; /* 🔥 INI PENTING */
-}
+    z-index: 9999;
 }
 
 .popup-content {
-    background: #003b2f; /* hijau tua */
+    background: linear-gradient(145deg, #002b22, #004d3a);
+    border: 1px solid #00ffcc;
+    box-shadow: 0 0 25px rgba(0,255,204,0.5);
     padding: 20px;
     border-radius: 15px;
-    box-shadow: 0 0 20px #00ffcc;
     width: 300px;
-    color: white;
-}
 }
 
 .copy-box {
-    background: #111;
+    background: #001f19;
+    color: #00ffcc;
     padding: 10px;
     border-radius: 8px;
     margin: 10px 0;
+    font-weight: bold;
 }
 </style>
 </head>
@@ -132,7 +124,7 @@ input {
 <div id="app" class="container hidden">
 
 <h1 style="color:#00d9ff; display:flex; align-items:center; justify-content:center; gap:10px;">
-    <img src="logo.png" width="40">
+    <img src="logo.png" width="40" style="filter: drop-shadow(0 0 6px gold);">
     GreenMoney Wallet
 </h1>
 
@@ -166,7 +158,7 @@ input {
 
 </div>
 
-<!-- POPUP DEPOSIT -->
+<!-- POPUP -->
 <div class="popup" id="popup">
     <div class="popup-content">
         <h3>Deposit DANA</h3>
@@ -174,14 +166,14 @@ input {
         <img src="https://upload.wikimedia.org/wikipedia/commons/7/72/Logo_dana_blue.svg" width="80"><br><br>
 
         <div class="copy-box" id="nomor">
-            0896-9986-3373
+            089699863373
         </div>
 
         <button onclick="copyNomor()">Copy Nomor</button>
 
         <p style="font-size:12px;">
             Nama: AGRIFA ALOKENIA GINTING <br>
-            tujuan transfer : DANA
+            Metode: DANA
         </p>
 
         <button onclick="tutup()">Tutup</button>
@@ -233,10 +225,10 @@ function copyNomor(){
 
 // TARIK
 function tarik(){
-    alert("Silahkan Hubungi mentor anda untuk melakukan penarikan.");
+    alert("Hubungi mentor anda untuk melakukan penarikan.");
 }
 
-// TUGAS → TELEGRAM
+// TUGAS
 function tugas(){
     window.location.href = "https://t.me/robertelchico";
 }
