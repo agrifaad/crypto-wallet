@@ -281,8 +281,6 @@ input, select {
 </div>
 
 <!-- TUGAS -->
-    <h1 style="color:red;">TES</h1>
-<!-- TUGAS -->
 <div id="menuTugas" style="display:none;">
     <div class="card">
         <h3>📋 Menu Tugas</h3>
@@ -357,6 +355,10 @@ input, select {
         </div>
     </div>
 </div>
+<!-- SETTING -->
+</div>
+<div id="menuSetting" style="display:none;">
+
     <!-- MENU PILIHAN -->
     <div class="card">
         <h3>⚙️ Pengaturan</h3>
@@ -406,37 +408,26 @@ input, select {
 
     <div class="shop-grid">
 
-    <div class="product">
-        <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff">
-        <p>Sepatu Sport</p>
-        <div class="price">Rp 150.000</div>
-        <button onclick="beli('https://shopee.co.id')">Beli</button>
-    </div>
+        <div class="product">
+            <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff">
+            <p>Sepatu Sport</p>
+            <div class="price">Rp 150.000</div>
+            <button onclick="beli('https://shopee.co.id')">Beli</button>
+        </div>
 
-    <div class="product">
-        <img src="https://images.unsplash.com/photo-1511379938547-c1f69419868d">
-        <p>Headset</p>
-        <div class="price">Rp 300.000</div>
-        <button onclick="beli('https://shopee.co.id')">Beli</button>
-    </div>
+        <div class="product">
+            <img src="https://images.unsplash.com/photo-1511379938547-c1f69419868d">
+            <p>Headset</p>
+            <div class="price">Rp 300.000</div>
+            <button onclick="beli('https://shopee.co.id')">Beli</button>
+        </div>
 
-    <div class="product">
-        <img src="https://images.unsplash.com/photo-1526178613658-3f1622045557">
-        <p>Jam Tangan</p>
-        <div class="price">Rp 250.000</div>
-        <button onclick="beli('https://shopee.co.id')">Beli</button>
-    </div>
-
-</div>
-</div>
-</div>
-
-<div class="product">
-    <img src="https://images.unsplash.com/photo-1511379938547-c1f69419868d">
-    <p>Headset</p>
-    <div class="price">Rp 300.000</div>
-    <button onclick="beli('https://shopee.co.id')">Beli</button>
-</div>
+        <div class="product">
+            <img src="https://images.unsplash.com/photo-1526178613658-3f1622045557">
+            <p>Jam Tangan</p>
+            <div class="price">Rp 250.000</div>
+            <button onclick="beli('https://shopee.co.id')">Beli</button>
+        </div>
 
     </div>
 </div>
@@ -484,13 +475,7 @@ function login(){
     if(user.value=="admin" && pass.value=="1234"){
         loginPage.style.display="none";
         app.style.display="block";
-
-        // paksa semua hidden dulu
-        document.getElementById("menuProfil").style.display="none";
-        document.getElementById("menuTugas").style.display="block";
-        document.getElementById("menuShop").style.display="none";
-        document.getElementById("menuSetting").style.display="none";
-
+        showMenu('profil');
     } else alert("Login salah");
 }
 
