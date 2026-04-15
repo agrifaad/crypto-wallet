@@ -2,7 +2,57 @@
 <html lang="id">
 
 <head>
+<title>GreenCoin</title>
 
+    <!-- FONT -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap" rel="stylesheet">
+
+    <style>
+        .header {
+            text-align: center;
+        }
+
+        .title {
+            color: white;
+            font-size: 32px;
+            margin: 10px 0;
+        }
+
+        .saldo {
+            font-family: 'Orbitron', monospace;
+            font-size: 40px;
+            font-weight: bold;
+            color: #00ff66;
+            margin-top: 10px;
+            letter-spacing: 4px;
+
+            text-shadow:
+                0 0 5px #00ff66,
+                0 0 10px #00ff66,
+                0 0 20px #00ff66,
+                0 0 40px #00ff66,
+                0 0 80px #00ff66;
+
+            animation: glow 1.5s infinite alternate;
+        }
+
+        @keyframes glow {
+            from {
+                text-shadow:
+                    0 0 5px #00ff66,
+                    0 0 10px #00ff66,
+                    0 0 20px #00ff66;
+            }
+            to {
+                text-shadow:
+                    0 0 10px #00ff66,
+                    0 0 20px #00ff66,
+                    0 0 40px #00ff66,
+                    0 0 80px #00ff66;
+            }
+        }
+    </style>
+</head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>GreenMoney Wallet</title>
