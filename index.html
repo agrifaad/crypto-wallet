@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>GreenMoney Wallet</title>
@@ -10,6 +12,96 @@
 
 <style>
 
+.btn-vip {
+    animation: vipGlow 1.5s infinite alternate;
+}
+
+@keyframes vipGlow {
+    from { box-shadow: 0 0 10px gold; }
+    to { box-shadow: 0 0 25px red; }
+}
+
+.product:hover {
+    transform: scale(1.05);
+    transition: 0.3s;
+}
+
+.product img {
+    transition: 0.3s;
+}
+
+.product:hover img {
+    transform: scale(1.1);
+}
+
+</style>
+
+</head>
+    
+<title>GreenMoney Wallet</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap" rel="stylesheet">
+
+<style>
+    .shop-grid {
+    display:grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap:15px;
+}
+    .balance {
+    animation: glow 1.5s infinite, float 2s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%,100% { transform: translateY(0); }
+    50% { transform: translateY(-3px); }
+}
+
+.product {
+    background:#111;
+    padding:10px;
+    border-radius:12px;
+    box-shadow:0 0 15px #00ffc8;
+    transition:0.3s;
+}
+
+.product img {
+    width:100%;
+    height:120px;
+    object-fit:cover;
+    border-radius:10px;
+}
+
+.product:hover {
+    transform:scale(1.05);
+}
+
+.price {
+    color:#00ff66;
+    font-weight:bold;
+}
+    .btn-vip {
+    animation: vipGlow 1.5s infinite alternate;
+}
+
+@keyframes vipGlow {
+    from { box-shadow: 0 0 10px gold; }
+    to { box-shadow: 0 0 25px red; }
+}
+    /* TUGAS NORMAL */
+.btn-tugas {
+    background: linear-gradient(90deg,#00d9ff,#00ffcc);
+    color:black;
+    font-weight:bold;
+}
+
+.btn-vip {
+    background: linear-gradient(90deg, gold, red);
+    color:black;
+    font-weight:bold;
+    box-shadow: 0 0 15px gold;
+}
 body {
     margin:0;
     font-family: Arial;
@@ -30,6 +122,7 @@ body {
     padding:20px;
     margin:15px 0;
     box-shadow:0 0 20px #00d9ff;
+    animation: fadeIn 0.5s ease;
 }
 
 button {
@@ -43,13 +136,26 @@ button {
     font-weight:bold;
 }
 
-.balance {
-    font-size:32px;
-    color:#00ff66;
-    font-family:'Orbitron';
-    text-shadow:0 0 10px #00ff66;
+input, select {
+    padding:10px;
+    margin:5px 0;
+    border-radius:8px;
+    border:none;
+    width:100%;
+    background:#222;
+    color:white;
 }
 
+/* SALDO */
+.balance {
+    font-size:32px;
+    font-weight:bold;
+    color:#00ff66;
+    font-family:'Orbitron', sans-serif;
+    text-shadow:0 0 10px #00ff66, 0 0 25px #00ff66;
+}
+
+/* SHOP */
 .shop-grid {
     display:grid;
     grid-template-columns: repeat(2, 1fr);
@@ -63,116 +169,308 @@ button {
     box-shadow:0 0 10px #00ffc8;
 }
 
+.product img {
+    width:100%;
+    height:120px;
+    object-fit:cover;
+    border-radius:10px;
+}
+
 .price {
     color:#00ff66;
+    font-weight:bold;
 }
 
-.btn-vip {
-    background: linear-gradient(90deg, gold, red);
-    box-shadow:0 0 15px gold;
+/* RUNNING TEXT */
+.marquee {
+    background:black;
+    color:yellow;
+    padding:8px;
+    border:2px solid gold;
+    font-weight:bold;
 }
 
+/* ANIMASI */
+@keyframes fadeIn {
+    from {opacity:0; transform:translateY(20px);}
+    to {opacity:1; transform:translateY(0);}
+}
 </style>
 </head>
 
 <body>
 
-<div id="loginPage" class="container">
-<div class="card">
-<h2>Login</h2>
-<input id="user" placeholder="ID">
-<input id="pass" type="password" placeholder="Password">
-<button onclick="login()">Login</button>
-</div>
+<!-- RUNNING TEXT -->
+<div class="marquee">
+<marquee>🚀 Segera lihat tugas terbaru di grup dan dapatkan komisinya!!!</marquee>
 </div>
 
+<!-- LOGIN -->
+    <div class="card" style="box-shadow:0 0 15px gold;">
+    <h3 style="color:gold;">⚠️ NOTICE</h3>
+
+    <p style="font-size:12px; line-height:1.6;">
+        <b>AKUN LINK RESMI CODE 1302457 </b><br>
+        GreenMoney - Uang Cepat Komisi Tugas<br><br>
+
+        <b>LINK RESMI2026-INDONESIA</b><br><br>
+
+        ⚠️ <b>PERINGATAN!!</b><br>
+        Akun akan terkunci jika terjadi kesalahan berulang saat login
+    </p>
+</div>
+<div id="loginPage" class="container">
+
+<div class="card">
+    <img src="logo.png" width="90">
+    <h2>GreenMoney Wallet</h2>
+
+    <input type="text" id="user" placeholder="ID">
+    <input type="password" id="pass" placeholder="Password">
+
+    <button onclick="login()">Login</button>
+</div>
+
+</div>
+
+<!-- APP -->
 <div id="app" class="container" style="display:none;">
 
 <!-- MENU -->
 <div style="display:flex; gap:10px;">
-<button onclick="showMenu('profil')">Profil</button>
-<button onclick="showMenu('tugas')">Tugas</button>
-<button onclick="showMenu('shop')">Shop</button>
-<button onclick="showMenu('setting')">Setting</button>
+    <button onclick="showMenu('profil')">👤 Profil</button>
+    <button onclick="showMenu('tugas')">📋 Tugas</button>
+    <button onclick="showMenu('shop')">🛍️ Shop</button>
+    <button onclick="showMenu('setting')">⚙️ Setting</button>
 </div>
 
 <!-- PROFIL -->
 <div id="menuProfil">
+
 <div class="card">
-<h1>GreenCoin</h1>
+    <button onclick="logout()">Logout</button>
+</div>
+
+<!-- LOGO + JUDUL -->
+<div class="card">
+    <img src="logo.png" width="80">
+    <h1>GreenCoin</h1>
 <div class="balance">Rp 100.000.000</div>
 </div>
+<!-- DATA -->
+<div class="card">
+
+<button onclick="toggleData()">
+    <i id="iconData" class="fas fa-eye"></i> Data Akun
+</button>
+
+<div id="dataAkun" style="display:none; text-align:left;">
+
+<p><b>Nama</b><br>AGRIFA ALOKENIA GINTING</p>
+<p><b>No Rek</b><br>0896-9986-3373</p>
+    <p><b>rek</b><br>DANA</p>
+<p style="color:gold;"><b>ID</b><br>124532</p>
+
+</div>
+
+<div class="card">
+    <button onclick="deposit()">Deposit</button>
+    <button onclick="tarik()">Tarik</button>
+</div>
+
 </div>
 
 <!-- TUGAS -->
 <div id="menuTugas" style="display:none;">
-<div class="card">
-<h3>Menu Tugas</h3>
+    <div class="card">
+        <h3>📋 Menu Tugas</h3>
 
-<div class="shop-grid">
+        <div class="shop-grid">
 
-<div class="product">
-<p>Tugas 1</p>
-<button onclick="tugas()">Kerjakan</button>
-</div>
+            <div class="product">
+                <p>📌 Tugas 1</p>
+                <button class="btn-tugas" onclick="tugas()">Kerjakan</button>
+            </div>
 
-<div class="product">
-<p>Tugas 2</p>
-<button onclick="tugas()">Kerjakan</button>
-</div>
+            <div class="product">
+                <p>📌 Tugas 2</p>
+                <button class="btn-tugas" onclick="tugas()">Kerjakan</button>
+            </div>
 
-<div class="product">
-<p>Tugas 3</p>
-<button onclick="tugas()">Kerjakan</button>
-</div>
+            <div class="product">
+                <p>📌 Tugas 3</p>
+                <button class="btn-tugas" onclick="tugas()">Kerjakan</button>
+            </div>
 
-<div class="product">
-<p>👑 Tugas 4 VIP</p>
-<button class="btn-vip" onclick="tugas()">Kerjakan</button>
-</div>
+            <div class="product">
+                <p>👑 Tugas 4 VIP</p>
+                <button class="btn-vip" onclick="tugas()">Kerjakan</button>
+            </div>
 
-<div class="product">
-<p>👑 Tugas 5 VIP</p>
-<button class="btn-vip" onclick="tugas()">Kerjakan</button>
-</div>
+            <div class="product">
+                <p>👑 Tugas 5 VIP</p>
+                <button class="btn-vip" onclick="tugas()">Kerjakan</button>
+            </div>
 
+        </div>
+    </div>
 </div>
-</div>
-</div>
-
 <!-- SHOP -->
 <div id="menuShop" style="display:none;">
-<div class="card">
-<h3>Shop</h3>
+    <div class="card">
+        <h3>🛍️ Marketplace</h3>
 
-<div class="shop-grid">
+            <!-- PRODUK 1 -->
+            <div class="product">
+                <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff">
+                <p>Sepatu Sport</p>
+                <div class="price">Rp 150.000</div>
+                <button onclick="beli('https://shopee.co.id')">Beli</button>
+            </div>
 
-<div class="product">
-<p>Sepatu</p>
-<div class="price">Rp 150.000</div>
-<button>Beli</button>
-</div>
+            <!-- PRODUK 2 -->
+            <div class="product">
+                <img src="https://images.unsplash.com/photo-1511379938547-c1f69419868d">
+                <p>Headset</p>
+                <div class="price">Rp 300.000</div>
+                <button onclick="beli('https://shopee.co.id')">Beli</button>
+            </div>
 
-<div class="product">
-<p>Headset</p>
-<div class="price">Rp 300.000</div>
-<button>Beli</button>
-</div>
+            <!-- PRODUK 3 -->
+            <div class="product">
+                <img src="https://images.unsplash.com/photo-1526178613658-3f1622045557">
+                <p>Jam Tangan</p>
+                <div class="price">Rp 250.000</div>
+                <button onclick="beli('https://shopee.co.id')">Beli</button>
+            </div>
 
-</div>
-</div>
-</div>
+            <!-- PRODUK 4 -->
+            <div class="product">
+                <img src="https://images.unsplash.com/photo-1585386959984-a4155224a1ad">
+                <p>Tas Fashion</p>
+                <div class="price">Rp 180.000</div>
+                <button onclick="beli('https://shopee.co.id')">Beli</button>
+            </div>
 
+        </div>
+    </div>
+</div>
 <!-- SETTING -->
+</div>
 <div id="menuSetting" style="display:none;">
-<div class="card">
-<h3>Setting</h3>
+
+    <!-- MENU PILIHAN -->
+    <div class="card">
+        <h3>⚙️ Pengaturan</h3>
+
+        <button onclick="openSetting('akun')">👤 Data Akun</button>
+        <button onclick="openSetting('rekening')">🏦 Rekening</button>
+        <button onclick="openSetting('password')">🔒 Ganti Password</button>
+        <button onclick="toggleDarkMode()">🌙 Mode Gelap</button>
+    </div>
+
+    <!-- DATA AKUN -->
+    <div id="settingAkun" class="card" style="display:none;">
+        <h3>👤 Data Akun</h3>
+
+        <label>Nama</label>
+        <input type="text" id="namaBaru" placeholder="Nama baru">
+
+        <button onclick="simpanNama()">Simpan</button>
+    </div>
+
+    <!-- REKENING -->
+    <div id="settingRekening" class="card" style="display:none;">
+        <h3>🏦 Data Rekening</h3>
+
+        <label>No Rekening</label>
+        <input type="text" id="rekBaru" placeholder="Nomor rekening">
+
+        <label>Jenis Bank</label>
+        <select id="jenisBank">
+            <option>BCA</option>
+            <option>BRI</option>
+            <option>BNI</option>
+            <option>DANA</option>
+        </select>
+
+        <button onclick="simpanRek()">Simpan</button>
+    </div>
+
+    <!-- PASSWORD -->
+    <div id="settingPassword" class="card" style="display:none;">
+        <h3>🔒 Ganti Password</h3>
+
+        <input type="password" id="passBaru" placeholder="Password baru">
+
+        <button onclick="simpanPassword()">Simpan</button>
+    </div>
+
+    <div class="shop-grid">
+
+        <div class="product">
+            <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff">
+            <p>Sepatu Sport</p>
+            <div class="price">Rp 150.000</div>
+            <button onclick="beli('https://shopee.co.id')">Beli</button>
+        </div>
+
+        <div class="product">
+            <img src="https://images.unsplash.com/photo-1511379938547-c1f69419868d">
+            <p>Headset</p>
+            <div class="price">Rp 300.000</div>
+            <button onclick="beli('https://shopee.co.id')">Beli</button>
+        </div>
+
+        <div class="product">
+            <img src="https://images.unsplash.com/photo-1526178613658-3f1622045557">
+            <p>Jam Tangan</p>
+            <div class="price">Rp 250.000</div>
+            <button onclick="beli('https://shopee.co.id')">Beli</button>
+        </div>
+
+    </div>
 </div>
 </div>
 
+        <div class="product">
+            <img src="https://images.unsplash.com/photo-1511379938547-c1f69419868d">
+            <p>Headset</p>
+            <div class="price">Rp 300.000</div>
+            <button onclick="beli('https://shopee.co.id')">Beli</button>
+        </div>
+
+    </div>
+</div>
+</div>
+
+</div>
+
+<!-- POPUP DEPOSIT -->
+<div id="popupDeposit" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.8); justify-content:center; align-items:center;">
+
+<div style="background:#111; padding:20px; border-radius:15px; width:90%; max-width:400px; box-shadow:0 0 20px gold;">
+
+<h3 style="color:gold;">Form Deposit</h3>
+
+<select>
+<option>DANA - 089699863373</option>
+</select>
+
+<input type="number" placeholder="Jumlah">
+<input type="text" placeholder="Keterangan">
+<input type="file">
+
+<button onclick="kirimDeposit()">Kirim</button>
+<button onclick="tutupDeposit()" style="background:red;">Tutup</button>
+
+</div>
 </div>
 
 <script>
+
+let visible=true;
+
 function login(){
     if(user.value=="admin" && pass.value=="1234"){
         loginPage.style.display="none";
@@ -181,7 +479,14 @@ function login(){
     } else alert("Login salah");
 }
 
+function logout(){
+    app.style.display="none";
+    loginPage.style.display="block";
+}
+
 function showMenu(menu){
+    console.log(menu); 
+
     menuProfil.style.display="none";
     menuTugas.style.display="none";
     menuShop.style.display="none";
@@ -190,12 +495,25 @@ function showMenu(menu){
     if(menu=="profil") menuProfil.style.display="block";
     if(menu=="tugas") menuTugas.style.display="block";
     if(menu=="shop") menuShop.style.display="block";
-    if(menu=="setting") menuSetting.style.display="block";
+    if(menu=="setting") menuSetting.style.display="block"; 
+}
+function toggleData(){
+    dataAkun.style.display = visible ? "none":"block";
+    iconData.className = visible ? "fas fa-eye-slash":"fas fa-eye";
+    visible=!visible;
 }
 
-function tugas(){
-    alert("Tugas jalan");
-}
+function deposit(){ popupDeposit.style.display="flex"; }
+function tutupDeposit(){ popupDeposit.style.display="none"; }
+
+function kirimDeposit(){ alert("Deposit dikirim"); }
+
+function tarik(){ alert("Hubungi admin"); }
+
+function tugas(){ alert("Tugas jalan"); }
+
+function beli(link){ window.location.href=link; }
+
 </script>
 
 </body>
