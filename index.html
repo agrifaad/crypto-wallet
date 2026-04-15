@@ -455,7 +455,22 @@ input, select {
 </div>
 
 <script>
+const menuProfil = document.getElementById("menuProfil");
+const menuTugas = document.getElementById("menuTugas");
+const menuShop = document.getElementById("menuShop");
+const menuSetting = document.getElementById("menuSetting");
 
+const loginPage = document.getElementById("loginPage");
+const app = document.getElementById("app");
+
+const dataAkun = document.getElementById("dataAkun");
+const iconData = document.getElementById("iconData");
+
+const popupDeposit = document.getElementById("popupDeposit");
+
+const settingAkun = document.getElementById("settingAkun");
+const settingRekening = document.getElementById("settingRekening");
+const settingPassword = document.getElementById("settingPassword");
 let visible=true;
 
 function login(){
@@ -472,6 +487,8 @@ function logout(){
 }
 
 function showMenu(menu){
+    alert(menu); // test
+
     menuProfil.style.display="none";
     menuTugas.style.display="none";
     menuShop.style.display="none";
