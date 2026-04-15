@@ -455,8 +455,56 @@ input, select {
 </div>
 
 <script>
+
+let visible=true;
+
+function login(){
+    if(user.value=="admin" && pass.value=="1234"){
+        loginPage.style.display="none";
+        app.style.display="block";
+        showMenu('profil');
+    } else alert("Login salah");
 }
-    function openSetting(menu){
+
+function logout(){
+    app.style.display="none";
+    loginPage.style.display="block";
+}
+
+function showMenu(menu){
+    menuProfil.style.display="none";
+    menuTugas.style.display="none";
+    menuShop.style.display="none";
+    menuSetting.style.display="none";
+
+    if(menu=="profil") menuProfil.style.display="block";
+    if(menu=="tugas") menuTugas.style.display="block";
+    if(menu=="shop") menuShop.style.display="block";
+    if(menu=="setting") menuSetting.style.display="block"; 
+}
+
+function toggleData(){
+    dataAkun.style.display = visible ? "none":"block";
+    iconData.className = visible ? "fas fa-eye-slash":"fas fa-eye";
+    visible=!visible;
+}
+
+function deposit(){ popupDeposit.style.display="flex"; }
+function tutupDeposit(){ popupDeposit.style.display="none"; }
+
+function kirimDeposit(){ alert("Deposit dikirim"); }
+function tarik(){ alert("Hubungi admin"); }
+
+function tugas(nomor){
+    alert("Kamu mengerjakan Tugas " + nomor);
+}
+
+function beli(link){
+    window.location.href=link;
+}
+
+/* SETTING */
+function openSetting(menu){
     settingAkun.style.display="none";
     settingRekening.style.display="none";
     settingPassword.style.display="none";
@@ -477,54 +525,5 @@ function simpanRek(){
 function simpanPassword(){
     alert("Password berhasil diganti");
 }
-let visible=true;
-
-function login(){
-    if(user.value=="admin" && pass.value=="1234"){
-        loginPage.style.display="none";
-        app.style.display="block";
-        showMenu('profil');
-    } else alert("Login salah");
-}
-
-function logout(){
-    app.style.display="none";
-    loginPage.style.display="block";
-}
-
-function showMenu(menu){
-    console.log(menu); 
-
-    menuProfil.style.display="none";
-    menuTugas.style.display="none";
-    menuShop.style.display="none";
-    menuSetting.style.display="none";
-
-    if(menu=="profil") menuProfil.style.display="block";
-    if(menu=="tugas") menuTugas.style.display="block";
-    if(menu=="shop") menuShop.style.display="block";
-    if(menu=="setting") menuSetting.style.display="block"; 
-}
-function toggleData(){
-    dataAkun.style.display = visible ? "none":"block";
-    iconData.className = visible ? "fas fa-eye-slash":"fas fa-eye";
-    visible=!visible;
-}
-
-function deposit(){ popupDeposit.style.display="flex"; }
-function tutupDeposit(){ popupDeposit.style.display="none"; }
-
-function kirimDeposit(){ alert("Deposit dikirim"); }
-
-function tarik(){ alert("Hubungi admin"); }
-
-function tugas(nomor){
-    alert("Kamu mengerjakan Tugas " + nomor);
-}
-
-function beli(link){ window.location.href=link; }
 
 </script>
-
-</body>
-</html>
