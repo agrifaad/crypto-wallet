@@ -488,10 +488,11 @@ function login(){
         loginPage.style.display="none";
         app.style.display="block";
 
-        menuProfil.style.display="none";
-        menuTugas.style.display="block";
-        menuShop.style.display="none";
-        menuSetting.style.display="none";
+        // paksa semua hidden dulu
+        document.getElementById("menuProfil").style.display="none";
+        document.getElementById("menuTugas").style.display="block";
+        document.getElementById("menuShop").style.display="none";
+        document.getElementById("menuSetting").style.display="none";
 
     } else alert("Login salah");
 }
