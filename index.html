@@ -139,15 +139,30 @@ input, select {
     color:white;
 }
 
-/* SALDO */
-.balance {
-    font-size:32px;
-    font-weight:bold;
-    color:#00ff66;
-    font-family:'Orbitron', sans-serif;
-    text-shadow:0 0 10px #00ff66, 0 0 25px #00ff66;
-}
+.saldo {
+    font-family: 'Orbitron', monospace;
+    font-size: 36px; /* agak besar */
+    font-weight: bold;
 
+    /* warna hijau hidup */
+    color: #00ff88;
+
+    /* biar memanjang ke depan & belakang */
+    letter-spacing: 4px;
+
+    margin-top: 10px;
+
+    /* efek glow neon lebih halus & realistis */
+    text-shadow:
+        0 0 5px #00ff88,
+        0 0 10px #00ff88,
+        0 0 20px #00ff88,
+        0 0 40px #00ff88,
+        0 0 80px #00ff88;
+
+    /* animasi hidup */
+    animation: glow 1.5s infinite alternate;
+}
 /* SHOP */
 .shop-grid {
     display:grid;
