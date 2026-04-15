@@ -2,73 +2,7 @@
 <html lang="id">
 
 <head>
-    <title>GreenCoin</title>
 
-    <!-- FONT -->
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap" rel="stylesheet">
-
-    <style>
-        .menu-content {
-            display: none;
-            margin-top: 10px;
-            color: white;
-        }
-
-        .header {
-            text-align: center;
-        }
-
-        .title {
-            color: white;
-            font-size: 32px;
-        }
-    </style>
-</head>
-        .header {
-            text-align: center;
-        }
-
-        .title {
-            color: white;
-            font-size: 32px;
-            margin: 10px 0;
-        }
-
-        .saldo {
-            font-family: 'Orbitron', monospace;
-            font-size: 35px;
-            font-weight: bold;
-            color: #00ff66;
-            margin-top: 10px;
-            letter-spacing: 4px;
-
-            text-shadow:
-                0 0 5px #00ff66,
-                0 0 10px #00ff66,
-                0 0 20px #00ff66,
-                0 0 40px #00ff66,
-                0 0 80px #00ff66;
-
-            animation: glow 1.5s infinite alternate;
-        }
-
-        @keyframes glow {
-            from {
-                text-shadow:
-                    0 0 5px #00ff66,
-                    0 0 10px #00ff66,
-                    0 0 20px #00ff66;
-            }
-            to {
-                text-shadow:
-                    0 0 10px #00ff66,
-                    0 0 20px #00ff66,
-                    0 0 40px #00ff66,
-                    0 0 80px #00ff66;
-            }
-        }
-    </style>
-</head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>GreenMoney Wallet</title>
@@ -315,16 +249,16 @@ input, select {
     <img src="logo.png" width="80">
     <h1>GreenCoin</h1>
     
-    <div class="saldo">Rp100.000.000</div>
+    <div class="saldo">Rp 100.000.000</div>
 </div>
 <!-- DATA -->
 <div class="card">
 
-<div class="data-header" onclick="toggleData()">
+<button onclick="toggleData()">
     <i id="iconData" class="fas fa-eye"></i> Data Akun
-</div>
+</button>
 
-<div id="dataAkun" style="text-align:left; display: none;">
+<div id="dataAkun" style="text-align:left;">
 
 <p><b>Nama</b><br>AGRIFA ALOKENIA GINTING</p>
 <p><b>No Rek</b><br>0896-9986-3373</p>
@@ -402,25 +336,13 @@ input, select {
 
     <!-- MENU PILIHAN -->
     <div class="card">
-    <h3>⚙️ Pengaturan</h3>
+        <h3>⚙️ Pengaturan</h3>
 
-    <button onclick="toggleMenu('akun')">👤 Data Akun</button>
-    <div id="akun" class="menu-content">
-        <p>Info akun kamu</p>
+        <button onclick="openSetting('akun')">👤 Data Akun</button>
+        <button onclick="openSetting('rekening')">🏦 Rekening</button>
+        <button onclick="openSetting('password')">🔒 Ganti Password</button>
+        <button onclick="toggleDarkMode()">🌙 Mode Gelap</button>
     </div>
-
-    <button onclick="toggleMenu('rekening')">🏦 Rekening</button>
-    <div id="rekening" class="menu-content">
-        <p>Data rekening</p>
-    </div>
-
-    <button onclick="toggleMenu('password')">🔒 Ganti Password</button>
-    <div id="password" class="menu-content">
-        <p>Form ganti password</p>
-    </div>
-
-    <button onclick="toggleDarkMode()">🌙 Mode Gelap</button>
-</div>
 
     <!-- DATA AKUN -->
     <div id="settingAkun" class="card" style="display:none;">
