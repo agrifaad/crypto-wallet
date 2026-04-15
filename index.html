@@ -386,13 +386,25 @@ input, select {
 
     <!-- MENU PILIHAN -->
     <div class="card">
-        <h3>⚙️ Pengaturan</h3>
+    <h3>⚙️ Pengaturan</h3>
 
-        <button onclick="openSetting('akun')">👤 Data Akun</button>
-        <button onclick="openSetting('rekening')">🏦 Rekening</button>
-        <button onclick="openSetting('password')">🔒 Ganti Password</button>
-        <button onclick="toggleDarkMode()">🌙 Mode Gelap</button>
+    <button onclick="toggleMenu('akun')">👤 Data Akun</button>
+    <div id="akun" class="menu-content">
+        <p>Info akun kamu</p>
     </div>
+
+    <button onclick="toggleMenu('rekening')">🏦 Rekening</button>
+    <div id="rekening" class="menu-content">
+        <p>Data rekening</p>
+    </div>
+
+    <button onclick="toggleMenu('password')">🔒 Ganti Password</button>
+    <div id="password" class="menu-content">
+        <p>Form ganti password</p>
+    </div>
+
+    <button onclick="toggleDarkMode()">🌙 Mode Gelap</button>
+</div>
 
     <!-- DATA AKUN -->
     <div id="settingAkun" class="card" style="display:none;">
