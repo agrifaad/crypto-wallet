@@ -490,6 +490,8 @@ function logout(){
 }
 
 function showMenu(menu){
+    console.log(menu); 
+
     menuProfil.style.display="none";
     menuTugas.style.display="none";
     menuShop.style.display="none";
@@ -500,7 +502,6 @@ function showMenu(menu){
     if(menu=="shop") menuShop.style.display="block";
     if(menu=="setting") menuSetting.style.display="block"; 
 }
-
 function toggleData(){
     dataAkun.style.display = visible ? "none":"block";
     iconData.className = visible ? "fas fa-eye-slash":"fas fa-eye";
