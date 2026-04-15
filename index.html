@@ -49,6 +49,14 @@
     grid-template-columns: repeat(2, 1fr);
     gap:15px;
 }
+    .balance {
+    animation: glow 1.5s infinite, float 2s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%,100% { transform: translateY(0); }
+    50% { transform: translateY(-3px); }
+}
 
 .product {
     background:#111;
@@ -247,8 +255,8 @@ input, select {
 <!-- LOGO + JUDUL -->
 <div class="card">
     <img src="logo.png" width="80">
-    <div class="saldo">Rp 100.000.000</div>
     <h1>GreenCoin</h1>
+<div class="balance">Rp 100.000.000</div>
 </div>
 <!-- DATA -->
 <div class="card">
