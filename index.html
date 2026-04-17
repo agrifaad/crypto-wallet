@@ -245,17 +245,19 @@ input, select {
 </div>
 
 <!-- PROFIL -->
+<!-- PROFIL -->
 <div id="menuProfil">
 
-<div class="card">
-    <button onclick="logout()">Logout</button>
-</div>
+    <div class="card">
+        <button onclick="logout()">Logout</button>
+    </div>
 
-<!-- LOGO + JUDUL -->
-<div class="card">
-    <img src="logo.png" width="80">
-    <h1>GreenCoin</h1>
-<div class="balance">Rp 100.000.000</div>
+    <div class="card">
+        <img src="logo.png" width="80">
+        <h1>GreenCoin</h1>
+        <div class="balance">Rp 100.000.000</div>
+    </div>
+
 </div>
 <!-- DATA -->
 <div class="card">
@@ -282,6 +284,7 @@ input, select {
 
 <!-- TUGAS -->
 <div id="menuTugas" style="display:none;">
+
     <div class="card">
         <h3>📋 Menu Tugas</h3>
 
@@ -314,6 +317,7 @@ input, select {
 
         </div>
     </div>
+
 </div>
 <!-- SHOP -->
 <div id="menuShop" style="display:none;">
@@ -487,8 +491,7 @@ function logout(){
 }
 
 function showMenu(menu){
-    alert(menu); // test
-
+ console.log(menu);
     menuProfil.style.display="none";
     menuTugas.style.display="none";
     menuShop.style.display="none";
