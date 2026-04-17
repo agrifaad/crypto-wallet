@@ -6,24 +6,10 @@
 <title>GreenMoney Wallet</title>
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap" rel="stylesheet">
 
 <style>
-    #loginPage .card {
-    background:#001f33;
-    border-radius:15px;
-    padding:20px;
-    margin-top:80px;
-    box-shadow:0 0 25px #00d9ff;
-}
 
-#loginPage input {
-    background:#222;
-    color:white;
-}
-
-#loginPage h2 {
-    color:white;
-}
 body {
     margin:0;
     font-family: Arial;
@@ -43,7 +29,7 @@ body {
     border-radius:15px;
     padding:20px;
     margin:15px 0;
-    box-shadow:0 0 20px #00d9ff;
+    box-shadow:0 0 20px #00d9ff, 0 0 40px #00d9ff;
 }
 
 button {
@@ -63,14 +49,28 @@ input {
     border-radius:8px;
     border:none;
     width:100%;
+    background:#222;
+    color:white;
 }
 
 .balance {
-    font-size:28px;
+    font-size:30px;
+    font-family:'Orbitron', sans-serif;
     color:#00ff66;
-    font-weight:bold;
+    text-shadow:0 0 10px #00ff66, 0 0 25px #00ff66;
 }
 
+/* MENU */
+.menu {
+    display:flex;
+    gap:5px;
+}
+
+.menu button {
+    flex:1;
+}
+
+/* GRID */
 .shop-grid {
     display:grid;
     grid-template-columns: repeat(2,1fr);
@@ -80,19 +80,27 @@ input {
 .product {
     background:#111;
     padding:10px;
-    border-radius:10px;
+    border-radius:12px;
+    box-shadow:0 0 10px #00ffc8;
 }
 
 .product img {
     width:100%;
-    height:100px;
+    height:120px;
     object-fit:cover;
     border-radius:10px;
 }
 
-.btn-vip {
-    background: gold;
+.product:hover {
+    transform:scale(1.05);
+    transition:0.3s;
 }
+
+.btn-vip {
+    background: linear-gradient(90deg, gold, red);
+    box-shadow:0 0 10px gold;
+}
+
 </style>
 </head>
 
@@ -100,7 +108,6 @@ input {
 
 <!-- LOGIN -->
 <div id="loginPage" class="container">
-
 <div class="card">
     <img src="logo.png" width="80">
     <h2>GreenMoney Wallet</h2>
@@ -110,67 +117,69 @@ input {
 
     <button onclick="login()">Login</button>
 </div>
-
 </div>
 
 <!-- APP -->
 <div id="app" class="container" style="display:none;">
 
 <!-- MENU -->
-<div style="display:flex; gap:5px;">
-<button onclick="showMenu('profil')">Profil</button>
-<button onclick="showMenu('tugas')">Tugas</button>
-<button onclick="showMenu('shop')">Shop</button>
+<div class="menu">
+    <button onclick="showMenu('profil')">👤 Profil</button>
+    <button onclick="showMenu('tugas')">📋 Tugas</button>
+    <button onclick="showMenu('shop')">🛍️ Shop</button>
 </div>
 
 <!-- PROFIL -->
 <div id="menuProfil">
+
 <div class="card">
-<button onclick="logout()">Logout</button>
+    <button onclick="logout()">Logout</button>
 </div>
 
 <div class="card">
-<h2>GreenCoin</h2>
-<div class="balance">Rp 100.000.000</div>
+    <img src="logo.png" width="80">
+    <h2>GreenCoin</h2>
+    <div class="balance">Rp 100.000.000</div>
 </div>
 
 <div class="card">
-<button>Data Akun</button>
-<button>Deposit</button>
-<button>Tarik</button>
+    <button>Data Akun</button>
+    <button>Deposit</button>
+    <button>Tarik</button>
 </div>
+
 </div>
 
 <!-- TUGAS -->
 <div id="menuTugas" style="display:none;">
 <div class="card">
-<h3>Menu Tugas</h3>
+<h3>📋 Menu Tugas</h3>
 
 <div class="shop-grid">
 
 <div class="product">
-<p>Tugas 1</p>
-<button onclick="tugas(1)">+5000</button>
+<p>📌 Tugas 1</p>
+<button onclick="tugas(1)">+Rp5.000</button>
 </div>
 
 <div class="product">
-<p>Tugas 2</p>
-<button onclick="tugas(2)">+10000</button>
+<p>📌 Tugas 2</p>
+<button onclick="tugas(2)">+Rp10.000</button>
 </div>
 
 <div class="product">
-<p>Tugas 3</p>
-<button onclick="tugas(3)">+15000</button>
+<p>📌 Tugas 3</p>
+<button onclick="tugas(3)">+Rp15.000</button>
 </div>
 
 <div class="product">
-<p>Tugas 4 VIP</p>
-<button class="btn-vip" onclick="tugas(4)">+50000</button>
+<p>👑 Tugas 4 VIP</p>
+<button class="btn-vip" onclick="tugas(4)">+Rp50.000</button>
 </div>
 
 <div class="product">
-<p>Tugas 5 VIP</p>
-<button class="btn-vip" onclick="tugas(5)">+100000</button>
+<p>👑 Tugas 5 VIP</p>
+<button class="btn-vip" onclick="tugas(5)">+Rp100.000</button>
 </div>
 
 </div>
@@ -180,13 +189,13 @@ input {
 <!-- SHOP -->
 <div id="menuShop" style="display:none;">
 <div class="card">
-<h3>Shop</h3>
+<h3>🛍️ Marketplace</h3>
 
 <div class="shop-grid">
 
 <div class="product">
 <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff">
-<p>Sepatu</p>
+<p>Sepatu Sport</p>
 <button onclick="beli()">Beli</button>
 </div>
 
@@ -198,13 +207,13 @@ input {
 
 <div class="product">
 <img src="https://images.unsplash.com/photo-1526178613658-3f1622045557">
-<p>Jam</p>
+<p>Jam Tangan</p>
 <button onclick="beli()">Beli</button>
 </div>
 
 <div class="product">
 <img src="https://images.unsplash.com/photo-1585386959984-a4155224a1ad">
-<p>Tas</p>
+<p>Tas Fashion</p>
 <button onclick="beli()">Beli</button>
 </div>
 
@@ -239,7 +248,7 @@ function showMenu(menu){
 }
 
 function tugas(n){
-    alert("Kamu mengerjakan tugas " + n);
+    alert("Kamu mengerjakan Tugas " + n);
 }
 
 function beli(){
