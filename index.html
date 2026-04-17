@@ -1,132 +1,286 @@
-// ====== DATA ======
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GreenMoney Wallet</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap" rel="stylesheet">
+
+<style>
+body {
+    margin:0;
+    font-family: Arial;
+    background: radial-gradient(circle, #001a2d, #000);
+    color:white;
+    text-align:center;
+}
+
+.container {max-width:400px;margin:auto;padding:10px;}
+
+.card {
+    background:#001f33;
+    border-radius:15px;
+    padding:20px;
+    margin:15px 0;
+    box-shadow:0 0 20px #00d9ff;
+}
+
+button {
+    width:100%;
+    padding:12px;
+    margin-top:8px;
+    border:none;
+    border-radius:10px;
+    background:linear-gradient(90deg,#00d9ff,#00ffcc);
+    font-weight:bold;
+}
+
+input {
+    padding:10px;
+    margin:5px 0;
+    border-radius:8px;
+    border:none;
+    width:100%;
+    background:#222;
+    color:white;
+}
+
+.balance {
+    font-size:30px;
+    font-family:'Orbitron';
+    color:#00ff66;
+    text-shadow:0 0 10px #00ff66;
+}
+
+.menu {display:flex; gap:5px;}
+
+.shop-grid {
+    display:grid;
+    grid-template-columns: repeat(2,1fr);
+    gap:10px;
+}
+
+.product {
+    background:#111;
+    padding:10px;
+    border-radius:12px;
+}
+
+.product img {
+    width:100%;
+    height:120px;
+    object-fit:cover;
+    border-radius:10px;
+}
+
+.btn-vip {
+    background: linear-gradient(90deg, gold, red);
+}
+</style>
+</head>
+
+<body>
+
+<!-- LOGIN -->
+<div id="loginPage" class="container">
+<div class="card">
+<img src="logo.png" width="80">
+<h2>GreenMoney Wallet</h2>
+
+<input type="text" id="user" placeholder="ID">
+<input type="password" id="pass" placeholder="Password">
+
+<button onclick="login()">Login</button>
+</div>
+</div>
+
+<!-- APP -->
+<div id="app" class="container" style="display:none;">
+
+<div class="menu">
+<button onclick="showMenu('profil')">Profil</button>
+<button onclick="showMenu('tugas')">Tugas</button>
+<button onclick="showMenu('shop')">Shop</button>
+</div>
+
+<!-- PROFIL -->
+<div id="menuProfil">
+
+<div class="card">
+<button onclick="logout()">Logout</button>
+</div>
+
+<div class="card">
+<img src="logo.png" width="80">
+<h2>GreenCoin</h2>
+<div class="balance">Rp 100000000</div>
+</div>
+
+<div class="card">
+<button onclick="bukaData()">Data Akun</button>
+<button onclick="bukaDeposit()">Deposit</button>
+<button onclick="bukaTarik()">Tarik</button>
+</div>
+
+<div class="card">
+<h3>Riwayat</h3>
+<div id="riwayatBox"></div>
+</div>
+
+</div>
+
+<!-- TUGAS -->
+<div id="menuTugas" style="display:none;">
+<div class="card">
+<h3>Menu Tugas</h3>
+
+<div class="shop-grid">
+
+<div class="product"><p>Tugas 1</p><button onclick="tugas(1,this)">+5000</button></div>
+<div class="product"><p>Tugas 2</p><button onclick="tugas(2,this)">+10000</button></div>
+<div class="product"><p>Tugas 3</p><button onclick="tugas(3,this)">+15000</button></div>
+<div class="product"><p>Tugas 4 VIP</p><button class="btn-vip" onclick="tugas(4,this)">+50000</button></div>
+<div class="product"><p>Tugas 5 VIP</p><button class="btn-vip" onclick="tugas(5,this)">+100000</button></div>
+
+</div>
+</div>
+</div>
+
+<!-- SHOP -->
+<div id="menuShop" style="display:none;">
+<div class="card">
+<h3>Shop</h3>
+
+<div class="shop-grid">
+
+<div class="product"><img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff"><button onclick="beli()">Beli</button></div>
+<div class="product"><img src="https://images.unsplash.com/photo-1511379938547-c1f69419868d"><button onclick="beli()">Beli</button></div>
+<div class="product"><img src="https://images.unsplash.com/photo-1526178613658-3f1622045557"><button onclick="beli()">Beli</button></div>
+<div class="product"><img src="https://images.unsplash.com/photo-1585386959984-a4155224a1ad"><button onclick="beli()">Beli</button></div>
+
+</div>
+</div>
+</div>
+
+</div>
+
+<!-- POPUP -->
+<div id="popupDeposit" style="display:none;position:fixed;top:0;width:100%;height:100%;background:#000a;justify-content:center;align-items:center;">
+<div class="card">
+<input type="number" id="jumlahDepo" placeholder="Jumlah Deposit">
+<button onclick="kirimDeposit()">Kirim</button>
+<button onclick="tutupDeposit()">Tutup</button>
+</div>
+</div>
+
+<div id="popupTarik" style="display:none;position:fixed;top:0;width:100%;height:100%;background:#000a;justify-content:center;align-items:center;">
+<div class="card">
+<input type="number" id="jumlahTarik" placeholder="Jumlah Tarik">
+<button onclick="kirimTarik()">Kirim</button>
+<button onclick="tutupTarik()">Tutup</button>
+</div>
+</div>
+
+<script>
+
+// LOGIN
+function login(){
+    if(user.value=="admin" && pass.value=="1234"){
+        loginPage.style.display="none";
+        app.style.display="block";
+    }
+}
+function logout(){location.reload();}
+
+// MENU
+function showMenu(menu){
+    menuProfil.style.display="none";
+    menuTugas.style.display="none";
+    menuShop.style.display="none";
+    document.getElementById("menu"+menu.charAt(0).toUpperCase()+menu.slice(1)).style.display="block";
+}
+
+// DATA
 let saldo = localStorage.getItem("saldo") || 100000000;
-let tugasSelesai = JSON.parse(localStorage.getItem("tugas")) || {};
+let tugasDone = JSON.parse(localStorage.getItem("tugas")) || {};
 let vip = localStorage.getItem("vip") || false;
 let riwayat = JSON.parse(localStorage.getItem("riwayat")) || [];
 
-// ====== UPDATE SALDO ======
 function updateSaldo(){
-    document.querySelector(".balance").innerText = "Rp " + Number(saldo).toLocaleString();
+    document.querySelector(".balance").innerText="Rp "+Number(saldo).toLocaleString();
 }
 updateSaldo();
 
-// ====== TUGAS ======
-function tugas(n, el){
+// TUGAS
+function tugas(n,el){
+if(tugasDone[n]) return alert("Sudah selesai");
 
-    if(tugasSelesai[n]){
-        alert("Tugas sudah dikerjakan!");
-        return;
-    }
+let reward=[0,5000,10000,15000,50000,100000];
 
-    let reward = [0,5000,10000,15000,50000,100000];
+if((n==4||n==5)&&vip!="true") return alert("Harus VIP!");
 
-    // cek VIP
-    if((n==4 || n==5) && vip!="true"){
-        alert("Harus VIP dulu!");
-        return;
-    }
+saldo=Number(saldo)+reward[n];
+tugasDone[n]=true;
 
-    saldo = Number(saldo) + reward[n];
-    tugasSelesai[n] = true;
+localStorage.setItem("saldo",saldo);
+localStorage.setItem("tugas",JSON.stringify(tugasDone));
 
-    localStorage.setItem("saldo", saldo);
-    localStorage.setItem("tugas", JSON.stringify(tugasSelesai));
+el.innerText="Selesai";
+el.disabled=true;
 
-    // ubah tombol
-    el.innerText = "✅ Selesai";
-    el.disabled = true;
-
-    tambahRiwayat("Tugas "+n, reward[n]);
-
-    updateSaldo();
+tambahRiwayat("Tugas "+n,reward[n]);
+updateSaldo();
 }
 
-// ====== LOAD STATUS TUGAS ======
-window.onload = function(){
-    updateSaldo();
-
-    for(let i=1;i<=5;i++){
-        if(tugasSelesai[i]){
-            let btn = document.querySelector(`[onclick="tugas(${i}, this)"]`);
-            if(btn){
-                btn.innerText="✅ Selesai";
-                btn.disabled=true;
-            }
-        }
-    }
-}
-
-// ====== DEPOSIT ======
+// DEPOSIT
+function bukaDeposit(){popupDeposit.style.display="flex";}
+function tutupDeposit(){popupDeposit.style.display="none";}
 function kirimDeposit(){
-    let jumlah = Number(document.getElementById("jumlahDepo").value);
-
-    if(jumlah < 10000){
-        alert("Minimal deposit 10.000");
-        return;
-    }
-
-    saldo += jumlah;
-
-    // VIP unlock
-    if(jumlah >= 50000){
-        vip = true;
-        localStorage.setItem("vip", true);
-        alert("VIP aktif!");
-    }
-
-    localStorage.setItem("saldo", saldo);
-
-    tambahRiwayat("Deposit", jumlah);
-
-    updateSaldo();
-    tutupDeposit();
+let j=Number(jumlahDepo.value);
+saldo+=j;
+if(j>=50000){vip=true;localStorage.setItem("vip",true);}
+localStorage.setItem("saldo",saldo);
+tambahRiwayat("Deposit",j);
+updateSaldo();
+tutupDeposit();
 }
 
-// ====== TARIK ======
+// TARIK
+function bukaTarik(){popupTarik.style.display="flex";}
+function tutupTarik(){popupTarik.style.display="none";}
 function kirimTarik(){
-    let jumlah = Number(document.getElementById("jumlahTarik").value);
-
-    if(jumlah > saldo){
-        alert("Saldo tidak cukup!");
-        return;
-    }
-
-    saldo -= jumlah;
-
-    localStorage.setItem("saldo", saldo);
-
-    tambahRiwayat("Tarik", -jumlah);
-
-    updateSaldo();
-    tutupTarik();
+let j=Number(jumlahTarik.value);
+if(j>saldo) return alert("Saldo kurang");
+saldo-=j;
+localStorage.setItem("saldo",saldo);
+tambahRiwayat("Tarik",-j);
+updateSaldo();
+tutupTarik();
 }
 
-// ====== RIWAYAT ======
-function tambahRiwayat(jenis, jumlah){
-    riwayat.push({
-        jenis: jenis,
-        jumlah: jumlah,
-        waktu: new Date().toLocaleString()
-    });
-
-    localStorage.setItem("riwayat", JSON.stringify(riwayat));
-    tampilRiwayat();
+// RIWAYAT
+function tambahRiwayat(jenis,jumlah){
+riwayat.push({jenis,jumlah,waktu:new Date().toLocaleString()});
+localStorage.setItem("riwayat",JSON.stringify(riwayat));
+tampilRiwayat();
 }
 
 function tampilRiwayat(){
-    let box = document.getElementById("riwayatBox");
-    if(!box) return;
-
-    box.innerHTML = "";
-
-    riwayat.slice().reverse().forEach(r => {
-        box.innerHTML += `
-        <div style="text-align:left; margin:5px;">
-            <b>${r.jenis}</b><br>
-            Rp ${r.jumlah.toLocaleString()}<br>
-            <small>${r.waktu}</small>
-        </div>
-        <hr>
-        `;
-    });
+let box=document.getElementById("riwayatBox");
+if(!box) return;
+box.innerHTML="";
+riwayat.slice().reverse().forEach(r=>{
+box.innerHTML+=`<p>${r.jenis} Rp ${r.jumlah}<br><small>${r.waktu}</small></p>`;
+});
 }
+tampilRiwayat();
+
+// SHOP
+function beli(){window.location.href="https://shopee.co.id";}
+
+</script>
+
+</body>
+</html>
